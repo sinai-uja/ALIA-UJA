@@ -1,0 +1,111 @@
+# --- Sistema Operativo ---
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --- Logs y Bases de Datos Locales ---
+*.log
+*.sqlite
+*.db
+
+# --- Archivos de Entorno (¡MUY IMPORTANTE!) ---
+# Nunca subas tus claves privadas o configuraciones locales
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- Editores de Código (IDE) ---
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# --- Otros ---
+node_modules/
+dist/
+build/
+temp/
+tmp/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.pytest_cache/
+
+# --- ALIA: Logs & Temporary Files ---
+logs/
+others/
+nohup*
+outputs/
+tiktoken/
+download/
+_*
+
+# --- ALIA: Configuration & Environment ---
+*config*
+.vscode/
+requirements_*
+
+# --- ALIA: Data & Datasets ---
+*.parquet
+*.csv
+list_datasets_*
+all_info_datasets*
+corpora/**/*.parquet
+datatrove/
+gform*
+dosier.csv
+
+# --- ALIA: Project Specific Data Paths ---
+data/llms/data/
+data/llms/corpora/
+data/encoders/data/
+data/encoders/corpora/
+
+# --- ALIA: Models & Training ---
+models/llms/models/
+*train/
+
+# --- ALIA: Testing & Evaluation ---
+test/
+test**/
+instructions/
+launchers/
+rags/evaluation/scripts/
+rags/evaluation/launchers/
+
+# --- ALIA: Deprecated / Old Files ---
+*old
+*old/
