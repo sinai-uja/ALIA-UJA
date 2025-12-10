@@ -1,0 +1,20 @@
+{
+    "template": {
+        "id": "",
+        "name": "",
+        "description": "",
+        "domain": "",
+        "features": [],
+        "tokens": {
+            "token-total": 0,
+            "token-average": {},
+            "token-stdev": {}
+        },
+        "license": "",
+        "divisions": {}
+    },
+    "divisor": {
+        "titles": [],
+        "subsets": {}
+    }
+}

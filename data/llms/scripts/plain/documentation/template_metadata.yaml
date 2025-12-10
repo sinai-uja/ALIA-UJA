@@ -1,0 +1,30 @@
+"alia:dataset":
+  "dc:identifier": ""
+  "dc:title": ""
+  "dc:description": ""
+  "dcterms:subject": []
+  "dc:relation": []
+  "dc:source": ""
+  "dc:date": ""
+  "dcterms:coverage": ""
+  "dcterms:provenance": ""
+  "dc:publisher": "Grupo SINAI"
+  "dcterms:license": ""
+  "dc:rights": ""
+  "dcterms:bibliographicCitation": ""
+  "alia:processing":
+    "alia:downloading": ""
+    "alia:filtering": ""
+  "dc:language": []
+  "dc:format": 
+  - "Data: parquet"
+  "alia:textEncoding": "Utf-8"
+  "alia:level": ""
+  "dcterms:extent": ""
+  "alia:instances": 0
+  "alia:tokens": 0
+  "alia:features":
+  - "alia:feature":
+      "dc:identifier": ""
+      "dc:description": ""
+      "dc:type": ""
