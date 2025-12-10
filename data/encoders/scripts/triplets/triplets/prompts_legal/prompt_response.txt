@@ -1,0 +1,16 @@
+Given the following **Context** and **Question** in Spanish, respond using only the information provided in the context. The answer must be written in Spanish and structured exclusively in JSON format. Do not add any extra text or explanations outside the JSON.
+
+Here is an example:
+Context: El artículo 10 de la Ley 39/2015 regula los procedimientos administrativos comunes y establece plazos máximos para su resolución.
+Question: ¿Cuánto es el plazo máximo para la resolución en los procedimientos administrativos según este artículo?
+Output:
+{{
+  "answer": "El plazo máximo para la resolución en los procedimientos administrativos está regulado por el artículo 10 de la Ley 39/2015."
+}}
+
+
+
+**Context**
+{passage}
+**Question**
+{query}
