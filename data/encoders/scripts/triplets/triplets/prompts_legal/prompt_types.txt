@@ -1,0 +1,36 @@
+The Passage is an excerpt from a Spanish legal-administrative document, from {source}. Given the Passage, generate a list of 4 or 5 Question_Type values that are plausible and contextually relevant for this kind of document. Use simple and standard Question_Type terms as examples (such as yes_or_no, background, acquire_knowledge, keywords, summary), but you do not have to limit yourself strictly to these; feel free to provide other related types appropriate to legal-administrative content.
+
+Return only the list of Question_Types in JSON format in English with this structure:
+
+{{
+  "Question_Types": [
+    "...",
+    "...",
+    "...",
+    "...",
+    "..."
+  ]
+}}
+
+Do not add any explanations or other text.
+
+---
+
+Example:
+
+Passage:
+"El reglamento sobre transparencia administrativa establece protocolos para la gestión de datos y obligaciones de informar a la ciudadanía."
+
+Expected output:
+{{
+  "Question_Types": [
+    "clarification",
+    "procedural",
+    "compliance_check",
+    "impact_analysis",
+    "interpretation"
+  ]
+}}
+
+Passage:
+{passage}

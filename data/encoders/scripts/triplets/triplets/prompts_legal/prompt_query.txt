@@ -1,0 +1,19 @@
+Given a **Character**, **Passage**, and **Requirement**, generate a query from the **Character**\s perspective that satisfies the **Requirement** and can be used to retrieve the **Passage**. Please return the result in JSON format.
+
+Here is an example:
+Character: "A climate scientist focused on the effects of deforestation in the Amazon."
+Passage: "La deforestación en la Amazonia ha aumentado la emisión de gases de efecto invernadero, afectando el equilibrio climático global."
+Requirement - Type: summary; Difficulty: university; Length: 20 words; Language: Spanish;
+Output:
+{{
+ "query": "¿Puedes resumir cómo la deforestación en la Amazonia influye en el cambio climático global?"
+}}
+
+Now, generate the **output** based on the **Character**, **Passage** and **Requirement** from user, the **Passage** will be in {corpus_language} language, the **Character** and **Requirement** will be in English.
+Ensure to generate only the JSON output, with the key in English and the value in {language} language.
+
+**Character**
+{character}
+**Passage**
+{passage}
+**Requirement** - Type: {type}; Difficulty: {difficulty}; Length: the length of the generated sentences should be {length} words; Language: the language in which the results are generated should be {language};
