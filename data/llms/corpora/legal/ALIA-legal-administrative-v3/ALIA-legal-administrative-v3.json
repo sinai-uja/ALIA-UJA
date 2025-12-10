@@ -1,0 +1,212 @@
+{
+    "datasets": [
+        "Agen_Urb_Esp",
+        "Biblioteca_Juridica",
+        "Boletin_Oficial_Canarias",
+        "Boletin_Oficial_Cantabria",
+        "Boletin_Oficial_Castilla_Y_Leon",
+        "Boletin_Oficial_Ceuta",
+        "Boletin_Oficial_Estado",
+        "Boletin_Oficial_Junta_Andalucia",
+        "Boletin_Oficial_Provincial_Cordoba",
+        "Boletin_Oficial_Provincial_Granada",
+        "Boletin_Oficial_Provincial_Jaen",
+        "Boletin_Oficial_Provincial_Sevilla",
+        "Boletin_Oficial_Region_Murcia",
+        "Boletines_Oficiales_Defensa",
+        "Codigo_Tecnico_Edificacion",
+        "Departamento_Seguridad_Nacional",
+        "EuroPat",
+        "Licitaciones",
+        "Ministerio_Transicion_Ecologica_Calidad_Evaluacion_Ambiental",
+        "Ministerio_Transicion_Ecologica_Cambio_Climatico",
+        "Ministerio_Transicion_Ecologica_Energia",
+        "Ministerio_Transicion_Ecologica_Ministerio",
+        "Ministerio_Transicion_Ecologica_Organismo_Autonomo_Parques_Nacionales",
+        "Ministerio_Transicion_Ecologica_Reto_Demografico",
+        "Ministerio_Transicion_Ecologica_Sala_Prensa",
+        "Ministerio_Vivienda_Agenda_Urbana",
+        "NORMA",
+        "ParlaMint-ES-AN",
+        "Registro_Mercantil_Borme"
+    ],
+    "total-tokens": 5193473754,
+    "total-tokens-mill": 5193.473754,
+    "total-tokens-bill": 5.193473754,
+    "info": {
+        "Agen_Urb_Esp": {
+            "tokens": 335451,
+            "tokens%": 0.006459087229268012,
+            "instances": 11,
+            "instances%": 0.00015643329805051402
+        },
+        "Biblioteca_Juridica": {
+            "tokens": 2527731,
+            "tokens%": 0.04867129631786717,
+            "instances": 22,
+            "instances%": 0.00031286659610102805
+        },
+        "Boletin_Oficial_Canarias": {
+            "tokens": 141562339,
+            "tokens%": 2.725773647955168,
+            "instances": 47982,
+            "instances%": 0.6823620460963422
+        },
+        "Boletin_Oficial_Cantabria": {
+            "tokens": 349985165,
+            "tokens%": 6.738941632860709,
+            "instances": 156256,
+            "instances%": 2.2221492200164654
+        },
+        "Boletin_Oficial_Castilla_Y_Leon": {
+            "tokens": 616134537,
+            "tokens%": 11.86363051368951,
+            "instances": 209921,
+            "instances%": 2.985330396369269
+        },
+        "Boletin_Oficial_Ceuta": {
+            "tokens": 37172910,
+            "tokens%": 0.7157619689782686,
+            "instances": 868,
+            "instances%": 0.012344009337076925
+        },
+        "Boletin_Oficial_Estado": {
+            "tokens": 1275960977,
+            "tokens%": 24.568545783393212,
+            "instances": 264436,
+            "instances%": 3.7605996002987023
+        },
+        "Boletin_Oficial_Junta_Andalucia": {
+            "tokens": 870941236,
+            "tokens%": 16.76991696221057,
+            "instances": 212086,
+            "instances%": 3.0161193136673923
+        },
+        "Boletin_Oficial_Provincial_Cordoba": {
+            "tokens": 248902474,
+            "tokens%": 4.7926009794176005,
+            "instances": 9112,
+            "instances%": 0.12958365562148036
+        },
+        "Boletin_Oficial_Provincial_Granada": {
+            "tokens": 22909841,
+            "tokens%": 0.4411275012674301,
+            "instances": 282,
+            "instances%": 0.004010380913658632
+        },
+        "Boletin_Oficial_Provincial_Jaen": {
+            "tokens": 106913362,
+            "tokens%": 2.058609845051313,
+            "instances": 63652,
+            "instances%": 0.9052083897737562
+        },
+        "Boletin_Oficial_Provincial_Sevilla": {
+            "tokens": 5082865,
+            "tokens%": 0.0978702356218743,
+            "instances": 49,
+            "instances%": 0.0006968392367704715
+        },
+        "Boletin_Oficial_Region_Murcia": {
+            "tokens": 530661205,
+            "tokens%": 10.217847054513102,
+            "instances": 217865,
+            "instances%": 3.098303679979567
+        },
+        "Boletines_Oficiales_Defensa": {
+            "tokens": 1550715,
+            "tokens%": 0.02985891666065788,
+            "instances": 38,
+            "instances%": 0.0005404059387199575
+        },
+        "Codigo_Tecnico_Edificacion": {
+            "tokens": 1319740,
+            "tokens%": 0.025411508029352027,
+            "instances": 56,
+            "instances%": 0.0007963876991662532
+        },
+        "Departamento_Seguridad_Nacional": {
+            "tokens": 1469757,
+            "tokens%": 0.02830007562602963,
+            "instances": 62,
+            "instances%": 0.0008817149526483518
+        },
+        "EuroPat": {
+            "tokens": 673770502,
+            "tokens%": 12.973407278337811,
+            "instances": 5804732,
+            "instances%": 82.5503064599415
+        },
+        "Licitaciones": {
+            "tokens": 65801579,
+            "tokens%": 1.267005132149167,
+            "instances": 630,
+            "instances%": 0.008959361615620349
+        },
+        "Ministerio_Transicion_Ecologica_Calidad_Evaluacion_Ambiental": {
+            "tokens": 14069838,
+            "tokens%": 0.2709138173493887,
+            "instances": 2272,
+            "instances%": 0.03231058665188799
+        },
+        "Ministerio_Transicion_Ecologica_Cambio_Climatico": {
+            "tokens": 4636644,
+            "tokens%": 0.08927827923321782,
+            "instances": 453,
+            "instances%": 0.006442207637898441
+        },
+        "Ministerio_Transicion_Ecologica_Energia": {
+            "tokens": 5479445,
+            "tokens%": 0.10550635777796598,
+            "instances": 327,
+            "instances%": 0.004650335314774371
+        },
+        "Ministerio_Transicion_Ecologica_Ministerio": {
+            "tokens": 7937682,
+            "tokens%": 0.1528395516370217,
+            "instances": 602,
+            "instances%": 0.008561167766037223
+        },
+        "Ministerio_Transicion_Ecologica_Organismo_Autonomo_Parques_Nacionales": {
+            "tokens": 13425207,
+            "tokens%": 0.25850148929047617,
+            "instances": 605,
+            "instances%": 0.008603831392778271
+        },
+        "Ministerio_Transicion_Ecologica_Reto_Demografico": {
+            "tokens": 416145,
+            "tokens%": 0.008012844961033765,
+            "instances": 30,
+            "instances%": 0.0004266362674104928
+        },
+        "Ministerio_Transicion_Ecologica_Sala_Prensa": {
+            "tokens": 90664,
+            "tokens%": 0.001745729434565272,
+            "instances": 2,
+            "instances%": 2.8442417827366184e-05
+        },
+        "Ministerio_Vivienda_Agenda_Urbana": {
+            "tokens": 266487,
+            "tokens%": 0.005131189886051747,
+            "instances": 9,
+            "instances%": 0.00012799088022314784
+        },
+        "NORMA": {
+            "tokens": 25811082,
+            "tokens%": 0.4969907083889732,
+            "instances": 6853,
+            "instances%": 0.09745794468547024
+        },
+        "ParlaMint-ES-AN": {
+            "tokens": 68164267,
+            "tokens%": 1.3124985362157662,
+            "instances": 658,
+            "instances%": 0.009357555465203475
+        },
+        "Registro_Mercantil_Borme": {
+            "tokens": 100173907,
+            "tokens%": 1.9288420765166343,
+            "instances": 31880,
+            "instances%": 0.45337214016821703
+        }
+    }
+}

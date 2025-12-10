@@ -1,0 +1,129 @@
+{
+    "datasets": [
+        "Agen_Urb_Esp",
+        "BODEFENSA",
+        "Biblioteca_Juridica",
+        "Boletines_Oficiales/BOC",
+        "Boletines_Oficiales/BOCANT",
+        "Boletines_Oficiales/BOCCE",
+        "Boletines_Oficiales/BOCYL",
+        "Boletines_Oficiales/BOE",
+        "Boletines_Oficiales/BOJA",
+        "Boletines_Oficiales/BORM",
+        "Codigo_Tecnico_Edificacion",
+        "Departamento_Seguridad_Nacional",
+        "Licitaciones_2025-07-03",
+        "Ministerio_Economia_BOICAC",
+        "Ministerio_Vivienda_Agenda_Urbana",
+        "NORMA",
+        "Registro_Mercantil_Borme"
+    ],
+    "info": {
+        "Boletines_Oficiales/BOE": {
+            "tokens": 8200717524,
+            "instances": 1762024,
+            "tokens%": 0.3991,
+            "instances%": 0.45238
+        },
+        "Boletines_Oficiales/BOJA": {
+            "tokens": 3412725472,
+            "instances": 654488,
+            "tokens%": 0.1661,
+            "instances%": 0.16803
+        },
+        "Boletines_Oficiales/BOCYL": {
+            "tokens": 2359477219,
+            "instances": 481830,
+            "tokens%": 0.1148,
+            "instances%": 0.1237
+        },
+        "Boletines_Oficiales/BORM": {
+            "tokens": 1836825316,
+            "instances": 419702,
+            "tokens%": 0.0894,
+            "instances%": 0.10775
+        },
+        "Boletines_Oficiales/BOCANT": {
+            "tokens": 1025561068,
+            "instances": 314398,
+            "tokens%": 0.0499,
+            "instances%": 0.08072
+        },
+        "Licitaciones_2025-07-03": {
+            "tokens": 994457488,
+            "instances": 12646,
+            "tokens%": 0.0484,
+            "instances%": 0.00325
+        },
+        "Boletines_Oficiales/BOC": {
+            "tokens": 785512717,
+            "instances": 147709,
+            "tokens%": 0.0382,
+            "instances%": 0.03792
+        },
+        "Registro_Mercantil_Borme": {
+            "tokens": 465687027,
+            "instances": 46021,
+            "tokens%": 0.0227,
+            "instances%": 0.01182
+        },
+        "Biblioteca_Juridica": {
+            "tokens": 385050195,
+            "instances": 1117,
+            "tokens%": 0.0187,
+            "instances%": 0.00029
+        },
+        "BODEFENSA": {
+            "tokens": 331315518,
+            "instances": 3707,
+            "tokens%": 0.0161,
+            "instances%": 0.00095
+        },
+        "Ministerio_Economia_BOICAC": {
+            "tokens": 307360049,
+            "instances": 1988,
+            "tokens%": 0.015,
+            "instances%": 0.00051
+        },
+        "NORMA": {
+            "tokens": 270311480,
+            "instances": 44715,
+            "tokens%": 0.0132,
+            "instances%": 0.01148
+        },
+        "Boletines_Oficiales/BOCCE": {
+            "tokens": 139088945,
+            "instances": 3980,
+            "tokens%": 0.0068,
+            "instances%": 0.00102
+        },
+        "Codigo_Tecnico_Edificacion": {
+            "tokens": 15903128,
+            "instances": 276,
+            "tokens%": 0.0008,
+            "instances%": 7e-05
+        },
+        "Ministerio_Vivienda_Agenda_Urbana": {
+            "tokens": 13201281,
+            "instances": 267,
+            "tokens%": 0.0006,
+            "instances%": 7e-05
+        },
+        "Departamento_Seguridad_Nacional": {
+            "tokens": 4830335,
+            "instances": 115,
+            "tokens%": 0.0002,
+            "instances%": 3e-05
+        },
+        "Agen_Urb_Esp": {
+            "tokens": 2357958,
+            "instances": 51,
+            "tokens%": 0.0001,
+            "instances%": 1e-05
+        }
+    },
+    "total-tokens": 20550382720,
+    "total-tokens-mill": 20550.38272,
+    "total-tokens-bill": 20.55038272,
+    "total-instances": 3895034
+}

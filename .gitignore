@@ -81,22 +81,14 @@ requirements*
 
 # --- ALIA: Data & Datasets ---
 *.parquet
-*.csv
 list_datasets_*
 all_info_datasets*
 **.parquet
 **.jsonl
 nltk_data
 gform*
-**.csv
 **.bin
 **.zip
-
-# --- ALIA: Project Specific Data Paths ---
-data/llms/data/
-data/llms/corpora/
-data/encoders/data/
-data/encoders/corpora/
 
 # --- ALIA: Models & Training ---
 models/llms/models/
