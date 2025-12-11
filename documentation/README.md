@@ -12,9 +12,9 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 ---
 
 ## Índice de Documentación
-- [Directorio de Documentación de Datos](documentation/data)
-- [Directorio de Documentación de Modelos](documentation/models)
-- [Directorio de Documentación para RAGs](documentation/rags)
+- [Directorio de Documentación de Datos](/documentation/data)
+- [Directorio de Documentación de Modelos](/documentation/models)
+- [Directorio de Documentación para RAGs](/documentation/rags)
 
 ---
 
