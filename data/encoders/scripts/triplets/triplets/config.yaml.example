@@ -1,0 +1,102 @@
+# ============================================================================
+# CONFIGURATION FILE FOR SYNTHETIC QA GENERATION PIPELINE
+# ============================================================================
+# This pipeline generates question-answer pairs from documents using vLLM.
+# It follows a 3-stage process:
+#   1. Generate question types from passages
+#   2. Select character and question type
+#   3. Generate query (and optionally answer)
+#
+# Copy this file as 'config.yaml' and adjust paths to your environment.
+# ============================================================================
+
+# === MODEL CONFIGURATION ===
+# Path to your vLLM-compatible model (local or HuggingFace model ID)
+model: "path/to/your/model"  # Example: "meta-llama/Llama-3-8B" or "/models/qwen2.5-7b"
+
+# Tensor parallelism: number of GPUs to split the model across
+tensor_parallel_size: 4
+
+# Maximum sequence length the model can handle
+max_model_len: 10000
+
+# GPU memory utilization (0.0-1.0). Lower if you get OOM errors
+gpu_memory_utilization: 0.9
+
+# Random seed for reproducibility
+seed: 42
+
+# === DOMAIN CONFIGURATION ===
+# These parameters define the domain/context of your documents
+domain_language: ""  # Language of your documents
+domain_type: ""  # Type/domain of your documents
+domain_description: ""  # Brief description
+
+# === PROMPT FILES ===
+# Paths to prompt template files (relative to project root)
+types_prompt_file: "prompts/prompt_types.txt"  # Prompt for generating question types
+selection_prompt_file: "prompts/prompt_selection.txt"  # Prompt for selecting character + type
+query_answer_prompt_file: "prompts/prompt_query_answer.txt"  # Prompt for query + answer generation
+query_only_prompt_file: "prompts/prompt_query_only.txt"  # Prompt for query-only generation
+
+# === GENERATION PARAMETERS: TYPES ===
+# Parameters for Stage 1: Question type generation
+types_use_beam_search: true  # Enable beam search for more deterministic outputs
+types_beam_width: 1  # Number of beams (1 = greedy decoding even with beam search enabled)
+types_temperature: 0.3  # Lower = more focused/deterministic (0.0-1.0)
+types_top_p: 0.9  # Nucleus sampling threshold
+types_max_tokens: 512  # Maximum tokens to generate
+
+# === GENERATION PARAMETERS: SELECTION ===
+# Parameters for Stage 2: Character and question type selection
+selection_use_beam_search: true
+selection_beam_width: 1
+selection_temperature: 0.3
+selection_top_p: 0.9
+selection_max_tokens: 512
+
+# === GENERATION PARAMETERS: QUERY (+ANSWER) ===
+# Parameters for Stage 3: Query and answer generation
+query_use_beam_search: true
+query_beam_width: 1
+query_temperature: 0.5  # Slightly higher for more diverse queries
+query_top_p: 0.95
+query_max_tokens: 2048  # Higher limit to accommodate query + answer
+
+# === PROCESSING CONFIGURATION ===
+# Batch size: number of items to process in parallel
+# Higher = faster but more GPU memory usage
+batch_size: 512
+
+# Maximum retry attempts for failed generations
+max_retries: 25
+
+# === TIMEOUTS (in seconds) ===
+# Timeout for each generation stage to prevent hanging
+types_timeout: 3600  # 60 minutes for types generation
+selection_timeout: 3600  # 60 minutes for selection
+query_timeout: 6000  # 100 minutes for query+answer (longer because it generates 2 fields)
+
+# === INPUT/OUTPUT PATHS ===
+# Path to output directory (will be created if it doesn't exist)
+output_dir: "output/"  # Example: "/path/to/output" or "data/output"
+
+# Path to input dataset (must be a Parquet file with required columns)
+# Required columns: id_chunk, id_document, passage, character, source_id
+dataset_path: "data/input/dataset_with_persona.parquet"
+
+# === OUTPUT CSV FILENAMES ===
+# Names for the generated CSV files (saved in output_dir)
+types_output_file: "types.csv"
+selection_output_file: "selections.csv"
+query_output_file: "query_answer.csv"  # Contains query + answer (or just query if generate_answer=false)
+
+# === PIPELINE OPTIONS ===
+# Control which stages to execute
+generate_types: true  # Set to false to skip types generation (requires existing types.csv)
+
+# Control answer generation
+generate_answer: true  # true = generate query+answer | false = generate only query
+
+# Limit number of items to process (useful for testing)
+limit: null  # null = process all | integer = process only N items

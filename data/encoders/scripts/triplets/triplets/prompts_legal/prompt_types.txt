@@ -1,35 +1,93 @@
-The Passage is an excerpt from a Spanish legal-administrative document, from {source}. Given the Passage, generate a list of 4 or 5 Question_Type values that are plausible and contextually relevant for this kind of document. Use simple and standard Question_Type terms as examples (such as yes_or_no, background, acquire_knowledge, keywords, summary), but you do not have to limit yourself strictly to these; feel free to provide other related types appropriate to legal-administrative content.
+The Passage is an excerpt from a {domain_language} {domain_type} document, taken from {source}, and will be used in a Retrieval-Augmented Generation (RAG) system to answer user queries.
 
-Return only the list of Question_Types in JSON format in English with this structure:
+Based on the Passage, generate a list of 4 to 5 Question_Type values that are contextually relevant to this kind of document and suitable for RAG retrieval scenarios.
 
-{{
-  "Question_Types": [
-    "...",
-    "...",
-    "...",
-    "...",
-    "..."
-  ]
-}}
+Question Type Definitions:
 
-Do not add any explanations or other text.
+- yes_or_no: Questions requiring a binary yes/no answer about permissions, prohibitions, or applicability
+- background: Questions seeking historical context, legislative origins, or general background information
+- acquire_knowledge: Questions aimed at learning specific facts, definitions, or concepts from the document
+- keywords: Questions focusing on identifying key terms, legal concepts, or important terminology
+- summary: Questions requesting a condensed overview or main points of the content
+- procedural: Questions about steps, processes, or how to complete administrative procedures
+- compliance_check: Questions verifying if certain actions or situations meet legal requirements
+- interpretation: Questions requiring explanation or clarification of legal language or implications
+- deadline: Questions about time limits, expiration dates, or temporal requirements
+- requirements: Questions identifying necessary documents, conditions, or prerequisites
+- eligibility: Questions determining who qualifies or is entitled to specific rights or procedures
+- consequences: Questions about penalties, sanctions, or outcomes of actions
+- application_process: Questions about how to formally request, apply for, or initiate procedures
+- clarification: Questions seeking to understand ambiguous or complex provisions
 
----
+Important instructions:
+Respond only with a single JSON object in English, containing a key "Question_Types" with a list of question type strings.
 
-Example:
+Do not include any explanations, markdown formatting, extra text, or invalid JSON.
 
+The JSON must be valid and parsable as-is.
+
+If unsure, respond with an empty list in the JSON object (e.g., {{"Question_Types": []}}).
+
+Examples:
+
+Example 1:
 Passage:
-"El reglamento sobre transparencia administrativa establece protocolos para la gestión de datos y obligaciones de informar a la ciudadanía."
+"Para solicitar una subvención del programa de emprendimiento juvenil, los interesados deben presentar el formulario oficial antes del 30 de noviembre de 2025, junto con la documentación acreditativa de su actividad empresarial."
 
 Expected output:
 {{
-  "Question_Types": [
-    "clarification",
-    "procedural",
-    "compliance_check",
-    "impact_analysis",
-    "interpretation"
-  ]
+"Question_Types": [
+"deadline",
+"requirements",
+"procedural",
+"eligibility",
+"application_process"
+]
+}}
+
+Example 2:
+Passage:
+"El incumplimiento de las normas de seguridad laboral puede acarrear sanciones administrativas que oscilan entre 1.000 y 50.000 euros, según la gravedad de la infracción y la reincidencia del infractor."
+
+Expected output:
+{{
+"Question_Types": [
+"consequences",
+"compliance_check",
+"interpretation",
+"clarification",
+"keywords"
+]
+}}
+
+Example 3:
+Passage:
+"Los ciudadanos tienen derecho a acceder a sus datos personales almacenados en registros públicos mediante solicitud formal dirigida al responsable del tratamiento. La respuesta debe proporcionarse en un plazo máximo de 30 días hábiles."
+
+Expected output:
+{{
+"Question_Types": [
+"procedural",
+"deadline",
+"acquire_knowledge",
+"yes_or_no",
+"requirements"
+]
+}}
+
+Example 4:
+Passage:
+"La Ley de Contratos del Sector Público regula los procedimientos de licitación, estableciendo criterios de adjudicación basados en la mejor relación calidad-precio y garantizando la igualdad de trato entre licitadores."
+
+Expected output:
+{{
+"Question_Types": [
+"background",
+"summary",
+"interpretation",
+"keywords",
+"compliance_check"
+]
 }}
 
 Passage:

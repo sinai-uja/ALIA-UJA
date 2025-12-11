@@ -19,6 +19,10 @@ class Selection(BaseModel):
     Question_Type: str = Field(..., min_length=1, max_length=200, description="Tipo de pregunta seleccionado")
     Difficulty: str = Field(..., min_length=1, max_length=50, description="Nivel de dificultad")
 
+class QueryOnly(BaseModel):
+    """Esquema para generación solo de pregunta"""
+    query: str = Field(..., min_length=5, max_length=1000, description="Query generada")
+
 class QueryWithAnswer(BaseModel):
     """Esquema para generación de pregunta Y respuesta juntas"""
     query: str = Field(..., min_length=5, max_length=1000, description="Query generada")
