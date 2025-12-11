@@ -18,7 +18,8 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 
 
 ## Índice de ficheros en el directorio
-
+- Ficheros de código
+  - [Script de entrenamiento principal](/models/llms/train.py)
 
 ---
 

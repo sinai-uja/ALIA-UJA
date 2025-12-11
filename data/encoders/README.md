@@ -16,6 +16,9 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 - [Metodología de extracción de pasajes dado un corpus de texto](/documentation/data/encoders/extract_passages.md)
 
 ## Índice de ficheros en el directorio
+- Ficheros de código
+  - [Directorio de scripts para extracción de pasajes](/encoders/scripts/passages)
+  - [Directorio de scripts para generación de tripletas](/encoders/scripts/triplets/triplets)
 
 
 ---

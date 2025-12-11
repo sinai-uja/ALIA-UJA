@@ -32,7 +32,12 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 
 
 ## Índice de ficheros en el directorio
-
+- Ficheros de código
+  - [Directorio de scripts para texto plano](/data/llms/scripts/plain)
+  - [Directorio de scripts para instrucciones](/data/llms/scripts/instructions)
+    - [Script de construcción de contextos](/data/llms/scripts/instructions/agreggate_contexts.py)
+  - [Directorio de scripts para corpora](/data/llms/scripts/corpora)
+  - [Directorio de scripts para evaluación](/data/llms/scripts/evaluation)
 
 ---
 

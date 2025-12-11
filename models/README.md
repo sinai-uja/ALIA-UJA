@@ -16,6 +16,8 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 - [Documentación de Modelos Encoders](/documentation/models/encoders)
 
 ## Índice de ficheros en el directorio
+- [Directorio de Modelos LLMs](/models/llms)
+- [Directorio de Modelos Encoders](/models/encoders)
 
 
 ---
