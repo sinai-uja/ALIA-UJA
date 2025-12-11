@@ -72,27 +72,23 @@ outputs/
 tiktoken/
 download/
 _*
+config**
 
 # --- ALIA: Configuration & Environment ---
 *config*
 .vscode/
-requirements_*
+requirements*
 
 # --- ALIA: Data & Datasets ---
 *.parquet
-*.csv
 list_datasets_*
 all_info_datasets*
-corpora/**/*.parquet
-datatrove/
+**.parquet
+**.jsonl
+nltk_data
 gform*
-dosier.csv
-
-# --- ALIA: Project Specific Data Paths ---
-data/llms/data/
-data/llms/corpora/
-data/encoders/data/
-data/encoders/corpora/
+**.bin
+**.zip
 
 # --- ALIA: Models & Training ---
 models/llms/models/
@@ -101,7 +97,7 @@ models/llms/models/
 # --- ALIA: Testing & Evaluation ---
 test/
 test**/
-instructions/
+**/test**
 launchers/
 rags/evaluation/scripts/
 rags/evaluation/launchers/

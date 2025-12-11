@@ -1,4 +1,5 @@
 # ALIA | Grupo SINAI
+***Directorio de Modelos | Modelos Encoders: Embeddings y Reranker***
 
 Bienvenido al repositorio de código del [Grupo SINAI](https://sinai.ujaen.es/alia) para el proyecto [ALIA](https://alia.gob.es/).
 
@@ -7,6 +8,13 @@ Investigamos en tecnologías del lenguaje y queremos que estas tecnologías sean
 En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos del lenguaje grandes**, sino también la documentación que hemos generado en el proceso y que puede ser útil para entender cómo hemos construido nuestros modelos (que también son tuyos).
 
 *Happy coding*
+
+---
+
+## Índice de Documentación
+- [Documentación del Framework General de los Modelos de Embeddings y Reranker](/documentation/models/encoders/encoders.md)
+- [Documentación del Framework Específica de los Modelos de Embeddings y Reranker](/documentation/models/encoders/ms-swift_params.md)
+- [Flujo de trabajo del entrenamiento de los Modelos de Embeddings y Reranker](/documentation/models/encoders/metodology.md)
 
 ---
 

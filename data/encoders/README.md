@@ -1,4 +1,5 @@
-# ALIA | Grupo SINAI
+# ALIA | Grupo SINAI 
+***Directorio de Datos | Modelos Encoders: Embeddings y Reranker***
 
 Bienvenido al repositorio de código del [Grupo SINAI](https://sinai.ujaen.es/alia) para el proyecto [ALIA](https://alia.gob.es/).
 
@@ -7,6 +8,15 @@ Investigamos en tecnologías del lenguaje y queremos que estas tecnologías sean
 En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos del lenguaje grandes**, sino también la documentación que hemos generado en el proceso y que puede ser útil para entender cómo hemos construido nuestros modelos (que también son tuyos).
 
 *Happy coding*
+
+---
+
+## Índice de Documentación
+- [Flujo de trabajo de generación de datos sintéticos para entrenamiento de encoders](/documentation/data/encoders/workflow.md)
+- [Metodología de extracción de pasajes dado un corpus de texto](/documentation/data/encoders/extract_passages.md)
+
+## Índice de ficheros en el directorio
+
 
 ---
 

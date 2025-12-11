@@ -1,4 +1,5 @@
-# ALIA | Grupo SINAI
+# ALIA | Grupo SINAI 
+***Directorio de Datos***
 
 Bienvenido al repositorio de código del [Grupo SINAI](https://sinai.ujaen.es/alia) para el proyecto [ALIA](https://alia.gob.es/).
 
@@ -7,6 +8,12 @@ Investigamos en tecnologías del lenguaje y queremos que estas tecnologías sean
 En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos del lenguaje grandes**, sino también la documentación que hemos generado en el proceso y que puede ser útil para entender cómo hemos construido nuestros modelos (que también son tuyos).
 
 *Happy coding*
+
+---
+
+## Índice de Documentación
+- [Documentación de Datos para LLMs](/documentation/data/llms)
+- [Documentación de Datos para Modelos Encoders](/documentation/data/encoders)
 
 ---
 
