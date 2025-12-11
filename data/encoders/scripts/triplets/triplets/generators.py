@@ -1,5 +1,5 @@
 """
-Funciones de generación con VLLM usando SamplingParams con beam search
+Funciones de generación con VLLM
 """
 import json
 import time
@@ -125,7 +125,7 @@ def generate_with_timeout(
     timeout_seconds: int = 180
 ) -> Optional[List]:
     """
-    Genera con timeout usando SamplingParams (con beam search opcional)
+    Genera con timeout usando SamplingParams
     """
     signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(timeout_seconds)
@@ -161,7 +161,7 @@ def generate_types(
     timeout_seconds: int = 180
 ) -> List[Dict[str, Any]]:
     """
-    Genera tipos con auto-reparación de JSON y beam search
+    Genera tipos con auto-reparación de JSON
     """
     type_items = [item for item in batch if 'error' not in item]
     success_flags = [False] * len(type_items)
@@ -266,7 +266,7 @@ def generate_selections(
     timeout_seconds: int = 180
 ) -> List[Dict[str, Any]]:
     """
-    Genera selecciones con auto-reparación, validación robusta y beam search
+    Genera selecciones con auto-reparación y validación robusta
     """
     selection_items = [item for item in batch if 'error' not in item]
     success_flags = [False] * len(selection_items)
@@ -411,10 +411,15 @@ def generate_queries_with_answers(
     timeout_seconds: int = 180
 ) -> List[Dict[str, Any]]:
     """
-    Genera queries CON respuestas en un solo paso, usando beam search
+    Genera queries con o sin respuestas según configuración
     """
+    from models import QueryOnly, QueryWithAnswer
+    
     query_items = [item for item in batch if 'error' not in item]
     success_flags = [False] * len(query_items)
+    
+    # Determinar si se genera answer
+    generate_answer = config.get("generate_answer", True)
     
     # Obtener parámetros del dominio
     domain_language = config.get("domain_language", "Spanish")
@@ -438,12 +443,14 @@ def generate_queries_with_answers(
         ]
         
         try:
-            print(f"[QUERY+ANSWER] Generando {len(prompts)} items | Intento {attempt + 1}/{max_retries}")
+            mode_str = "QUERY+ANSWER" if generate_answer else "QUERY"
+            print(f"[{mode_str}] Generando {len(prompts)} items | Intento {attempt + 1}/{max_retries}")
+            
             outputs = generate_with_timeout(llm, prompts, sampling_params, timeout_seconds)
             
             if outputs is None:
                 for idx_item in to_generate_indices:
-                    save_failed_item(query_items[idx_item], "query_with_answer", "Timeout", paths)
+                    save_failed_item(query_items[idx_item], "query", "Timeout", paths)
                 time.sleep(5)
                 continue
             
@@ -452,38 +459,45 @@ def generate_queries_with_answers(
                 raw_text = outputs[out_idx].outputs[0].text.strip()
                 
                 if not raw_text or len(raw_text) < 2:
-                    save_failed_item(query_items[q_idx], "query_with_answer", "Salida vacía", paths, raw_text)
+                    save_failed_item(query_items[q_idx], "query", "Salida vacía", paths, raw_text)
                     continue
                 
                 json_data = repair_and_parse_json(raw_text, schema_type="query_with_answer")
                 
                 if json_data is None:
-                    save_failed_item(query_items[q_idx], "query_with_answer", "No se pudo reparar JSON", paths, raw_text)
+                    save_failed_item(query_items[q_idx], "query", "No se pudo reparar JSON", paths, raw_text)
                     continue
                 
                 try:
                     if isinstance(json_data, list):
-                        save_failed_item(query_items[q_idx], "query_with_answer", "Query devolvió lista", paths, raw_text)
+                        save_failed_item(query_items[q_idx], "query", "Query devolvió lista", paths, raw_text)
                         continue
                     
                     if not isinstance(json_data, dict):
-                        save_failed_item(query_items[q_idx], "query_with_answer", f"Tipo inválido: {type(json_data)}", paths, raw_text)
+                        save_failed_item(query_items[q_idx], "query", f"Tipo inválido: {type(json_data)}", paths, raw_text)
                         continue
                     
-                    # Verificar campos requeridos
+                    # Verificar campo query (siempre requerido)
                     if "query" not in json_data or not json_data["query"]:
-                        save_failed_item(query_items[q_idx], "query_with_answer", "Falta campo 'query'", paths, raw_text)
+                        save_failed_item(query_items[q_idx], "query", "Falta campo 'query'", paths, raw_text)
                         continue
                     
-                    if "answer" not in json_data or not json_data["answer"]:
-                        save_failed_item(query_items[q_idx], "query_with_answer", "Falta campo 'answer'", paths, raw_text)
-                        continue
+                    # Validar según modo
+                    if generate_answer:
+                        if "answer" not in json_data or not json_data["answer"]:
+                            save_failed_item(query_items[q_idx], "query", "Falta campo 'answer'", paths, raw_text)
+                            continue
+                        validated = QueryWithAnswer(**json_data)
+                        query_items[q_idx]['query'] = validated.query
+                        query_items[q_idx]['answer'] = validated.answer
+                        answer_value = validated.answer
+                    else:
+                        validated = QueryOnly(**json_data)
+                        query_items[q_idx]['query'] = validated.query
+                        query_items[q_idx]['answer'] = ""  # Campo vacío
+                        answer_value = ""
                     
-                    validated = QueryWithAnswer(**json_data)
-                    
-                    query_items[q_idx]['query'] = validated.query
-                    query_items[q_idx]['answer'] = validated.answer
-                    
+                    # Escribir CSV
                     write_to_csv(
                         paths["queries"],
                         query_headers,
@@ -495,20 +509,20 @@ def generate_queries_with_answers(
                             "type": query_items[q_idx].get("question_type", ""),
                             "difficulty": query_items[q_idx].get("difficulty", ""),
                             "query": validated.query,
-                            "answer": validated.answer,
+                            "answer": answer_value,
                             "query_model": model,
                             "source_id": query_items[q_idx].get("source_id", "")
                         }
                     )
                     
                     success_flags[q_idx] = True
-                    print(f"[QUERY+ANSWER SUCCESS] ID {real_id}")
-                
+                    print(f"[{mode_str} SUCCESS] ID {real_id}")
+                    
                 except ValidationError as e:
-                    save_failed_item(query_items[q_idx], "query_with_answer", str(e), paths, raw_text)
-        
+                    save_failed_item(query_items[q_idx], "query", str(e), paths, raw_text)
+                    
         except Exception as e_outer:
-            print(f"[QUERY+ANSWER ERROR GLOBAL] {e_outer}")
+            print(f"[{mode_str} ERROR GLOBAL] {e_outer}")
             time.sleep(3)
         
         if all(success_flags):
@@ -520,6 +534,6 @@ def generate_queries_with_answers(
     for i, success in enumerate(success_flags):
         if not success:
             query_items[i]['error'] = True
-            save_failed_item(query_items[i], "query_with_answer", "Agotados intentos", paths)
+            save_failed_item(query_items[i], "query", "Agotados intentos", paths)
     
     return batch

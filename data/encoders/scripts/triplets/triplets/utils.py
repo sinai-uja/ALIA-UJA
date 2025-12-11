@@ -101,10 +101,19 @@ def load_prompt_templates(base_dir: Path, config: Dict[str, Any]) -> Dict[str, s
     Carga todos los templates de prompts
     """
     templates = {}
+    
+    # Determinar qué prompt de query usar según configuración
+    generate_answer = config.get("generate_answer", True)
+    
+    if generate_answer:
+        query_prompt_key = "query_answer_prompt_file"
+    else:
+        query_prompt_key = config.get("query_only_prompt_file") and "query_only_prompt_file" or "query_answer_prompt_file"
+    
     template_files = {
         "types": config["types_prompt_file"],
         "selection": config["selection_prompt_file"],
-        "query": config["query_prompt_file"]
+        "query": config[query_prompt_key]
     }
 
     for name, file_path in template_files.items():
@@ -112,3 +121,4 @@ def load_prompt_templates(base_dir: Path, config: Dict[str, Any]) -> Dict[str, s
             templates[name] = f.read()
     
     return templates
+

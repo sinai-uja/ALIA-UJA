@@ -72,10 +72,9 @@ outputs/
 tiktoken/
 download/
 _*
-config**
 
 # --- ALIA: Configuration & Environment ---
-*config*
+*config**.yaml
 .vscode/
 requirements*
 

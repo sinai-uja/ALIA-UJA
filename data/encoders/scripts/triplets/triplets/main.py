@@ -1,7 +1,6 @@
 """
 Pipeline de generación de QA con VLLM
 """
-import json
 import time
 import yaml
 import sys
@@ -12,7 +11,7 @@ from vllm.sampling_params import GuidedDecodingParams
 import polars as pl
 
 # Imports locales
-from models import QuestionTypes, Selection, QueryWithAnswer
+from models import QuestionTypes, Selection
 from utils import (
     initialize_csv_files,
     prepare_prompts,
@@ -37,11 +36,10 @@ def load_config(config_path: Path) -> Dict[str, Any]:
         sys.exit(1)
 
 def setup_paths(config: Dict[str, Any]) -> Dict[str, Path]:
-    """Configura rutas de archivos dinámicamente en raw/<DATASET>/"""
+    """Configura rutas de archivos dinámicamente en raw/"""
     try:
         # 1. Obtener nombre limpio del dataset
         dataset_path = Path(config["dataset_path"])
-        # Elimina '_with_persona' si existe y quita la extensión
         dataset_name = dataset_path.stem.replace("_with_persona", "")
         
         # 2. Definir directorio de salida
@@ -49,7 +47,7 @@ def setup_paths(config: Dict[str, Any]) -> Dict[str, Path]:
         output_dir.mkdir(parents=True, exist_ok=True)
         
         print(f"📂 Directorio de salida configurado: {output_dir}")
-
+        
         return {
             "types": output_dir / config["types_output_file"],
             "selections": output_dir / config["selection_output_file"],
@@ -79,28 +77,29 @@ def setup_headers() -> Dict[str, List[str]]:
     }
 
 def create_sampling_params(
-    config: Dict[str, Any],
-    schema,
+    config: Dict[str, Any], 
+    schema, 
     stage: str
 ) -> SamplingParams:
     """
-    Crea SamplingParams con GuidedDecodingParams y beam search opcional
+    Crea SamplingParams con GuidedDecodingParams
     """
     temperature = config.get(f"{stage}_temperature", 0.7)
     top_p = config.get(f"{stage}_top_p", 0.9)
     max_tokens = config.get(f"{stage}_max_tokens", 512)
+    
     use_beam_search = config.get(f"{stage}_use_beam_search", False)
     beam_width = config.get(f"{stage}_beam_width", 1)
-
+    
     # Crear GuidedDecodingParams con JSON schema
     guided_decoding_params = None
     if schema:
         guided_decoding_params = GuidedDecodingParams(
             json=schema.model_json_schema()
         )
-
+    
     if use_beam_search and beam_width > 1:
-        print(f"   🔍 {stage.upper()} BeamSearch: beam_width={beam_width}, temp={temperature}")
+        print(f" 🔍 {stage.upper()} BeamSearch: beam_width={beam_width}, temp={temperature}")
         return SamplingParams(
             n=beam_width,
             temperature=temperature,
@@ -109,7 +108,7 @@ def create_sampling_params(
             guided_decoding=guided_decoding_params
         )
     else:
-        print(f"   📊 {stage.upper()} Sampling: temp={temperature}, top_p={top_p}")
+        print(f" 📊 {stage.upper()} Sampling: temp={temperature}, top_p={top_p}")
         return SamplingParams(
             temperature=temperature,
             top_p=top_p,
@@ -126,7 +125,7 @@ def process_batch_pipeline(
     config: Dict[str, Any]
 ) -> None:
     """
-    Procesa un batch completo con temperatura y beam search
+    Procesa un batch completo con temperatura
     """
     model_name = config["model"]
     max_retries = config.get("max_retries", 3)
@@ -139,6 +138,7 @@ def process_batch_pipeline(
     print(f"\n{'='*60}")
     print("ETAPA 1: GENERACIÓN DE TIPOS")
     print(f"{'='*60}")
+    
     types_params = create_sampling_params(config, QuestionTypes, "types")
     batch = generate_types(
         batch=batch,
@@ -157,6 +157,7 @@ def process_batch_pipeline(
     print(f"\n{'='*60}")
     print("ETAPA 2: SELECCIÓN DE PERSONAJE Y TIPO")
     print(f"{'='*60}")
+
     selection_params = create_sampling_params(config, Selection, "selection")
     batch = generate_selections(
         batch=batch,
@@ -170,11 +171,20 @@ def process_batch_pipeline(
         timeout_seconds=config.get("selection_timeout", 180)
     )
 
-    # === ETAPA 3: QUERIES + ANSWERS ===
+    # === ETAPA 3: QUERIES (+ANSWERS opcional) ===
     print(f"\n{'='*60}")
-    print("ETAPA 3: GENERACIÓN DE PREGUNTA Y RESPUESTA")
+    generate_answer = config.get("generate_answer", True)
+    if generate_answer:
+        print("ETAPA 3: GENERACIÓN DE PREGUNTA Y RESPUESTA")
+        from models import QueryWithAnswer
+        query_schema = QueryWithAnswer
+    else:
+        print("ETAPA 3: GENERACIÓN DE PREGUNTA (SIN RESPUESTA)")
+        from models import QueryOnly
+        query_schema = QueryOnly
     print(f"{'='*60}")
-    query_params = create_sampling_params(config, QueryWithAnswer, "query")
+    
+    query_params = create_sampling_params(config, query_schema, "query")
     batch = generate_queries_with_answers(
         batch=batch,
         llm=llm,
@@ -187,9 +197,10 @@ def process_batch_pipeline(
         max_retries=max_retries,
         timeout_seconds=config.get("query_timeout", 180)
     )
-
+    
     print(f"\n{'='*60}")
     print("BATCH COMPLETADO")
+    print(f"{'='*60}\n")
     print(f"{'='*60}\n")
 
 def main():
@@ -202,22 +213,42 @@ def main():
     
     print(f"📋 Cargando configuración desde: {config_path}")
     config = load_config(config_path)
+    
     paths = setup_paths(config)
     headers = setup_headers()
-
+    
     try:
         templates = load_prompt_templates(base_dir, config)
     except Exception as e:
         print(f"❌ ERROR al cargar templates de prompts: {e}")
         sys.exit(1)
 
+    # === DETECCIÓN DE PROGRESO PREVIO (FILTRADO) ===
+    processed_ids = set()
+    if paths["queries"].exists():
+        print(f"🔍 Comprobando archivo de salida existente: {paths['queries']}")
+        try:
+            existing_df = pl.read_csv(paths["queries"], infer_schema_length=0)
+            
+            if "id_chunk" in existing_df.columns:
+                processed_ids = set(existing_df["id_chunk"].to_list())
+                print(f"✅ Encontrados {len(processed_ids)} IDs ya completados en el CSV.")
+            else:
+                print("⚠️ El archivo existe pero no tiene la columna 'id_chunk'. Se procesará todo.")
+        except Exception as e:
+            print(f"⚠️ Error al leer CSV de progreso ({e}). Se intentará procesar todo.")
+
     # === INICIALIZAR CSVs ===
-    print("📝 Inicializando archivos CSV...")
-    try:
-        initialize_csv_files(paths, headers)
-    except Exception as e:
-        print(f"❌ ERROR al inicializar archivos CSV: {e}")
-        sys.exit(1)
+    if len(processed_ids) > 0:
+        print(f"⚠️ MODO CONTINUACIÓN: Se omitirá la inicialización de CSVs para preservar {len(processed_ids)} registros.")
+        print("   Los nuevos resultados se añadirán (append) a los archivos existentes.")
+    else:
+        print("📝 Inicializando archivos CSV (Modo Limpio)...")
+        try:
+            initialize_csv_files(paths, headers)
+        except Exception as e:
+            print(f"❌ ERROR al inicializar archivos CSV: {e}")
+            sys.exit(1)
 
     # === CARGAR MODELO ===
     print(f"\n🚀 Cargando modelo: {config['model']}")
@@ -250,18 +281,29 @@ def main():
     print(f"📂 Cargando dataset: {dataset_path}")
     try:
         df = pl.read_parquet(dataset_path)
-        total_rows = len(df)
-        print(f"✅ Dataset cargado: {total_rows} filas")
+        total_original = len(df)
+        print(f"✅ Dataset cargado: {total_original} filas")
     except Exception as e:
         print(f"❌ ERROR al cargar dataset: {e}")
         sys.exit(1)
 
+    # === FILTRADO DE IDs YA PROCESADOS ===
+    if len(processed_ids) > 0:
+        print(f"🧹 Filtrando registros ya procesados...")
+        df = df.filter(~pl.col("id_chunk").cast(pl.Utf8).is_in(processed_ids))
+        
+        remaining_rows = len(df)
+        print(f"📉 Filtrado completado: {total_original} -> {remaining_rows} filas restantes.")
+        if remaining_rows == 0:
+            print("✅ Todos los registros ya han sido procesados. Finalizando.")
+            sys.exit(0)
+
     if config.get("limit"):
         df = df.head(config["limit"])
-        print(f"⚠️ Limitando a {len(df)} filas")
+        print(f"⚠️ Limitando a {len(df)} filas por configuración")
 
     # === PREPARAR ITEMS ===
-    print("\n📊 Preparando items...")
+    print("\n📊 Preparando items restantes...")
     items = []
     for idx, row in enumerate(df.iter_rows(named=True)):
         item = prepare_prompts(
@@ -272,8 +314,9 @@ def main():
         )
         if item:
             items.append(item)
-
-    print(f"✅ Items válidos: {len(items)}")
+    
+    print(f"✅ Items válidos a procesar: {len(items)}")
+    
     if len(items) == 0:
         print("❌ ERROR: No hay items válidos para procesar")
         sys.exit(1)
@@ -314,42 +357,26 @@ def main():
 
     # === RESUMEN FINAL ===
     elapsed = time.time() - start_time
+    total_processed_this_run = len(items)
     
-    total_items = len(items)
-    
-    # Contamos los éxitos reales leyendo el CSV final generado
     success_count = 0
     if paths["queries"].exists():
         try:
-            with open(paths["queries"], 'r', encoding='utf-8') as f:
-                # Restamos 1 por el header (si el archivo tiene más de 1 línea)
-                line_count = sum(1 for _ in f)
-                success_count = max(0, line_count - 1) 
-        except Exception:
+            df = pl.read_csv(paths["queries"])
+            success_count = len(df)
+            print(f"📊 Registros completados encontrados: {success_count}")
+        except Exception as e:
+            print(f"⚠️ Error al leer CSV de salida: {e}")
             success_count = 0
             
-    # Los fallidos son simplemente el resto
-    failed_count = total_items - success_count
-    
-    # Estadísticas
-    if total_items > 0:
-        success_rate = (success_count / total_items) * 100
-        failure_rate = (failed_count / total_items) * 100
-    else:
-        success_rate = 0.0
-        failure_rate = 0.0
-
     print(f"\n{'='*60}")
     print("✅ PIPELINE COMPLETADO")
     print(f"{'='*60}")
+    print(f"⏱️ Tiempo total sesión: {elapsed:.2f}s ({elapsed/60:.2f} min)")
+    print(f"\n📊 Estadísticas acumuladas:")
+    print(f" - Procesados esta sesión: {total_processed_this_run}")
+    print(f" - ✅ Total Acertados (Global): {success_count}")
     
-    print(f"⏱️ Tiempo total: {elapsed:.2f}s ({elapsed/60:.2f} min)")
-    
-    print(f"\n📊 Estadísticas finales:")
-    print(f" - Total items procesados: {total_items}")
-    print(f" - ✅ Acertados (Finalizados): {success_count} ({success_rate:.2f}%)")
-    print(f" - ❌ Fallados (Incompletos):  {failed_count} ({failure_rate:.2f}%)")
-
     print(f"\n📁 Archivos generados:")
     for name, path in paths.items():
         if path.exists():
