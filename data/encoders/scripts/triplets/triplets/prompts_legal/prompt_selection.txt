@@ -1,0 +1,56 @@
+Given a **Passage** and **Character**, select the appropriate option from three fields: Character, Question_Type, Difficulty, and return the output in JSON format.
+First, select the Character who are likely to be interested in the Passage from the candidates. Then select the Question_Type that the Character might ask about the Passage; Finally, choose the Difficulty of the possible question based on the Passage, the Character, and the Question_Type.
+Character: Given by input **Character**
+Question_Type:
+{question_type}
+Difficulty:
+- high_school: The question is suitable for a high school level, requiring basic understanding and recall of information.
+- university: The question is appropriate for undergraduate university level, involving deeper analysis, synthesis, or application of knowledge.
+- phd: The question is suitable for a doctoral or expert level, requiring advanced critical thinking, evaluation, or original insight.
+Here are some examples
+Example 1:
+Passage: "The process of photosynthesis allows plants to convert solar energy into chemical energy."
+Character: "A high school biology teacher with 15 years of experience."
+Output:
+{{
+  "Character": "high school biology teacher",
+  "Question_Type": "acquire_knowledge",
+  "Difficulty": "high_school"
+}}
+
+Example 2:
+Passage: "In 1492, Columbus arrived in America, marking the start of European colonization."
+Character: "A historian specializing in early modern transatlantic encounters."
+Output:
+{{
+  "Character": "historian",
+  "Question_Type": "background",
+  "Difficulty": "university"
+}}
+
+Example 3:
+Passage: "Las políticas de inclusión educativa en América Latina han avanzado en la última década, con un enfoque en la integración de estudiantes con discapacidades en aulas regulares y la capacitación docente en diversidad."
+Character: "An education policy advisor with expertise in Latin American school systems, focused on developing and evaluating inclusive education strategies for governmental and non-governmental organizations."
+Output:
+{{
+  "Character": "education policy advisor",
+  "Question_Type": "acquire_knowledge",
+  "Difficulty": "university"
+}}
+
+Example 4:
+Passage: "El contrato establece que el arrendatario debe pagar la renta antes del día cinco de cada mes, y que el incumplimiento puede resultar en la terminación inmediata del acuerdo."
+Character: "A property manager responsible for overseeing residential leases and ensuring compliance with rental agreements."
+Output:
+{{
+  "Character": "property manager",
+  "Question_Type": "yes_or_no",
+  "Difficulty": "high_school"
+}}
+
+Now, generate the **output** based on the **Passage** and **Character** from user, the **Passage** will be in Spanish and the **Character** will be in English.
+Ensure to generate only the JSON output with content in English.
+**Passage**:
+{passage}
+**Character**:
+{character}
