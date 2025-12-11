@@ -42,16 +42,16 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 ---
 
 ## Índice de Directorios Principales
-- [Directorio de Documentacion](documentation)
-  - [Directorio de Documentación de Datos](documentation/data)
-  - [Directorio de Documentación de Modelos](documentation/models)
-  - [Directorio de Documentación para RAGs](documentation/rags)
-- [Directorio de Datos](data)
-  - [Directorio de Datos para LLMs](data/llms)
-  - [Directorio de Datos para Modelos Encoders](data/encoders)
-- [Directorio de Modelos](models)
-  - [Directorio de Datos para LLMs](models/llms)
-  - [Directorio de Datos para Modelos Encoders](models/encoders)
-- [Directorio de RAGs](rags)
+- [Directorio de Documentacion](/documentation)
+  - [Directorio de Documentación de Datos](/documentation/data)
+  - [Directorio de Documentación de Modelos](/documentation/models)
+  - [Directorio de Documentación para RAGs](/documentation/rags)
+- [Directorio de Datos](/data)
+  - [Directorio de Datos para LLMs](/data/llms)
+  - [Directorio de Datos para Modelos Encoders](/data/encoders)
+- [Directorio de Modelos](/models)
+  - [Directorio de Datos para LLMs](/models/llms)
+  - [Directorio de Datos para Modelos Encoders](/models/encoders)
+- [Directorio de RAGs](/rags)
 
 **Sigue estas guías para asegurar la coherencia y eficiencia en el trabajo con ALIA.**
