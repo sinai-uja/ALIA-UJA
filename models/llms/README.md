@@ -19,7 +19,9 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 
 ## Índice de ficheros en el directorio
 - Ficheros de código
-  - [Script de entrenamiento principal](/models/llms/train.py)
+  - [Ficheros de configuración de Axolotl del Entrenamiento Principal](/models/llms/axolotl_config)
+  - [Launcher del Entrenamiento Principal con Axolotl](/models/llms/launcher_carbon_train.sh)
+  - [Script de Entrenamiento Principal con Axolotl](/models/llms/train.py)
 
 ---
 
