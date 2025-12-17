@@ -1,0 +1,21 @@
+# Model / inference
+model_path: "/path/to/models"
+tensor_parallel_size: 
+max_model_len: 
+seed: 42
+
+# Batching / performance
+batch_size: 4096
+write_batch_size: 8192
+gpu_utilization: 0.9
+
+# Data I/O
+parquet_path: "/path/to/datasets/<DATASET_NAME>/*.parquet"
+output_path: "/path/to/output/<RUN_NAME>/"
+
+# Persona generation assets
+personas_source_path: "/path/to/personas/unique_characters.parquet"
+embeddings_pkl_path: "/path/to/embeddings/characters.pkl"
+
+# Resources
+cpus_per_task: ""
