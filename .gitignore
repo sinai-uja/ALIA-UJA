@@ -74,7 +74,7 @@ download/
 _*
 
 # --- ALIA: Configuration & Environment ---
-*config**.yaml
+# *config*
 .vscode/
 requirements*
 

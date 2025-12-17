@@ -1,0 +1,147 @@
+# =============================================================================
+# CONFIGURACIÓN AXOLOTL PARA ENTRENAMIENTO CONTINUO/DOMAIN ADAPTATION
+# Conversión desde configuración PyTorch personalizada
+# =============================================================================
+# Modelo base
+base_model: path/to/your/model
+load_in_8bit: false
+load_in_4bit: false
+flash_attention: true
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+
+# Configuración del modelo
+trust_remote_code: false
+torch_dtype: bfloat16
+device_map: auto
+
+# Configuración de secuencia
+sequence_len: 8192
+sample_packing: true  # Empaqueta múltiples ejemplos en una secuencia
+pad_to_sequence_len: true
+dataset_prepared_path: null  
+
+# =============================================================================
+# CONFIGURACIÓN DE ENTRENAMIENTO
+# =============================================================================
+# Directorio de salida
+output_dir: null
+
+# Parámetros principales
+num_epochs: 1  # Como usas max_steps, solo 1 época
+max_steps: 10000    # 1000000
+save_steps: 500     #1000
+eval_steps: 250      #500
+logging_steps: 50    #50
+eval_sample_packing: false
+
+# Optimización
+optimizer: adamw_torch_fused
+adam_beta1: 0.9
+adam_beta2: 0.95
+adam_epsilon: 1e-8
+learning_rate: 1e-5  
+lr_scheduler: cosine
+warmup_steps: 1000   #  10000     1% warm up, learning rate is going up
+weight_decay: 0.01   #0
+neftune_noise_alpha: 5
+optimizer: adamw_torch_fused
+max_grad_norm: 0.5
+# Batch size y acumulación
+micro_batch_size: 8  # Tu batch_size original
+gradient_accumulation_steps: 2
+eval_batch_size: 1
+
+# Regularización y estabilidad
+gradient_checkpointing: true
+
+#Entrenamiento distribuido
+distributed_backend: "nccl"
+# =============================================================================
+# DEEPSPEED CONFIGURACIÓN
+# =============================================================================
+deepspeed: /path/to/deepspeed
+# =============================================================================
+# EVALUACIÓN Y VALIDACIÓN
+# =============================================================================
+val_set_size: 1000  # 1% para validación (equivalente a tus 10%)
+eval_table_size: 5  # Mostrar 5 ejemplos en evaluación
+eval_max_new_tokens: 100
+
+# =============================================================================
+# LOGGING Y MONITOREO
+# =============================================================================
+#report_to: none
+# --- Weights & Biases ---
+wandb_project: Cristian_training            # Nombre del proyecto
+wandb_mode: offline                         # Desactiva conexión remota (importante para clústeres sin internet)
+wandb_entity: null                          # Solo necesario si estás en modo online
+wandb_name: salamandra-legal       # Nombre del experimento/run
+wandb_log_model: "false"                      # No subas el modelo al dashboard (offline no lo permite)
+wandb_watch: "false"                          # Desactiva el seguimiento automático del modelo para ahorrar recursos
+
+# =============================================================================
+# CONFIGURACIÓN AVANZADA
+# =============================================================================
+# Checkpointing
+save_safetensors: true
+resume_from_checkpoint: null  # Ruta si quieres resumir
+
+# Memoria y performance
+bf16: true
+fp16: false
+
+# =============================================================================
+# CONFIGURACIÓN DEL MODELO
+# =============================================================================
+# Configuraciones adicionales para estabilidad
+early_stopping_patience: null  # Desactivar early stopping
+save_total_limit: 3  # Mantener solo 3 checkpoints
+
+# =============================================================================
+# CONFIGURACIÓN ESPECÍFICA PARA TU SETUP
+# =============================================================================
+# Basado en tu configuración original
+seed: 42
+strict: false  # Permitir flexibilidad en carga de modelo
+
+shuffle_merged_datasets: true
+special_tokens:
+  pad_token: <unk>
+
+eot_tokens:
+  - "<|im_end|>"
+  - "</s>"
+
+#plugins
+plugins:
+  - axolotl.integrations.liger.LigerPlugin
+liger_rope: true
+liger_rms_norm: true
+liger_glu_activation: true
+liger_layer_norm: true
+liger_fused_linear_cross_entropy: true
+# =============================================================================
+# DATASET Y PREPROCESSING
+# =============================================================================
+datasets:
+  - path: path/to/your/raw/dataset/path
+    type: completion
+    field: text
+    streaming: true
+
+  - path: path/to/your/inst/dataset/path
+    type: chat_template
+    chat_template: jinja
+    chat_template_jinja: |
+       {%- if not date_string is defined %}{%- set date_string = "2025-09-30" %}{%- endif %}{%- set system_message = messages[0].content if messages[0].role == "system" else "I am ALIA Legal Administrativo, an AI language model specialized in Spanish legal and administrative domains, based on Salamandra-2b-instruct and developed by SINAI Research Group at Universidad de Jaén. I am part of Spain's ALIA family of foundational models, fine-tuned on a curated corpus of legal and administrative documents to understand Spanish legal terminology, regulations, and administrative procedures. My training data includes official legal documents, administrative texts, and regulatory frameworks specific to the Spanish legal system. My knowledge base was last updated on September 2025. Soy ALIA Legal Administrativo, un modelo lingüístico de IA especializado en el ámbito jurídico y administrativo español, basado en Salamandra-2b-instruct y desarrollado por el grupo de investigación SINAI de la Universidad de Jaén. Formo parte de la familia de modelos fundacionales ALIA de España, ajustado con un corpus curado de documentos legales y administrativos para comprender la terminología jurídica española, las regulaciones y los procedimientos administrativos. Mis datos de entrenamiento incluyen documentos legales oficiales, textos administrativos y marcos regulatorios específicos del sistema legal español. Mi base de conocimientos se actualizó por última vez en septiembre de 2025." -%}{%- if messages[0].role == "system" -%}{%- set messages = messages[1:] -%}{%- endif -%}{{ "<|im_start|>system" + system_message + "<|im_end|>" }}{% for message in messages %}{{'<|im_start|>' + message['role'] + '' + message['content'] + '<|im_end|>' + ''}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant' }}{% endif %}
+    field_messages: conversations
+    message_property_mappings:
+      role: from
+      content: value
+    roles:
+      user: ["human","user"]
+      assistant: ["gpt","assistant"]
+      system: ["system"]
+    roles_to_train: ["gpt","assistant"]
+    train_on_eos: turn
