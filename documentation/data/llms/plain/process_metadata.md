@@ -16,12 +16,12 @@ Para cada dataset descargado y tratado en el marco del Proyecto ALIA, se debe ge
 
 La función ``generate_metadata`` tiene como objetivo principal generar un archivo de metadatos en formato YAML para un conjunto de datos específico, identificado por un ``id``. Este proceso incluye la recopilación de información sobre el conjunto de datos, la extracción de características y la creación de un archivo estructurado que contiene todos los detalles relevantes.
 
-La función genera un archivo de metadatos basado en una plantilla predefinida ([*template*](data/llms/scripts/documentation/metadata_generation/template_metadata.yaml)). Si ya existe un archivo de metadatos previo, se carga para preservar información existente, como la versión del conjunto de datos, que se incrementa automáticamente. 
+La función genera un archivo de metadatos basado en una plantilla predefinida ([*template*](/data/llms/scripts/plain/documentation/template_metadata.yaml)). Si ya existe un archivo de metadatos previo, se carga para preservar información existente, como la versión del conjunto de datos, que se incrementa automáticamente. 
 
 Primero, la función registra un mensaje de inicio en los logs y busca la ruta del directorio del conjunto de datos utilizando el método ``_search_dataset_dir``. 
 - Esta función busca un directorio específico dentro de una estructura de carpetas, basado en un identificador (id). El identificador puede ser una ruta parcial como 'Boletines_Oficiales/BOC'. Los pasos principales son:
   1. Normalización del identificador: Se utiliza ``os.path.normpath`` para normalizar la ruta del identificador, eliminando redundancias como dobles barras ('//') y asegurando compatibilidad con diferentes sistemas operativos. Luego, se divide en partes usando ``os.sep`` como separador.
-  2. Recorrido del árbol de directorios: Con ``os.walk``, se recorre recursivamente el árbol de directorios a partir del [directorio raíz](data/data/processed). Este método devuelve una tupla con la ruta actual, las subcarpetas y los archivos.
+  2. Recorrido del árbol de directorios: Con ``os.walk``, se recorre recursivamente el árbol de directorios a partir del [directorio raíz](/data/llms/datasets). Este método devuelve una tupla con la ruta actual, las subcarpetas y los archivos.
   3. Cálculo de la ruta relativa: Se obtiene la ruta relativa de cada directorio (*rel_path*) respecto al directorio raíz usando ``os.path.relpath``. Esta ruta también se normaliza y se divide en partes.
   4. Comparación de rutas: Se verifica si las últimas partes de la ruta relativa coinciden con las partes del identificador. Si hay coincidencia, se devuelve la ruta completa del directorio.
   5. Retorno en caso de no encontrar coincidencias: Si no se encuentra un directorio que coincida con el identificador, la función devuelve None.
@@ -40,7 +40,7 @@ Además, se extraen los atributos (*features*) y las instancias del conjunto de 
   2. Iteración sobre las características:
      - Para cada columna del DataFrame, se verifica si su nombre está presente en la lista de divisores (divisors).
      - Si la columna es un **divisor**, se genera una descripción que incluye los valores únicos posibles de esa columna. Esto se logra llamando al método ``_get_divisors``, que extrae los valores únicos dependiendo del tipo de datos de la columna.
-     - Se crea una entrada para la característica utilizando una plantilla ([template](data/llms/scripts/documentation/metadata_generation/template_metadata.yaml)). Esta entrada incluye:
+     - Se crea una entrada para la característica utilizando una plantilla ([template](/data/llms/scripts/plain/documentation/template_metadata.yaml)). Esta entrada incluye:
        - El identificador de la característica (``dc:identifier``), que corresponde al nombre de la columna.
        - La descripción (``dc:description``), que puede incluir información sobre si es un divisor y sus valores posibles.
        - El tipo de dato (``dc:type``), que se obtiene del tipo de la columna en el DataFrame.
@@ -57,7 +57,7 @@ Finalmente, la función guarda los metadatos generados en un archivo YAML utiliz
 
 # Ejecución del proceso de metadatos
 
-Para que este proceso sea lo más sensillo posible para los desarrolladores, se ha creado un [fichero python](data/llms/scripts/documentation/main.py) para realizar el proceso completo con solo indicar el identificador del dataset a documentar.
+Para que este proceso sea lo más sensillo posible para los desarrolladores, se ha creado un [fichero python](/data/llms/scripts/plain/main.py) para realizar el proceso completo con solo indicar el identificador del dataset a documentar.
 
 Se utilizan dos clases, ``SpreadsheetRetriever`` y ``MetadataExtractor``, para procesar un conjunto de datos identificado por un argumento proporcionado desde la línea de comandos. 
 
