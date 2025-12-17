@@ -19,8 +19,8 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 
 ## Índice de ficheros en el directorio
 - Ficheros de código
-  - [Configuración de MS-Swift para Entrenamiento de Embeddings](/models/encoders/finetuning_embeddings.sh)
-  - [Configuración de MS-Swift para Entrenamiento de Reranker](/models/encoders/finetuning_reranker.sh)
+  - [Configuración de ms-swift para Entrenamiento de Embeddings](/models/encoders/finetuning_embeddings.sh)
+  - [Configuración de ms-swift para Entrenamiento de Reranker](/models/encoders/finetuning_reranker.sh)
 
 ---
 
