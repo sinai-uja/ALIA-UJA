@@ -75,7 +75,7 @@ _*
 config**
 
 # --- ALIA: Configuration & Environment ---
-*config*
+# *config*
 .vscode/
 requirements*
 
