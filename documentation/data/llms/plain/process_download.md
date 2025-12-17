@@ -4,19 +4,19 @@ Este documento establece las directrices y estándares para la descarga y prepar
 
 **Tabla de contenido**
 - [Procedimiento estandarizado de descarga de datos](#procedimiento-estandarizado-de-descarga-de-datos)
-  - [🧩 Objetivo](#-objetivo)
-  - [🛠️ Herramientas y formatos recomendados](#️-herramientas-y-formatos-recomendados)
+  - [Objetivo](#-objetivo)
+  - [Herramientas y formatos recomendados](#️-herramientas-y-formatos-recomendados)
     - [Formato de almacenamiento: Parquet](#formato-de-almacenamiento-parquet)
     - [Formato en memoria: Arrow](#formato-en-memoria-arrow)
-      - [🧬 Comparativa técnica: Parquet vs Arrow](#-comparativa-técnica-parquet-vs-arrow)
-    - [🧮 Formato de las Tablas de Datos](#-formato-de-las-tablas-de-datos)
+      - [Comparativa técnica: Parquet vs Arrow](#-comparativa-técnica-parquet-vs-arrow)
+    - [Formato de las Tablas de Datos](#-formato-de-las-tablas-de-datos)
       - [Uso de Polars](#uso-de-polars)
-  - [📲 Uso de las Clases de Descarga](#-uso-de-las-clases-de-descarga)
-  - [🪛 Creación de un Nuevo Proceso de Descarga](#-creación-de-un-nuevo-proceso-de-descarga)
+  - [Uso de las Clases de Descarga](#-uso-de-las-clases-de-descarga)
+  - [Creación de un Nuevo Proceso de Descarga](#-creación-de-un-nuevo-proceso-de-descarga)
     - [Estándar de Clases de Descarga](#estándar-de-clases-de-descarga)
     - [Estándar de Documentación de la Nueva Clase de Descarga](#estándar-de-documentación-de-la-nueva-clase-de-descarga)
-  - [💡 Recomendaciones adicionales](#-recomendaciones-adicionales)
-  - [📚 Lecturas recomendadas](#-lecturas-recomendadas)
+  - [Recomendaciones adicionales](#-recomendaciones-adicionales)
+  - [Lecturas recomendadas](#-lecturas-recomendadas)
 
 
 ---
@@ -25,7 +25,7 @@ Este documento establece las directrices y estándares para la descarga y prepar
 
 Este documento proporciona una **guía técnica y operativa** para los desarrolladores encargados del proceso de descarga de datos dentro del flujo de trabajo del grupo. El objetivo es garantizar la **eficiencia, interoperabilidad y coherencia** en la adquisición y estructuración de datasets.
 
-## 🧩 Objetivo
+## Objetivo
 
 Establecer un procedimiento unificado para:
 
@@ -34,7 +34,7 @@ Establecer un procedimiento unificado para:
 * Preparar los datos para su procesamiento posterior.
 
 
-## 🛠️ Herramientas y formatos recomendados
+## Herramientas y formatos recomendados
 
 ### Formato de almacenamiento: Parquet
 
@@ -42,7 +42,7 @@ El formato `.parquet` se utilizará para **guardar los datos en disco**, garanti
 
 * Almacenamiento eficiente mediante compresión.
 * Representación estructurada y columnar.
-* Compatibilidad con herramientas como **Spark**, **Dask**, **Pandas**, entre otras.
+* Compatibilidad con herramientas como **Spark**, **Dask**, **Polars**, entre otras.
 * Posibilidad de fragmentación y particionamiento (ideal para datasets grandes).
 
 > Recomendado para: almacenamiento persistente y distribución entre miembros del grupo.
@@ -56,7 +56,7 @@ Cuando los datos se carguen en memoria para procesamiento, se utilizará el form
 * Diseño optimizado para acceso en memoria (SIMD, caché).
 * Interoperabilidad entre lenguajes (Python, Java, R...).
 * Minimiza la serialización y copia de datos innecesarias.
-* Integrado con bibliotecas como **PyArrow**, **Pandas**, **Hugging Face datasets**, etc.
+* Integrado con bibliotecas como **PyArrow**, **Polars**, **Hugging Face datasets**, etc.
 
 > Recomendado para: procesamiento intensivo en memoria, tareas de análisis, entrenamiento de modelos o transformación de datos.
 
@@ -74,9 +74,9 @@ Cuando los datos se carguen en memoria para procesamiento, se utilizará el form
 | **Rendimiento**              | Muy alto para consultas analíticas       | Muy alto para operaciones en memoria            |
 | **Casos de uso típicos**     | Persistencia, intercambio entre sistemas | Carga, análisis y transformación rápida         |
 
-### 🧮 Formato de las Tablas de Datos
+### Formato de las Tablas de Datos
 
-Los datasets deben estructurarse en formato tabular, siguiendo los estándares definidos en el documento [Estándar de Estructura de un Dataset](/data/llms/documentation/standards/standard_dataset_structure.md).
+Los datasets deben estructurarse en formato tabular, siguiendo los estándares definidos en el documento [Estándar de Estructura de un Dataset](/documentation/data/llms/plain/standard_dataset_structure.md).
 
 - **Directrices**:
     - Cada columna representa una variable específica.
@@ -94,12 +94,12 @@ Se ha adoptado la librería **Polars** para la manipulación de datos debido a s
     - Interfaz intuitiva y expresiva para operaciones de datos.([Polars](https://docs.pola.rs/user-guide/misc/arrow/?utm_source=chatgpt.com "Arrow producer/consumer - Polars user guide"), [arXiv](https://arxiv.org/abs/2204.06074?utm_source=chatgpt.com "Skyhook: Towards an Arrow-Native Storage System"))
 
 
-## 📲 Uso de las Clases de Descarga
+## Uso de las Clases de Descarga
 
 ```pgsql
 📂 download
-├─ ScraperBase.py (cibanez)
-├─ CrawlerBase.py (scarrasc)
+├─ ScraperBase.py
+├─ CrawlerBase.py
 ├─ 📂 scrapers
 └─ 📂 crawlers
 ```
@@ -114,11 +114,7 @@ Se ha adoptado la librería **Polars** para la manipulación de datos debido a s
     
 Para detalles específicos sobre cada clase y sus parámetros, consultar la documentación asociada a cada proceso de descarga.
 
-Si se tiene alguna duda acerca del funcionamiento de estos procedimientos, contactar con los desarrolladores correspondientes:
-- 📂 scrapers: [cibanez](mailto:cibanez@ujaen.es)
-- 📂 crawlers: [scarrasc](mailto:scarrasc@ujaen.es)
-
-## 🪛 Creación de un Nuevo Proceso de Descarga
+## Creación de un Nuevo Proceso de Descarga
 
 ### Estándar de Clases de Descarga
 
@@ -153,13 +149,13 @@ Cada nueva clase debe ir acompañada de una documentación clara y completa que 
 
 La documentación debe integrarse en el repositorio del proyecto y enlazarse desde el documento principal de procesos de descarga.
 
-## 💡 Recomendaciones adicionales
+## Recomendaciones adicionales
 
 * **Fragmentación por tamaño**: Para datasets grandes, dividir en fragmentos manejables utilizando `row groups` en Parquet o `split datasets` en Arrow.
 * **Scripts reutilizables**: Se recomienda almacenar los scripts de descarga en la carpeta `/scripts/download/` con nombres claros y documentación mínima.
 
 
-## 📚 Lecturas recomendadas
+## Lecturas recomendadas
 
 * [Apache Arrow Documentation](https://arrow.apache.org/)
 * [Apache Parquet Documentation](https://parquet.apache.org/)
