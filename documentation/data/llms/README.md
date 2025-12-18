@@ -21,6 +21,7 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
     - [Estándar de Licencias Disponibles y Usables](/documentation/data/llms/plain/standard_licenses.md)
   - [Información sobre los datasets contruidos](/documentation/data/llms/plain/datasets)
 - Documentación de Corpora
+  - [Proceso de Construcción de un Corpus](/documentation/data/llms/corpora/process_build_corpus.md)
   - [Proceso de Limpieza de Datos](/documentation/data/llms/corpora/process_curation.md)
 - Documentación de Instrucciones
   - [Documentación de Genración de cabeceras para contextos](/documentation/data/llms/instructions/generate_headers.md)
