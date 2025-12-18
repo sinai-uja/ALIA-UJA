@@ -1,0 +1,30 @@
+{
+    "BLEU": {
+        "bleu": 0.5701410152193878,
+        "brevity_penalty": 0.9333434568503614,
+        "length_ratio": 0.9354694248244952,
+        "translation_length": 1044446,
+        "reference_length": 1116494
+    },
+    "chrF": {
+        "score": 77.18636244444917,
+        "char_order": 6,
+        "word_order": 0,
+        "beta": 2
+    },
+    "COMET": {
+        "score": 0.8469919069170951
+    },
+    "COMET-KIWI": {
+        "score": 0.6955830043435097
+    },
+    "ROUGE": {
+        "rouge1": 0.818467736875375,
+        "rouge2": 0.6393474595433253,
+        "rougeL": 0.7685709770690863,
+        "rougeLsum": 0.7686033167501022
+    },
+    "BLEURT": {
+        "error": "Graph execution error:\n\nDetected at node bert/embeddings/LayerNorm/batchnorm/Rsqrt defined at (most recent call last):\n  File \"/mnt/beegfs/alia-data/alia/data/parallel/scripts/translation_eval/main.py\", line 190, in <module>\n\n  File \"/mnt/beegfs/alia-data/alia/data/parallel/scripts/translation_eval/main.py\", line 182, in main\n\n  File \"/mnt/beegfs/alia-data/alia/data/parallel/scripts/translation_eval/src/evaluator.py\", line 104, in evaluate\n\n  File \"/mnt/beegfs/alia-data/alia/data/parallel/scripts/translation_eval/src/evaluator.py\", line 67, in _initialize_metric\n\n  File \"/mnt/beegfs/alia-data/alia/data/parallel/scripts/translation_eval/src/metrics/neural_metrics.py\", line 342, in __init__\n\n  File \"/mnt/beegfs/fsmaroto/.conda/envs/metricas/lib/python3.12/site-packages/bleurt/score.py\", line 172, in __init__\n\n  File \"/mnt/beegfs/fsmaroto/.conda/envs/metricas/lib/python3.12/site-packages/bleurt/score.py\", line 62, in initialize\n\nJIT compilation failed.\n\t [[{{node bert/embeddings/LayerNorm/batchnorm/Rsqrt}}]] [Op:__inference_pruned_1402]"
+    }
+}
