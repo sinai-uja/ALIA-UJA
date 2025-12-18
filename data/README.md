@@ -18,6 +18,7 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 ## Índice de ficheros en el directorio
 - [Directorio de Datos para LLMs](/documentation/data/llms)
 - [Directorio de Datos para Modelos Encoders](/documentation/data/encoders)
+- [Directorio de Datos Paralelos](/documentation/data/parallel)
 
 
 ---
