@@ -70,7 +70,7 @@ others/
 nohup*
 outputs/
 tiktoken/
-download/
+# download/
 _*
 config**
 
