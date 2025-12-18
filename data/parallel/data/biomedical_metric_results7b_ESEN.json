@@ -1,0 +1,30 @@
+{
+    "BLEU": {
+        "bleu": 0.6089946981765004,
+        "brevity_penalty": 1.0,
+        "length_ratio": 1.0114644592805693,
+        "translation_length": 1129294,
+        "reference_length": 1116494
+    },
+    "chrF": {
+        "score": 78.3980812056773,
+        "char_order": 6,
+        "word_order": 0,
+        "beta": 2
+    },
+    "COMET": {
+        "score": 0.8456354371994734
+    },
+    "COMET-KIWI": {
+        "score": 0.6813858186841011
+    },
+    "ROUGE": {
+        "rouge1": 0.8233357368365233,
+        "rouge2": 0.667888560225609,
+        "rougeL": 0.7815172798909701,
+        "rougeLsum": 0.7817519372351617
+    },
+    "BLEURT": {
+        "score": 0.3362509297445416
+    }
+}

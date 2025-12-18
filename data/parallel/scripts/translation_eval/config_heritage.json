@@ -1,0 +1,23 @@
+{
+  "_notes": "Configuration for translation evaluation. You can override any of these with CLI flags (e.g. --batch-size, --col-source). Fields not recognized are ignored.",
+  "bleurt_checkpoint": "src/metrics/bleurt/bleurt/test_checkpoint",
+  "data_file": "../../data/proccessed/heritage/test_baseline.parquet",
+  "output_file": "data/metric_results2.json",
+  "comet_model": "models/wmt22-comet-da/models--Unbabel--wmt22-comet-da/snapshots/2760a223ac957f30acfb18c8aa649b01cf1d75f2/checkpoints/model.ckpt",
+  "comet_kiwi_model": "models/wmt22-cometkiwi-da/checkpoints/model.ckpt",
+  "batch_size": 64,
+  "use_gpu": true,
+  "column_mapping": {
+    "source": "text_en",
+    "prediction": "text_es_predicted",
+    "reference": "text_es"
+  },
+  "metrics": [
+    "BLEU",
+    "chrF",
+    "COMET",
+    "COMET-KIWI",
+    "ROUGE",
+    "BLEURT"
+  ]
+}

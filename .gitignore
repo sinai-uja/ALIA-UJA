@@ -72,10 +72,10 @@ outputs/
 tiktoken/
 download/
 _*
-config**
+config.yaml
 
 # --- ALIA: Configuration & Environment ---
-*config*
+# *config*
 .vscode/
 requirements*
 
@@ -92,7 +92,6 @@ gform*
 
 # --- ALIA: Models & Training ---
 models/llms/models/
-*train/
 
 # --- ALIA: Testing & Evaluation ---
 test/

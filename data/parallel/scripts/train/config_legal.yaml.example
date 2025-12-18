@@ -1,0 +1,52 @@
+# ============================================================================
+# CONFIGURACIÓN DE ENTRENAMIENTO - TRADUCCIÓN BIDIRECCIONAL
+# ============================================================================
+
+# Configuración del modelo
+model:
+  name_or_path: "BSC-LT/salamandraTA-7b-instruct"
+  max_length: 2048  # Longitud máxima de secuencia
+
+# Configuración del dataset
+dataset:
+  data_dir: "data/proccessed/legal"
+  chunk_size: 500  # Chunks MUY PEQUEÑOS para evitar OOM (ajustar según RAM disponible)
+
+# Configuración de entrenamiento
+training:
+  output_dir: "models/salamandra-translation-legal-7B"
+  run_name: "salamandra-legal-translation-bidirectional-7B"
+  
+  # Batch sizes (ajustados para 4x Ampere 40GB)
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8  # Batch efectivo = 8 * 1 * 4 GPUs = 32
+  
+  # Pasos de entrenamiento (ajustar según necesidad)
+  max_steps: 50000  # ~50k pasos para un dataset grande
+  eval_steps: 200   # Evaluar cada 1000 pasos
+  save_steps: 600   # Guardar checkpoint cada 2000 pasos
+  logging_steps: 10 # Log cada 10 pasos
+  save_total_limit: 5  # Mantener solo los últimos 5 checkpoints
+  
+  # Early Stopping (basado en evaluaciones, no épocas)
+  early_stopping_patience: 1  # Detener si no hay mejora en 3 evaluaciones consecutivas
+  early_stopping_threshold: 0.005  # Umbral mínimo de mejora requerido
+  
+  # Optimización
+  learning_rate: 1.0e-6  # LR conservador para fine-tuning
+  weight_decay: 0.01
+  warmup_steps: 500
+  lr_scheduler_type: "cosine"
+  
+  # Gradient clipping
+  max_grad_norm: 1.0
+
+# Configuración de precisión
+precision:
+  bf16: true   # Usar BFloat16 en Ampere
+  fp16: false
+
+# Configuración de DeepSpeed (opcional pero recomendado)
+deepspeed:
+  config_file: "train/extreme_deep_config.json"
