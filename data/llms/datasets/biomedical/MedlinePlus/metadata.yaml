@@ -1,0 +1,60 @@
+alia:dataset:
+  dc:identifier: MedlinePlus
+  dc:title: "MedlinePlus: \"Enciclopedia sobre t\xE9rminos m\xE9dicos\""
+  dc:description: MEDLINE is the bibliographic database on health sciences produced
+    by the National Library of Medicine (USA). It includes abstracts and bibliographic
+    data, updated daily.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://medlineplus.gov/encyclopedia.html
+  dc:date: 1/01/1971
+  dcterms:coverage: (1971-2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+  dc:rights: In the United States, works created by federal government employees in
+    the course of their official duties are not subject to copyright.
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 11.788495063781738
+  alia:instances: 6059
+  alia:tokens: 13871047
+  alia:features:
+  - alia:feature:
+      dc:identifier: title
+      dc:description: Title of the record. This is usually a term, as much of MedLine
+        functions as a dictionary.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: link
+      dc:description: URL of the web page from which the information was extracted.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text collected from the record.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: letter
+      dc:description: Initial letter of the term.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: category
+      dc:description: 'Category to which the term or text belongs. - Divisor feature.
+        Possible values: genetic, drug_information, lab_test, encyclopedia'
+      dc:type: String
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Unique identifier of the term or text.
+      dc:type: String
+  dcterms:hasVersion: v1

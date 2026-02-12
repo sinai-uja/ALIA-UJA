@@ -1,0 +1,49 @@
+alia:dataset:
+  dc:identifier: SEOM
+  dc:title: "SEOM: \"Gu\xEDas Cl\xEDnicas de la Sociedad Espa\xF1ola de Oncolog\xED\
+    a M\xE9dica publicadas en SEOM\""
+  dc:description: Clinical guidelines developed by the Spanish Society of Medical
+    Oncology (SEOM), in collaboration with cooperative groups and other scientific
+    societies, published in the journal Clinical & Translational Oncology. The resource
+    includes titles, years of publication, collaborations, and updates to the guidelines
+    from 2003 to the present.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://seom.org/publicaciones/guias-clinicas/105418-guias-clinicas-seom
+  dc:date: 1/01/2025
+  dcterms:coverage: 2003-2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 1.0497045516967773
+  alia:instances: 59
+  alia:tokens: 838766
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier for each clinical guideline
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text of the guideline
+      dc:type: String
+  - alia:feature:
+      dc:identifier: clinical_section
+      dc:description: 'All guidelines belong to Psychology - Divisor feature. Possible
+        values: Psicologia'
+      dc:type: String
+  dcterms:hasVersion: v1

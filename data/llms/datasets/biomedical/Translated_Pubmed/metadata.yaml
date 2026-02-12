@@ -1,0 +1,63 @@
+alia:dataset:
+  dc:identifier: Translated_Pubmed
+  dc:title: Spanish abstracts from PubMed (machine-translated from English)
+  dc:description: 'Spanish abstracts from PubMed (machine-translated from English)
+
+
+    A state-of-the-art, domain-specific Neural Machine Translation system has been
+    used to automatically translate a large number of articles (titles and abstracts)
+    from PubMed, from English to Spanish. This dataset, in JSON format, provides MeSH
+    terms and DeCS codes (if available), as well as other fields such as the year
+    of publication for all articles.'
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://zenodo.org/records/3826554
+  dc:date: 14/05/2020
+  dcterms:coverage: (1975-2018)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: It was downloaded directly from the Zenodo repository.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  - ' English'
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 5591.56823348999
+  alia:instances: 10413444
+  alia:tokens: 3774392791
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: unique identifier of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: journal
+      dc:description: magazine in which it was published
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: 'year of publication - Divisor feature. Possible values: 2001,
+        1972, 1946, 1987, 1983, 1975, 1951, 1973, 1999, 1978, 1969, 1992, 2017, 1949,
+        1952, 1950, 1956, 1977, 2002, 2010, 2011, 2018, 2000, 2019, 2008, 1954, 1947,
+        1961, 1971, 1974, 1989, 1997, 1957, 1963, 2013, 1995, 2009, 1982, 1948, 1964,
+        1980, 2012, 2005, 1996, 1970, 1979, 1965, 1986, 2006, 1962, 1966, 1958, 1968,
+        1959, 1991, 1976, 1998, 1967, 1955, 1981, 1953, 1960, 1985, 2003, 2015, 2007,
+        1993, 1984, 1994, 2016, 1988, 1990, 2004, 2014'
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: title
+      dc:description: title translated into Spanish
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Spanish text
+      dc:type: String
+  dcterms:hasVersion: v1

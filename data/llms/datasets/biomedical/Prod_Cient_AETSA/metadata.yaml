@@ -1,0 +1,76 @@
+alia:dataset:
+  dc:identifier: Prod_Cient_AETSA
+  dc:title: "Informes de la Producci\xF3n cient\xEDfica de AETSA"
+  dc:description: The scientific production of the Andalusian Health Technology Assessment
+    Agency (AETSA) constitutes the central core of its activity, aimed at supporting
+    informed decision-making in the health field. Through rigorous and structured
+    reports, AETSA evaluates health technologies with the aim of improving the quality,
+    equity and sustainability of the Andalusian public health system.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.aetsa.org/produccion-cientifica/
+  dc:date: 1/01/2025
+  dcterms:coverage: (January,1998, May-2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 15.805950164794922
+  alia:instances: 409
+  alia:tokens: 18052827
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier of each report, provided by AETSA
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text containing the report
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: Link to report
+      dc:type: String
+  - alia:feature:
+      dc:identifier: date
+      dc:description: Date of publication of the report, made up of month and year.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: title
+      dc:description: Title of the report.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: area
+      dc:description: Area of knowledge of the article (CARDIOLOGY, WORKPLACE NURSING...)
+      dc:type: List(String)
+  - alia:feature:
+      dc:identifier: line_production
+      dc:description: "Production line of the article (EVALUATION REPORTS...) - Divisor\
+        \ feature. Possible values: INFORMES R\xC1PIDOS DE EVALUACI\xD3N, DOCUMENTOS\
+        \ METODOL\xD3GICOS, MEDICAMENTOS. S\xCDNTESIS EVIDENCIA, RESPUESTAS BREVES,\
+        \ RECOMENDACIONES, GU\xCDAS DE PR\xC1CTICA CL\xCDNICA, INFORMES TECNOLOG\xCD\
+        AS EMERGENTES, OTROS, HERRAMIENTAS DE AYUDA A LA TOMA DE DECISIONES, INFORMES\
+        \ DE EVALUACI\xD3N"
+      dc:type: String
+  - alia:feature:
+      dc:identifier: technology_type
+      dc:description: ''
+      dc:type: List(String)
+  - alia:feature:
+      dc:identifier: description
+      dc:description: Description of the report
+      dc:type: String
+  dcterms:hasVersion: v1

@@ -1,0 +1,42 @@
+alia:dataset:
+  dc:identifier: Multi_Clin_Sum
+  dc:title: 'MultiClinSum Dataset: Summarization of Clinical Case Reports in English,
+    Spanish, French and Portuguese'
+  dc:description: MultiClinSum is a shared task about the automatic summarization
+    of clinical case reports in English, Spanish, French and Portuguese held as part
+    of the BioASQ workshop at CLEF 2025. The task relies on a corpus of manually selected
+    full clinical case reports and their corresponding clinical case report summaries
+    derived from case report publications written in the previously mentioned languages.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://zenodo.org/records/15546018
+  dc:date: 19/05/2025
+  dcterms:coverage: Not found
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Downloaded directly from the Zenodo repository
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 47.820773124694824
+  alia:instances: 56394
+  alia:tokens: 39904593
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Unique identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Document text
+      dc:type: String
+  dcterms:hasVersion: v1

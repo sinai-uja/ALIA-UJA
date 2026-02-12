@@ -1,0 +1,42 @@
+alia:dataset:
+  dc:identifier: Ministerio_Sanidad_Estrategias
+  dc:title: 'Ministerio_Sanidad/Estrategias: "Planes y Estrategias"'
+  dc:description: This information block presents specific actions that the Department
+    has undertaken in the near future, generally with the participation of representatives
+    of the sectors concerned and, where appropriate, with the authorities of the autonomous
+    communities, to guide and support policies on specific areas of its jurisdiction
+    in the medium and long term.
+  dcterms:subject: biomedical
+  dc:relation:
+  - ''
+  dc:source: https://www.sanidad.gob.es/organizacion/planesEstrategias/home.htm
+  dc:date: 1/01/2020
+  dcterms:coverage: (2000-2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Permission granted from the original entity
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: All available PDFs have been downloaded.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 8.22542953491211
+  alia:instances: 207
+  alia:tokens: 9033087
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  dcterms:hasVersion: v1

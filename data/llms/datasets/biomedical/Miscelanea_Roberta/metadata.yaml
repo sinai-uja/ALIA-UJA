@@ -1,0 +1,48 @@
+alia:dataset:
+  dc:identifier: Miscelanea_Roberta
+  dc:title: Corpus compuesto por datasets .txt descargados de zenodo y opus
+  dc:description: This is a collection of datasets with .txt files in the biomedical
+    field.
+  dcterms:subject: biomedical
+  dc:relation:
+  - 'Case B: https://opus.nlpl.eu/EMEA/corpus/version/EMEA'
+  - '  https://zenodo.org/records/5513237'
+  - ' https://zenodo.org/records/5902835'
+  dc:source: Links:https://opus.nlpl.eu/EMEA/corpus/version/EMEA,  https://zenodo.org/records/5513237,
+    https://zenodo.org/records/5902835
+  dc:date: 1/01/2025
+  dcterms:coverage: 2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Download and manual processing via the official website
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Paragraph
+  dcterms:extent: 2100.8233184814453
+  alia:instances: 12259
+  alia:tokens: 2022634841
+  alia:features:
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Paragraph of the total text that has been extracted
+      dc:type: String
+  - alia:feature:
+      dc:identifier: dataset
+      dc:description: 'Dataset to which the text belongs - Divisor feature. Possible
+        values: ELRC-2722-EMEA, CoWeSe, scielo_raw, EMEA V3, ELRC-EMEA'
+      dc:type: String
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier of the text in the dataset, of the type X_Y, where
+        X is the identifier of the dataset and Y is the identifier of the chunk
+      dc:type: String
+  dcterms:hasVersion: v1

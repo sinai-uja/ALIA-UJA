@@ -1,0 +1,50 @@
+alia:dataset:
+  dc:identifier: SANGVA
+  dc:title: "Gu\xEDas de Pr\xE1ctica Cl\xEDnica y Documentos Asistenciales de la Sanidad\
+    \ Valenciana"
+  dc:description: Set of clinical practice guidelines, care protocols, clinical pathways,
+    and clinical action documents developed by the Regional Ministry of Health of
+    the Valencian Government. The resource includes evidence-based recommendations
+    for different medical specialties and levels of care.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.san.gva.es/es/web/assistencia-sanitaria/guias-de-practica-clinica
+  dc:date: 1/01/2025
+  dcterms:coverage: (2000, 2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Commercial use permitted
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 0.5729703903198242
+  alia:instances: 8
+  alia:tokens: 511797
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier for each document, a counter ranging from 0 to the
+        number of documents
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: clinical_section
+      dc:description: "Medical section to which the guideline belongs. - Divisor feature.\
+        \ Possible values: Urgencias, Oncolog\xEDa, Cuidados Paliativos, Dermatolog\xED\
+        a"
+      dc:type: String
+  dcterms:hasVersion: v1

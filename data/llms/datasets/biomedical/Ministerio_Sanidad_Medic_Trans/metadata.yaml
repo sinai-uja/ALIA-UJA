@@ -1,0 +1,66 @@
+alia:dataset:
+  dc:identifier: Ministerio_Sanidad_Medic_Trans
+  dc:title: Reports, publications, events, and agreements on Transfusion Medicine
+    from the Ministry of Health
+  dc:description: The Ministry of Health's website dedicated to Transfusion Medicine
+    offers a compendium of key resources and documents to ensure the safety and efficacy
+    of blood donation and transfusion in Spain. It includes information on the structure
+    of the National Transfusion Safety System, agreements and recommendations issued
+    by bodies such as the National Hemotherapy Commission, and relevant legislative
+    aspects. It also addresses haemovigilance issues, promotes voluntary and altruistic
+    donation, and provides access to reports, publications, conferences, and events
+    related to the field of transfusion. This portal is an essential tool for healthcare
+    professionals and entities involved in the management and supervision of transfusion
+    medicine in the country.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.sanidad.gob.es/profesionales/saludPublica/medicinaTransfusional/home.htm
+  dc:date: 1/01/2025
+  dcterms:coverage: -1996,2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Reproduction is authorized as long as the source is cited.
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  - ' English'
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 0.9579401016235352
+  alia:instances: 58
+  alia:tokens: 1101769
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: original document's link
+      dc:type: String
+  - alia:feature:
+      dc:identifier: section
+      dc:description: section where the original document belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: subsection
+      dc:description: subsection where the original document belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: parent_url
+      dc:description: link where appears the url
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: PDF content
+      dc:type: String
+  dcterms:hasVersion: v1

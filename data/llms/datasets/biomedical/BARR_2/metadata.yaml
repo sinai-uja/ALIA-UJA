@@ -1,0 +1,39 @@
+alia:dataset:
+  dc:identifier: BARR_2
+  dc:title: 'BARR_2: Biomedical Abbreviation Recognition and Resolution 2nd Edition'
+  dc:description: The BARR2 (Biomedical Abbreviation Recognition and Resolution 2nd
+    Edition) resource is a Spanish corpus created for the task of detecting and resolving
+    biomedical abbreviations.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://temu.bsc.es/BARR2/
+  dc:date: 1/01/2018
+  dcterms:coverage: (enero-2017,enero-2018)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Download and manual processing via the official website
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 2.7830629348754883
+  alia:instances: 2879
+  alia:tokens: 2112831
+  alia:features:
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Document text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Unique identificator
+      dc:type: String
+  dcterms:hasVersion: v1
