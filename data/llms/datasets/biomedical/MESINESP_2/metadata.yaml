@@ -1,0 +1,67 @@
+alia:dataset:
+  dc:identifier: MESINESP_2
+  dc:title: 'MESINESP2 Corpora: Annotated data for medical semantic indexing in Spanish'
+  dc:description: "MESINESP2 Corpora is a Spanish-language dataset designed for biomedical\
+    \ semantic indexing and natural language processing. It contains three types of\
+    \ documents:\n\nScientific Literature (MESINESP-L): Articles from the LILACS and\
+    \ IBECS databases, annotated with DeCS codes. It includes more than 237,000 training\
+    \ articles, a development set of 1,065 expert-annotated articles, and a test set\
+    \ of 491 abstracts.\n\nClinical Trials (MESINESP-T): Records from the Spanish\
+    \ Registry of Clinical Studies (REEC), with 3,560 training trials and development\
+    \ and test sets manually annotated by experts.\n\nPatents (MESINESP-P): Spanish-language\
+    \ patents with IPC codes \u201CA61P\u201D and \u201CA61K31,\u201D selected for\
+    \ semantic similarity to MESINESP-L, with 115 development documents and 119 test\
+    \ documents.\n\nAdditionally, each set includes JSON files. with biomedical entities\
+    \ (drugs, diseases, symptoms, procedures) automatically extracted using BSC NERs.\
+    \ This resource enables research in automatic classification, information retrieval,\
+    \ and text mining in Spanish-language biomedicine."
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://zenodo.org/records/5602914
+  dc:date: 24/09/2021
+  dcterms:coverage: (1984-2020)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Directly from the zenodo repository
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 167.918851852417
+  alia:instances: 337830
+  alia:tokens: 130410547
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Unique identifier of the document within the dataset.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: title
+      dc:description: Title of the document (scientific article, clinical trial, or
+        patent).
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Summary or abstract of the document in Spanish. In clinical
+        trials, this may be a generated abstract.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: journal
+      dc:description: Name of the journal or publication; in patents or clinical trials,
+        it may indicate the source or be empty.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: !!python/tuple
+      - Error in year
+      dc:description: !!python/tuple
+      - 'sequence item 17: expected str instance, NoneType found'
+      dc:type: ''
+  dcterms:hasVersion: v1

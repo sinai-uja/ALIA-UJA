@@ -1,0 +1,69 @@
+alia:dataset:
+  dc:identifier: SPA_Junta_De_Andalucia
+  dc:title: "Guias Cl\xEDnicas y Consejos de Pr\xE1ctica M\xE9dica del Servicio Andaluz\
+    \ de Salud (SAS)"
+  dc:description: "Set of clinical guidelines and medical practice documents produced\
+    \ by the Andalusian Health Service (SAS). Includes diagnostic and therapeutic\
+    \ recommendations for healthcare professionals. Taken from the \u2018Guidelines\
+    \ and advice\u2019 section of the official SAS publications portal."
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/publicaciones?field_publicaciones_titulo_value=&field_publicaciones_tipo_target_id=11780&field_publicaciones_year_edicion_value=&field_publicaciones_seccion_target_id=11762
+  dc:date: 1/01/2013
+  dcterms:coverage: (2008, 2024)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 1.5905256271362305
+  alia:instances: 36
+  alia:tokens: 1812064
+  alia:features:
+  - alia:feature:
+      dc:identifier: isbn
+      dc:description: Identifier of the book corresponding to the guide (not all guides
+        have an ISBN)
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: Link to the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: title
+      dc:description: Title of the medical guide
+      dc:type: String
+  - alia:feature:
+      dc:identifier: edition_year
+      dc:description: Year in which the guide was published
+      dc:type: String
+  - alia:feature:
+      dc:identifier: summary
+      dc:description: Summary of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: n_pages
+      dc:description: Number of pages in the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier for each guide, counter ranging from 0 to the number
+        of documents
+      dc:type: String
+  dcterms:hasVersion: v1

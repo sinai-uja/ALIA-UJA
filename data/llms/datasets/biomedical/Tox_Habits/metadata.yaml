@@ -1,0 +1,41 @@
+alia:dataset:
+  dc:identifier: Tox_Habits
+  dc:title: 'ToxHabits-NER: A Gold-Standard annotated Dataset for Named Entity Recognition
+    in Toxic Habits context.'
+  dc:description: "ToxHabits-NER stands for Toxic Habits Named Entity Recognition.\
+    \ It is a gold-standard annotated dataset focused on the detection and classification\
+    \ of toxic habit mentions \u2014 such as tobacco use, alcohol consumption, and\
+    \ illicit drug use \u2014 within clinical texts written in Spanish."
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://zenodo.org/records/15538314
+  dc:date: 28/05/2025
+  dcterms:coverage: not found
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Download from the Zenodo repository
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 1.5640106201171875
+  alia:instances: 1174
+  alia:tokens: 1169368
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Unique identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Document text
+      dc:type: String
+  dcterms:hasVersion: v1

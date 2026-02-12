@@ -1,0 +1,43 @@
+alia:dataset:
+  dc:identifier: CARMEN_I
+  dc:title: 'CARMEN_I: "A resource of anonymized electronic health records in Spanish
+    and Catalan for training and testing NLP tools"'
+  dc:description: "CARMEN-I is a clinical corpus in Spanish containing anonymised\
+    \ medical documents from Hospital Cl\xEDnic de Barcelona, collected between March\
+    \ 2020 and March 2022. Its main objective is to provide a realistic dataset for\
+    \ the development and evaluation of natural language processing (NLP) tools applied\
+    \ to the clinical field in Spanish, while preserving patient privacy."
+  dcterms:subject: biomedical
+  dc:relation:
+  - ''
+  dc:source: https://physionet.org/content/carmen-i/1.0/
+  dc:date: 2/11/2023
+  dcterms:coverage: (2020-2022)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Permission must be requested from the organization
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: It downloaded immediately after permission was granted.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 0.9266262054443359
+  alia:instances: 1697
+  alia:tokens: 808489
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: unique identifier of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: document text
+      dc:type: String
+  dcterms:hasVersion: v1

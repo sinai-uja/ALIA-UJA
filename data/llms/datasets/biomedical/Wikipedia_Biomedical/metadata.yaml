@@ -1,0 +1,55 @@
+alia:dataset:
+  dc:identifier: Wikipedia_Biomedical
+  dc:title: "Wikipedia_Biomedical: T\xE9rminos y definiciones de la wikipedia en el\
+    \ \xE1mbito biom\xE9dico"
+  dc:description: The dataset consists of terms and definitions covering all categories
+    of Wikipedia in the biomedical field. All in Spanish.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://es.wikipedia.org/wiki/Wikipedia:Portada
+  dc:date: 30/09/2025
+  dcterms:coverage: (septiembre-2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Downloading data via the Wikipedia API
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 114.67772483825684
+  alia:instances: 53314
+  alia:tokens: 81070463
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Term identifier
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: categoria_raiz
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: categoria_json
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: titulo
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: Link to the term
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text with the term and its definition
+      dc:type: String
+  dcterms:hasVersion: v1

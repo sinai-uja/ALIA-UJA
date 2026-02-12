@@ -1,0 +1,76 @@
+alia:dataset:
+  dc:identifier: Guia_Salud
+  dc:title: "GuiaSalud: \"Gu\xEDas de Pr\xE1ctica Cl\xEDnica activas del Sistema Nacional\
+    \ de Salud publicadas en Gu\xEDaSalud\"."
+  dc:description: "Set of active clinical practice guidelines developed or validated\
+    \ by entities of the Spanish National Health System, available on the Gu\xEDaSalud\
+    \ portal. Based on scientific evidence and aimed at supporting clinical decisions\
+    \ in different areas of health."
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://portal.guiasalud.es/gpc/?_sfm_wpcf-estado=1
+  dc:date: 1/01/2025
+  dcterms:coverage: (2003, 2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 3.8925704956054688
+  alia:instances: 31
+  alia:tokens: 4099910
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier provided by the website.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Content of each document.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: Link to the clinical guideline.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: title
+      dc:description: Title of the clinical guideline.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: developing_entity
+      dc:description: Entity collaborating on the clinical guideline.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: edition_date
+      dc:description: Date of publication of the file.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: objectives
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: clinical_section
+      dc:description: "(cardiology, dentistry, psychiatry, etc.).Section to which\
+        \ each guideline belongs - Divisor feature. Possible values: Salud P\xFAblica,\
+        \ Medicina Paliativa, Neumolog\xEDa, Gastroenterolog\xEDa, Pediatr\xEDa, Enfermer\xED\
+        a Cl\xEDnica, Endocrinolog\xEDa, Oncolog\xEDa M\xE9dica, Periodoncia, Odontolog\xED\
+        a, Obstetricia, Neurolog\xEDa, Emergencias, Psiquiatr\xEDa, Reumatolog\xED\
+        a"
+      dc:type: String
+  - alia:feature:
+      dc:identifier: __index_level_0__
+      dc:description: ''
+      dc:type: String
+  dcterms:hasVersion: v1

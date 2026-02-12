@@ -1,0 +1,62 @@
+alia:dataset:
+  dc:identifier: AEPED
+  dc:title: "AEPED: Pediam\xE9cum de la Asociaci\xF3n Espa\xF1ola de Pediatr\xEDa:\
+    \ Fichas de medicamentos y principios activos de uso pedi\xE1trico"
+  dc:description: "Dataset from the Pediam\xE9cum of the Spanish Paediatrics Association\
+    \ (AEPED) that includes files on more than 660 medicines and active ingredients\
+    \ for paediatric use, with basic clinical and pharmacological information."
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.aeped.es/comite-medicamentos/pediamecum
+  dc:date: 1/01/2012
+  dcterms:coverage: 2012-2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 1.9079828262329102
+  alia:instances: 792
+  alia:tokens: 1956097
+  alia:features:
+  - alia:feature:
+      dc:identifier: anio_edicion
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: palabra
+      dc:description: Word whose meaning has been downloaded.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: enlace
+      dc:description: Link to the word.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: letra
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: seccion_clinica
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: id
+      dc:description: ''
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Document text
+      dc:type: String
+  dcterms:hasVersion: v1

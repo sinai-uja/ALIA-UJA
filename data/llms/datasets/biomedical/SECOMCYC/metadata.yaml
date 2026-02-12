@@ -1,0 +1,52 @@
+alia:dataset:
+  dc:identifier: SECOMCYC
+  dc:title: "SECPOMCYC: Protocolos cl\xEDnicos de las Sociedad Espa\xF1ola de Cirug\xED\
+    a Oral y Maxilofacial y Cabeza y Cuello"
+  dc:description: list of authors and 60 brief, structured clinical protocols for
+    oncological management in oral and maxillofacial surgery
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.secomcyc.org/area-profesional/protocolos-clinicos-de-la-secom/
+  dc:date: 1/01/2025
+  dcterms:coverage: (2020, 2024)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 0.5107622146606445
+  alia:instances: 63
+  alia:tokens: 445187
+  alia:features:
+  - alia:feature:
+      dc:identifier: url
+      dc:description: Link to the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier for each document, a counter ranging from 0 to the
+        number of documents.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: clinical_section
+      dc:description: "Medical section to which the protocols belong (all are \u2018\
+        Oral and Maxillofacial Surgery\u2019) - Divisor feature. Possible values:\
+        \ Cirugia Oral y Maxilofacial"
+      dc:type: String
+  dcterms:hasVersion: v1

@@ -1,0 +1,48 @@
+alia:dataset:
+  dc:identifier: CIMA_AEMPS
+  dc:title: "Centro de Informaci\xF3n online de Medicamentos Autorizados (CIMA) de\
+    \ la Agencia Espa\xF1ola de Medicamentos y Productos Sanitarios (AEMPS)"
+  dc:description: Dataset consisting of more than 15,000 medicines (authorized, revoked
+    and temporarily suspended), and around 1,600 active ingredients. For each drug,
+    it includes the official reference documents for the correct use of the drugs,
+    such as technical data sheets, package inserts and public evaluation reports.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://cima.aemps.es/cima/publico/home.html
+  dc:date: 29/04/2025
+  dcterms:coverage: -2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Reproduction is authorized as long as the source is cited.
+  dc:rights: "Copyright @ 2025 Agencia Espa\xF1ola de Medicamentos y Productos Sanitarios"
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 192.4064121246338
+  alia:instances: 38727
+  alia:tokens: 407621044
+  alia:features:
+  - alia:feature:
+      dc:identifier: type
+      dc:description: 'type of document (FT, P, IPE) - Divisor feature. Possible values:
+        IPE, P, FT'
+      dc:type: String
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  dcterms:hasVersion: v1

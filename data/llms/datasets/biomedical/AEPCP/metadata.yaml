@@ -1,0 +1,47 @@
+alia:dataset:
+  dc:identifier: AEPCP
+  dc:title: "AEPCP: Documentos cient\xEDficos publicados por la Asociaci\xF3n Espa\xF1\
+    ola de Psicolog\xEDa Cl\xEDnica y Psicopatolog\xEDa, incluyendo informes, art\xED\
+    culos y gu\xEDas sobre psicolog\xEDa cl\xEDnica"
+  dc:description: Collection of scientific documents from the AEPCP on clinical psychology
+    and psychopathology, including reports, articles, and guidelines on mental health.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.aepcp.net/documentos/#doc-cientificos
+  dc:date: 1/01/2024
+  dcterms:coverage: 2000-2024
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: Yes, Copyright
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 1.8203191757202148
+  alia:instances: 42
+  alia:tokens: 1730060
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier for each clinical guideline
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text of the guideline
+      dc:type: String
+  - alia:feature:
+      dc:identifier: clinical_section
+      dc:description: 'All guidelines belong to Psychology - Divisor feature. Possible
+        values: Psicologia'
+      dc:type: String
+  dcterms:hasVersion: v1

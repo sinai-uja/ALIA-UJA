@@ -1,0 +1,50 @@
+alia:dataset:
+  dc:identifier: SER
+  dc:title: "Gu\xEDas de Pr\xE1ctica Cl\xEDnica de la Asociaci\xF3n Espa\xF1ola de\
+    \ Reumatolog\xEDa"
+  dc:description: This resource is a dataset derived from the finalised Clinical Practice
+    Guidelines published by the Spanish Society of Rheumatology (SER). The guidelines
+    come from the SER's official website and are intended to support decision-making
+    in rheumatic diseases.
+  dcterms:subject: biomedical
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.ser.es/profesionales/que-hacemos/investigacion/guias-de-practica-clinica/guias-practica-clinica-finalizadas/
+  dc:date: 1/01/2023
+  dcterms:coverage: (2018, 2024)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Reproduction is authorized as long as the source is cited.
+  dc:rights: The Clinical Practice Guidelines published by the Spanish Society of
+    Rheumatology (SER) are protected by copyright from the moment of their publication
+    in tangible format.
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 1.033905029296875
+  alia:instances: 16
+  alia:tokens: 1286099
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Counter from 1 to the total number of documents (16)
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Content of the clinical guideline
+      dc:type: String
+  - alia:feature:
+      dc:identifier: clinical_section
+      dc:description: 'Clinical section to which the guideline belongs (all belong
+        to Gastroenterology) - Divisor feature. Possible values: Reumatologia'
+      dc:type: String
+  dcterms:hasVersion: v1
