@@ -1,0 +1,74 @@
+**Role**: You are a specialized model for generating realistic search queries AND their answers in the {domain_type} domain for RAG (Retrieval-Augmented Generation) systems.
+
+**Task**: Generate a natural, contextual query from a **Character**'s perspective that would retrieve the provided **Passage**, AND generate the answer to that query based strictly on the **Passage** content. Both must meet the specified **Requirements**.
+
+### Key Principles
+
+1. **Character Authenticity**: The query must reflect the **Character**'s situation, medical knowledge level, and information needs
+2. **Information Gap**: The **Character** seeks clinical information contained in the **Passage** but doesn't know the specific medical details or terminology
+3. **Retrieval Alignment**: The query should naturally lead to retrieving the **Passage** in a semantic search system
+4. **Answer Fidelity**: The answer must be based STRICTLY on information from the **Passage** - do not add external knowledge or diagnostic guesses
+5. **Requirement Compliance**: Both query and answer must match the specified type and difficulty
+
+### Input Parameters
+
+**Character**: {character}  
+**Passage**: {passage}  
+**Requirements**: Type: {type}; Difficulty: {difficulty}
+
+### Output Format
+
+Return ONLY a JSON object with this structure:
+{{
+"query": "Your generated query",
+"answer": "Your generated answer"
+}}
+
+
+### Examples
+
+**Example 1**  
+Character: "A doctor seeking clarification on a specific surgical protocol."  
+Passage: "La cirugía de bypass gástrico requiere una evaluación preoperatoria exhaustiva por parte de un equipo multidisciplinar que incluya nutricionistas, psicólogos y endocrinólogos."  
+Requirements: Type: requirements; Difficulty: medium  
+Output:
+{{
+"query": "¿Qué especialistas deben evaluar a un paciente antes de realizar un bypass gástrico?",
+"answer": "Se requiere una evaluación por un equipo multidisciplinar de nutricionistas, psicólogos y endocrinólogos."
+}}
+
+**Example 2**  
+Character: "A patient looking for information on medication side effects."  
+Passage: "Es común experimentar somnolencia o sequedad de boca durante la primera semana de tratamiento con antihistamínicos de primera generación."  
+Requirements: Type: consequences; Difficulty: easy  
+Output:
+{{
+"query": "¿Qué efectos secundarios puedo tener al empezar a tomar los antihistamínicos?",
+"answer": "Es normal sentir somnolencia o tener la boca seca durante la primera semana de tratamiento."
+}}
+
+**Example 3**  
+Character: "A medical researcher wanting to understand clinical trial results."  
+Passage: "Los resultados del estudio demuestran una reducción significativa del 25% en la mortalidad cardiovascular en pacientes tratados con el nuevo inhibidor de SGLT2 en comparación con el grupo placebo."  
+Requirements: Type: interpretation; Difficulty: hard  
+Output:
+{{
+"query": "¿Cuál fue el impacto específico del inhibidor de SGLT2 en la tasa de mortalidad cardiovascular según el estudio?",
+"answer": "El estudio mostró una reducción del 25% en la mortalidad cardiovascular en comparación con el placebo."
+}}
+
+### Generation Guidelines for Query
+- Use natural, medical or lay language appropriate to the **Character**'s context
+- Frame the query as the **Character** would ask it
+- Ensure the query is answerable by the **Passage** content
+- Match the difficulty level
+
+### Generation Guidelines for Answer
+- Base your answer STRICTLY on information provided in the **Passage**
+- Do not add external knowledge or medical advice not present in the **Passage**
+- Respond from the **Character**'s perspective
+- Match the difficulty level (easier = simpler language; harder = more technical)
+- Keep the answer concise and directly relevant to the query
+- **IMPORTANT**: Both the query and the answer must be written in **{domain_language}**.
+
+**Important**: Generate both the query and answer together. The answer must directly respond to the query using only information from the passage.

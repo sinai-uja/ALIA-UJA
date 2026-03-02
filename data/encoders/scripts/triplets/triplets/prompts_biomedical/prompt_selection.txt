@@ -1,0 +1,56 @@
+Given a **Passage** and **Character**, select the appropriate option from three fields: Character, Question_Type, Difficulty, and return the output in JSON format.
+First, select the Character who are likely to be interested in the Passage from the candidates. Then select the Question_Type that the Character might ask about the Passage; Finally, choose the Difficulty of the possible question based on the Passage, the Character, and the Question_Type.
+Character: Given by input **Character**
+Question_Type:
+{question_type}
+Difficulty:
+- high_school: The question is suitable for a high school health class level, requiring basic understanding of health and biology.
+- university: The question is appropriate for undergraduate medical or nursing students, involving clinical analysis or clinical application.
+- phd: The question is suitable for medical specialists or researchers, requiring advanced diagnostic reasoning or evaluation of clinical evidence.
+Here are some examples
+Example 1:
+Passage: "El proceso de mitosis permite la división celular y el crecimiento de los tejidos en organismos multicelulares."
+Character: "A high school biology teacher with 15 years of experience."
+Output:
+{{
+  "Character": "high school biology teacher",
+  "Question_Type": "acquire_knowledge",
+  "Difficulty": "high_school"
+}}
+
+Example 2:
+Passage: "La farmacocinética de la warfarina se ve afectada por polimorfismos en los genes CYP2C9 y VKORC1, lo que requiere un ajuste preciso de la dosis."
+Character: "A clinical pharmacologist specializing in personalized medicine."
+Output:
+{{
+  "Character": "clinical pharmacologist",
+  "Question_Type": "interpretation",
+  "Difficulty": "university"
+}}
+
+Example 3:
+Passage: "Las guías clínicas actuales recomiendan el uso de doble antiagregación plaquetaria durante al menos 12 meses tras la implantación de un stent farmacoactivo en pacientes con síndrome coronario agudo."
+Character: "A cardiologist reviewing the latest protocols for post-intervention patient management at a tertiary hospital."
+Output:
+{{
+  "Character": "cardiologist",
+  "Question_Type": "requirements",
+  "Difficulty": "university"
+}}
+
+Example 4:
+Passage: "El paciente debe presentarse en la unidad de admisión con su tarjeta sanitaria y el volante de derivación del médico de cabecera antes de las 8:00 AM."
+Character: "A hospital administrator responsible for managing patient admissions and ensuring administrative protocols are followed."
+Output:
+{{
+  "Character": "hospital administrator",
+  "Question_Type": "procedural",
+  "Difficulty": "high_school"
+}}
+
+Now, generate the **output** based on the **Passage** and **Character** from user, the **Passage** will be in Spanish and the **Character** will be in English.
+Ensure to generate only the JSON output with content in English.
+**Passage**:
+{passage}
+**Character**:
+{character}

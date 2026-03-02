@@ -1,0 +1,65 @@
+# === SERVER CONNECTION ===
+api_base_url: "your_api_base_url"
+api_key: "your_api_key_here"
+model: "your_model_name"
+
+# === THINKING / REASONING ===
+enable_thinking: false   # true to enable <think>, false to disable it
+
+# === DOMAIN CONFIGURATION ===
+domain_language: "Spanish"
+domain_type: "your_domain"
+domain_description: "your_domain_description"
+id_column: "id_chunk"
+questions_per_passage: 3
+index_output_dir: "" # Optional: to differentiate output
+
+# === PROMPT FILES ===
+types_prompt_file: "prompts/your_domain/prompt_types.txt"
+selection_prompt_file: "prompts/your_domain/prompt_selection.txt"
+query_answer_prompt_file: "prompts/your_domain/prompt_query_answer.txt"  # With answer
+query_only_prompt_file: "prompts/your_domain/prompt_query.txt"  # Without answer
+
+# === GENERATION PARAMETERS - TYPES ===
+types_temperature: 0.3
+types_top_p: 0.9
+types_max_tokens: 512
+
+# === GENERATION PARAMETERS - SELECTION ===
+selection_temperature: 0.3
+selection_top_p: 0.9
+selection_max_tokens: 1024
+
+# === GENERATION PARAMETERS - QUERY+ANSWER ===
+query_temperature: 0.5
+query_top_p: 0.95
+query_max_tokens: 2048
+
+# === PROCESSING CONFIG ===
+batch_size: 128
+max_retries: 3
+api_max_attempts: 6
+api_retry_delay: 600
+
+# === TIMEOUTS (in seconds per request) ===
+types_timeout: 120
+selection_timeout: 180
+query_timeout: 400
+
+# === INPUT/OUTPUT FILES ===
+dataset_path: "path/to/your/dataset.parquet"
+
+# === OUTPUT FORMATS ===
+save_csv: true
+save_jsonl: true
+
+# === BASE FILENAMES ===
+types_output_name: "your_domain/types_output"
+selection_output_name: "your_domain/selections_output"
+query_output_name: "your_domain/query_output"
+
+# === OPTIONS ===
+generate_types: true
+generate_answer: false  # true to generate query+answer, false for query only
+
+limit: null  # null to process all
