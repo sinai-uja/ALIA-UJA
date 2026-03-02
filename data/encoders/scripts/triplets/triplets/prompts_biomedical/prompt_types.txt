@@ -1,0 +1,94 @@
+The Passage is an excerpt from a {domain_language} {domain_type} document, taken from {source}, and will be used in a Retrieval-Augmented Generation (RAG) system to answer user queries.
+
+Based on the Passage, generate a list of 4 to 5 Question_Type values that are contextually relevant to this kind of document and suitable for RAG retrieval scenarios.
+
+Question Type Definitions:
+
+- yes_or_no: Questions requiring a binary yes/no answer about medical permissions, clinical prohibitions, or applicability
+- background: Questions seeking historical medical context, clinical research origins, or general health background information
+- acquire_knowledge: Questions aimed at learning specific medical facts, pathological definitions, or clinical concepts from the document
+- keywords: Questions focusing on identifying key medical terms, diagnostic concepts, or important pharmacological terminology
+- summary: Questions requesting a condensed overview or main points of the clinical content
+- procedural: Questions about medical steps, surgical processes, or how to complete clinical procedures
+- compliance_check: Questions verifying if certain medical actions or situations meet clinical protocols or safety requirements
+- interpretation: Questions requiring explanation or clarification of clinical language, diagnostic implications, or lab results
+- deadline: Questions about treatment time limits, prescription expiration dates, or temporal medical requirements
+- requirements: Questions identifying necessary tests, conditions, or prerequisites for a medical procedure
+- eligibility: Questions determining who qualifies or is entitled to specific treatments, clinical trials, or care procedures
+- consequences: Questions about side effects, medical risks, or outcomes of clinical interventions
+- application_process: Questions about how to formally request medical care, apply for clinical trials, or initiate health procedures
+- clarification: Questions seeking to understand ambiguous or complex medical provisions or protocol details
+
+Important instructions:
+Respond only with a single JSON object in English, containing a key "Question_Types" with a list of question type strings.
+
+Do not include any explanations, markdown formatting, extra text, or invalid JSON.
+
+The JSON must be valid and parsable as-is.
+
+If unsure, respond with an empty list in the JSON object.
+
+Examples:
+
+Example 1:
+Passage:
+"Para proceder a la intervención quirúrgica de colecistectomía por laparoscopia, el paciente debe permanecer en ayunas al menos 8 horas antes del procedimiento y presentar el consentimiento informado debidamente firmado por un facultativo."
+
+Expected output:
+{{
+"Question_Types": [
+"requirements",
+"procedural",
+"eligibility",
+"application_process",
+"yes_or_no"
+]
+}}
+
+Example 2:
+Passage:
+"El uso prolongado de corticosteroides inhalados puede provocar efectos secundarios como candidiasis orofaríngea o disfonía leve, por lo que se recomienda enjuagar la boca con agua tras cada administración del fármaco."
+
+Expected output:
+{{
+"Question_Types": [
+"consequences",
+"compliance_check",
+"interpretation",
+"clarification",
+"keywords"
+]
+}}
+
+Example 3:
+Passage:
+"Los pacientes diabéticos tipo 2 pueden solicitar la inclusión en el programa de monitorización continua de glucosa si cumplen con criterios de HbA1c superior al 7.5% a pesar del tratamiento intensivo con insulina."
+
+Expected output:
+{{
+"Question_Types": [
+"procedural",
+"eligibility",
+"acquire_knowledge",
+"yes_or_no",
+"requirements"
+]
+}}
+
+Example 4:
+Passage:
+"El ensayo clínico multicéntrico evaluará la eficacia de la inmunoterapia combinada en pacientes con cáncer de pulmón no microcítico en estadio IV que no han recibido tratamiento sistémico previo."
+
+Expected output:
+{{
+"Question_Types": [
+"background",
+"summary",
+"interpretation",
+"keywords",
+"eligibility"
+]
+}}
+
+Passage:
+{passage}

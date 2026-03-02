@@ -1,3 +1,12 @@
+## Folder structure
+
+- `api_generation/`: Code for API-based generation.
+   - `api_generation/multi/`: Generators and utilities for multi-query generation (contains `config.yaml.example`, `generators.py`, `main.py`, `models.py`, `process_folder.py`, `utils.py`).
+   - `api_generation/single/`: Generators and utilities for single-query generation (contains `config.yaml.example`, `generators.py`, `main.py`, `models.py`, `process_folder.py`, `utils.py`).
+- `local_generation/`: Scripts and configuration for local generation (`config.yaml.example`, `generators.py`, `main.py`, `models.py`, `utils.py`).
+- `prompts_biomedical/`: Prompts tailored for the biomedical domain.
+- `prompts_legal/`: Prompts tailored for the legal domain.
+
 ## Configuration
 
 1. Copy `config.yaml.example` to `config.yaml`
