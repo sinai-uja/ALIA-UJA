@@ -1,0 +1,309 @@
+"""Scraper de Genética de MedlinePlus (EN).
+
+Este módulo es responsable de la recolección de contenido sobre enfermedades 
+y cuestiones genéticas desde MedlinePlus en inglés. Curiosamente, en esta versión 
+la semilla de búsqueda parte desde la ruta en español (`/spanish/genetica/`) 
+identificando los enlaces al contenido, y conmutando dinámicamente (`mplus-lang-toggle`) 
+a la versión equivalente en inglés para raspar los textos nativos anglosajones de las
+enfermedades genéticas. El material extraído se almacena individualmente 
+en subdirectorios titulados y unifica metadata vía `.parquet`.
+
+Example:
+    Flujo de ejecución principal::
+
+        python scraper_MedLinePlus_genetic_en.py
+
+    Iniciando desde el identificador 300, parseará cada índice del glosario 
+    obteniendo el inglés para vaciar sus párrafos al disco, conformando 
+    la estructura final `docs/Titulo_Genetica/...` y `output_en.parquet`.
+
+Note:
+    Alineado al uso de la librería `polars` y `BeautifulSoup4`. Posee la particularidad 
+    de ejecutar una traducción inversa (ES -> EN) debido probablemente a consistencias 
+    o dependencias del Sitemap del NIH.
+"""
+
+from bs4 import BeautifulSoup
+import requests
+import urllib.parse
+import fitz
+import os
+from requests.exceptions import ChunkedEncodingError
+import time
+import polars as pl
+import sys
+from multiprocessing import Pool, cpu_count
+import re
+from requests.compat import urljoin
+
+import unicodedata
+
+def extraer_meds_id(url: str) -> str:
+    """Extrae la clave única de identificación a partir de la URL de un recurso.
+
+    Args:
+        url (str): Link al recurso genético en web.
+
+    Returns:
+        str: ID remanente purgado de rutas previas.
+    """
+    import os
+    # Tomar la parte final del URL
+    base = os.path.basename(url)
+    # Quitar la extensión
+    nombre = os.path.splitext(base)[0]
+    # Quitar sufijo '-es' si existe
+    if nombre.endswith('-es'):
+        nombre = nombre[:-3]  # eliminar los últimos 3 caracteres
+    return nombre
+
+def get_letra_directorio(titulo: str) -> str:
+    """Deriva la inicial categórica ignorando acentos.
+
+    Args:
+        titulo (str): Título oficial.
+
+    Returns:
+        str: Letra capitular normalizada.
+    """
+    # Elimina tildes y convierte a mayúscula la primera letra alfabética válida
+    titulo_normalizado = unicodedata.normalize('NFKD', titulo)
+    letras = ''.join(c for c in titulo_normalizado if c.isalpha())
+    return letras[0].upper() if letras else "Otros"
+
+def safe_filename(nombre: str) -> str:
+    """Convierte un string genérico en nombre apto de archivo.
+
+    Sustituye espacios por `_` y recorta cualquier signo puntuacional disruptivo.
+
+    Args:
+        nombre (str): Cadena raw.
+
+    Returns:
+        str: Valor apto de archivo (ej. My_Genetic_Disorder)
+    """
+    # Reemplaza espacios por guiones bajos y elimina caracteres no permitidos
+    nombre = nombre.strip().replace(' ', '_')
+    return re.sub(r'[^\w\-_.]', '', nombre)
+
+
+def error_log(error_path: str, search_url: str) -> None:
+    """Loguea fallos en la resolución de URLs en formato anexado de txt.
+
+    Args:
+        error_path (str): Carpeta target para los logouts.
+        search_url (str): Endpoint infractor.
+    """
+    try:
+        with open(f"{error_path}.txt", "a", encoding="utf-8") as file:
+            file.write(search_url + "\n")
+    except Exception as e:
+        print(f"Error al escribir en el archivo de errores: {e}")
+
+def pdf_to_text(pdf_path: str) -> str:
+    """Wrapper utilitario de PyMuPDF predispuesto para lecturas crudas.
+
+    Args:
+        pdf_path (str): Ubicación del PDF potencial.
+
+    Returns:
+        str: Cadena literal extraída.
+    """
+    doc = fitz.open(pdf_path)
+    text_full = ""
+    for num_pag in range(doc.page_count):
+        pag = doc.load_page(num_pag)
+        text_full += pag.get_text()
+    return text_full
+
+def try_pet(search_url: str, error_path: str) -> tuple:
+    """Intenta consumir un Endpoint tolerando Timeout e interrupciones dinámicas limitadas de bytes.
+
+    Itera solicitudes frente a caídas temporales del sitio de Medline asegurando captura.
+
+    Args:
+        search_url (str): URL final.
+        error_path (str): Salida log ante error persistente.
+
+    Returns:
+        tuple: Objeto Request Content + status (0 o 1).
+    """
+    i = 0 
+    response_find = 0
+    response = None
+    try:
+        response = requests.get(search_url, stream=True)
+        if response and response.status_code == 200:
+            response_find = 1
+            return response, response_find
+        elif response.status_code == 404:
+            response_find = 1
+            return response, response_find
+        else:
+            find = False
+            for i in range(5):
+                print(f"No se pudo acceder a {search_url}: reintentamos")
+                time.sleep(i+1)
+                response = requests.get(search_url) 
+                if response and response.status_code == 200:
+                    print("Se ha aceptado el reintento de conexion")
+                    find = True
+                    break
+            if find == False:
+                error_log(error_path, search_url)
+            response_find = 1
+            return response, response_find
+    except ChunkedEncodingError as e:
+        print(f"Error en la transferencia de datos.")
+        error_log(error_path, search_url)
+        response_find = 0
+        response = None
+        return response, response_find
+    except requests.exceptions.RequestException as e:
+        print(f"Intento {i+1}: error al acceder a {search_url}: {e}")
+        error_log(error_path, search_url)
+        response_find = 0
+        response = None
+        return response, response_find
+
+def main() -> None:
+    """Implementa el raspado jerárquico por conmutación lingüística.
+
+    Utiliza el entrypoint general latino, extrae enlaces `<em>` e instantáneamente
+    busca el botón / enlace toggle hacia su contraparte `mplus-lang-toggle` (inglés).
+    Luego lista desde allí cada sub-ficha genética extrayendo la composición del articulo
+    (`h1` a `p`) exportando texto masivo local y su bitácora parquet global con clave base 300+.
+    """
+    path ="/home/mmg/scripts/scraper/MedlinePlus/genetic/en"
+    docs = path + "/docs/"
+    error_path = ""
+    diccionario = []
+    url = "https://medlineplus.gov/spanish/genetica/"
+    contador = 300
+
+    response, response_find = try_pet(url, error_path)
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    try:
+
+        section = soup.find("section", id="understanding_genetics")
+        # Extraer títulos (texto de los <a> dentro de <strong>)
+        titulos = [a.get_text(strip=True) for a in section.select("p strong a")]
+
+        # Extraer enlaces (atributo href de los <a>)
+        enlaces = [a["href"] for a in section.select("p strong a")]
+
+
+        for i, enlace_pagina in enumerate(enlaces):
+            response, response_find = try_pet(enlace_pagina, error_path)
+            if not response_find:
+                continue
+            english_html = BeautifulSoup(response.text, 'html.parser')
+            print(f"Estamos dentro del enlace en español: {enlace_pagina}")
+            
+            
+            a_tag = english_html.find("a", id="mplus-lang-toggle")
+            enlace_english = a_tag["href"] if a_tag else None
+            
+
+            response, response_find = try_pet(enlace_english, error_path)
+            if not response_find:
+                continue
+            html_especifico = BeautifulSoup(response.text, 'html.parser')
+
+            print(f"Cambiado a inglés: {enlace_english}")
+
+            ul_index = html_especifico.find("div", class_="mp-content").find("ul")
+
+            # Extraer textos y enlaces juntos
+            textos_li = []
+            enlaces_li = []
+            
+            base_url = "https://medlineplus.gov/genetics/understanding/basics/"
+
+            for li in ul_index.find_all("li"):
+                if li.a:  # seguridad por si algún <li> no tiene <a>
+                    textos_li.append(li.a.get_text(strip=True))
+                    enlace_completo = urljoin(enlace_english, li.a["href"])
+                    enlaces_li.append(enlace_completo)
+
+            print(textos_li)
+            print(enlaces_li)
+
+            #print(textos_li)
+
+            print(len(enlaces_li))
+            for enlace_url in enlaces_li:
+                time.sleep(1)
+                response, response_find = try_pet(enlace_url, error_path)
+                if not response_find:
+                    continue
+                soup_palabra = BeautifulSoup(response.text, 'html.parser')
+                titulo = soup_palabra.find('div', class_='page-title').find('h1').get_text(strip=True)
+                print(f"Palabra: {titulo}")
+                
+
+
+
+                # Buscar el contenedor principal
+                main_div = soup_palabra.find('div', class_=lambda x: x in ['main', 'main-single'])
+                # Crear una lista con textos visibles
+                textos_extraidos = []
+
+                if main_div:
+                    # Buscar todas las etiquetas relevantes, en orden
+                    etiquetas = ['h1', 'h2', 'h3', 'p', 'li']
+                    for tag in main_div.find_all(etiquetas):
+                        texto = tag.get_text(separator=' ', strip=True)
+                        if texto:
+                            textos_extraidos.append(texto)
+
+                    contenido_txt = titulo + '\n\n' + '\n'.join(textos_extraidos)
+
+                    # Obtener la letra para organizar por carpetas
+                    letra = titulos[i]
+
+                    # Crear la carpeta por letra si no existe
+                    letra_path = os.path.join(docs, letra)
+                    os.makedirs(letra_path, exist_ok=True)
+
+                    
+                    # Guardar el archivo .txt dentro de la subcarpeta
+                    nombre_archivo = safe_filename(titulo) + ".txt"
+                    ruta_completa = os.path.join(letra_path, nombre_archivo)
+                    with open(ruta_completa, "w", encoding="utf-8") as f:
+                        f.write(contenido_txt)
+                    
+                    
+                    
+
+                    diccionario.append({
+                    "title": titulo,
+                    "link": enlace_url,
+                    "txt": textos_extraidos,
+                    "letter": letra,
+                    "category": "genetic",
+                    "id": str(contador)
+                    })
+                    print(
+                        "Título:", titulo,
+                        "| Enlace:", enlace_url,
+                        "| Letra:", letra,
+                        "| Texto:", #textos_extraidos,
+                        "| ID:", contador
+                    )
+                    contador+=1
+
+                    print(f"Texto guardado en el archivo: {ruta_completa}")
+                else:
+                    print("No se encontró el div con clase 'main' o 'main-single'")
+    except Exception as e:
+        print(f"Error al guardar parquet: {e}")
+
+    df = pl.DataFrame(diccionario)
+    df.write_parquet(f"{path}/output_en.parquet")
+
+
+
+if __name__ == "__main__":
+    main()
