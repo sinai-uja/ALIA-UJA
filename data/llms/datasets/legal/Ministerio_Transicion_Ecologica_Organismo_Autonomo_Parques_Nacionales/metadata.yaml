@@ -1,0 +1,54 @@
+alia:dataset:
+  dc:identifier: Ministerio_Transicion_Ecologica_Organismo_Autonomo_Parques_Nacionales
+  dc:title: Regulatory bases, management plans, scientific reports, and research calls,
+    among others, on the Autonomous National Parks Agency (OAPN).
+  dc:description: The website of MITECO's Autonomous National Parks Agency (OAPN)
+    includes sections on the National Parks Network, the Spanish Network of Biosphere
+    Reserves, natural areas, a list of national parks with maps and a reservation
+    center, publications on conservation and environmental education, as well as documents
+    on regulatory frameworks, management plans and scientific reports, calls for research
+    proposals, etc.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.miteco.gob.es/es/parques-nacionales-oapn.html
+  dc:date: 1/01/2025
+  dcterms:coverage: ''
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Reproduction is authorized as long as the source is cited.
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  - ' English'
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 53.70950508117676
+  alia:instances: 2121
+  alia:tokens: 59519889
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: unique identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: link to the original document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: parent_url
+      dc:description: page where the url is located
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the content of the PDF
+      dc:type: String
+  dcterms:hasVersion: v1

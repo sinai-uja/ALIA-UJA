@@ -2,7 +2,7 @@
 
 Dataset curado de 5.233 preguntas extraídas de exámenes oficiales MIR, FIR, PIR y EIR (2007-2024).
 
-Fabián Suárez Maroto,  | fsmaroto@ujaen.es | Proyecto ALIA
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 **Tabla de contenido**
 - [Descripción General](#descripción-general)

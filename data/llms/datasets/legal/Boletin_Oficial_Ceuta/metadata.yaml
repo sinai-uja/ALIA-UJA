@@ -1,0 +1,65 @@
+alia:dataset:
+  dc:identifier: Boletin_Oficial_Ceuta
+  dc:title: Boletines Oficiales de la ciudad de ceuta del 1983 al 2025
+  dc:description: These data come from official sources of the autonomous city of
+    Ceuta
+  dcterms:subject: legal
+  dc:relation:
+  - Years from 1983 to 2025
+  dc:source: https://www.ceuta.es/ceuta/bocce
+  dc:date: 17/06/2025
+  dcterms:coverage: 1983 to the year 2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 108.27012062072754
+  alia:instances: 3980
+  alia:tokens: 139085009
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier (this MUST be the PDF file name; either
+        the original or a new created)
+      dc:type: String
+  - alia:feature:
+      dc:identifier: date
+      dc:description: date on which the decree was published
+      dc:type: String
+  - alia:feature:
+      dc:identifier: bulletin
+      dc:description: bulletin number to which the decree belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: date of publication of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: 'year to which the decree belongs - Divisor feature. Possible
+        values: 2008, 2005, 2022, 2017, 1990, 1994, 2006, 2012, 2009, 2015, 2013,
+        2001, 2002, 2025, 2024, 2010, 2011, 2019, 2007, 2003, 2000, 1985, 2021, 1999,
+        2014, 2018, 2016, 2004, 2020, 2023'
+      dc:type: String
+  dcterms:hasVersion: v1

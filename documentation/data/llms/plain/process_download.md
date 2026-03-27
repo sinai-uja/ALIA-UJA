@@ -1,6 +1,6 @@
 Este documento establece las directrices y estándares para la descarga y preparación inicial de datasets dentro del proyecto de unificación del grupo de trabajo.
 
-*Sara Dueñas Romero | sduenas@ujaen.es | Proyecto ALIA*
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 **Tabla de contenido**
 - [Procedimiento estandarizado de descarga de datos](#procedimiento-estandarizado-de-descarga-de-datos)

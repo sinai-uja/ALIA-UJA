@@ -1,0 +1,52 @@
+alia:dataset:
+  dc:identifier: MITECO_DONIANA
+  dc:title: "Marco de actuaciones para Do\xF1ana del Ministerio para la Transici\xF3\
+    n Ecol\xF3gica y el Reto Demogr\xE1fico."
+  dc:description: "This Do\xF1ana action framework is a subsection within the Plans,\
+    \ Strategies, and Roadmaps section belonging to the Ministry for Ecological Transition\
+    \ and Demographic Challenge."
+  dcterms:subject: legal
+  dc:relation:
+  - https://www.miteco.gob.es/es.html
+  dc:source: https://www.miteco.gob.es/es/ministerio/planes-estrategias/marco-actuaciones-donana.html
+  dc:date: 1/10/2023
+  dcterms:coverage: (octubre-2023, mayo-2024)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 0.0028076171875
+  alia:instances: 1
+  alia:tokens: 1
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier assigned in the form of a counter, where the first
+        file collected is 1 and the last is the number of documents collected.
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: text
+      dc:description: document text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: File link
+      dc:type: String
+  - alia:feature:
+      dc:identifier: titulo
+      dc:description: ''
+      dc:type: String
+  dcterms:hasVersion: v1

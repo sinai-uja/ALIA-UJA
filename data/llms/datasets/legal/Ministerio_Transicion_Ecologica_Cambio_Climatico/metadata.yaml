@@ -1,0 +1,58 @@
+alia:dataset:
+  dc:identifier: Ministerio_Transicion_Ecologica_Cambio_Climatico
+  dc:title: Documents on impact, vulnerability, adaptation, assessments, projects,
+    and plans related to climate change in Spain.
+  dc:description: "The \u201CClimate Change\u201D section of the MITECO website explains\
+    \ the impacts, vulnerability, and adaptation of climate change and assessments\
+    \ by sector. It delves into mitigation with tools such as carbon footprint calculators,\
+    \ including calculators, projects, and specific plans. It presents initiatives\
+    \ for education, training, and public awareness, as well as citizen participation\
+    \ and international cooperation. It also includes sections dedicated to registration,\
+    \ legislation, relevant dates, public participation, conferences, frequently asked\
+    \ questions, publications, and links of interest, thus providing a comprehensive\
+    \ and structured overview of the actions and documentation available on climate\
+    \ change in Spain."
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.miteco.gob.es/es/cambio-climatico/temas.html
+  dc:date: 1/01/2025
+  dcterms:coverage: ''
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Reproduction is authorized as long as the source is cited.
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  - ' English'
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 33.7861270904541
+  alia:instances: 1242
+  alia:tokens: 47437421
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: unique identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: link to the original document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: parent_url
+      dc:description: page where the url is located
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the content of the PDF
+      dc:type: String
+  dcterms:hasVersion: v1

@@ -1,0 +1,79 @@
+alia:dataset:
+  dc:identifier: Boletin_Oficial_Junta_Andalucia
+  dc:title: "Boletines Oficiales de la comunidad aut\xF3noma de Junta de andalucia\
+    \ del 1979 to 2025"
+  dc:description: Set of bulletins from the autonomous community of Andalucia
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.juntadeandalucia.es/eboja.html
+  dc:date: 27/06/2025
+  dcterms:coverage: 1979,2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Reconocimiento 3.0.
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 2166.546206474304
+  alia:instances: 426967
+  alia:tokens: 1894803143
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: date
+      dc:description: date of publication of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: section
+      dc:description: Name of the section to which it belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: subsection
+      dc:description: Name of the subsection to which it belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: subsubsection
+      dc:description: Name of the subsubsection to which it belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: summary
+      dc:description: Summary of the content of the decree.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url_pdf
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url_html
+      dc:description: diirect access to the original page of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: reading date of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: '- Divisor feature. Possible values: 2020, 2009, 2004, 2014,
+        2001, 2024, 2000, 2021, 2010, 2017, 1996, 2015, 2012, 2019, 1997, 2007, 2006,
+        2016, 2013, 2018, 2002, 1999, 2003, 1985, 2008, 2005, 2022, 2025, 2023, 2011,
+        1998'
+      dc:type: String
+  dcterms:hasVersion: v1

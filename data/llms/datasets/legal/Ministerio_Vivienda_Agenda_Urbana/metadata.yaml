@@ -1,0 +1,55 @@
+alia:dataset:
+  dc:identifier: Ministerio_Vivienda_Agenda_Urbana
+  dc:title: Studies and publications by the Ministry of Housing and Urban Agenda
+  dc:description: The Studies and Publications page of the Ministry of Housing and
+    Urban Agenda of Spain offers a compilation of technical and strategic documents
+    related to housing, urban planning and sustainability. Among the available materials
+    are reports from the Housing Observatory, catalogs of good practices in architecture
+    and urban planning, accessibility guides in urbanized public spaces, and studies
+    such as the "White Paper on Sustainability in Spanish Urban Planning". These documents
+    provide detailed analyses, recommendations and regulatory frameworks that support
+    public policies on housing and sustainable urban development.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.mivau.gob.es/vivienda/actividades-servicios/estudios-y-publicaciones
+  dc:date: 1/01/2025
+  dcterms:coverage: (2011, 2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Commercial use permitted
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  - ' English'
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 7.089597702026367
+  alia:instances: 106
+  alia:tokens: 11410329
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: name of the PDF document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: parent_url
+      dc:description: web address where the document url was obtained
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: document content
+      dc:type: String
+  dcterms:hasVersion: v1

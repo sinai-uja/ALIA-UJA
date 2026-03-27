@@ -1,6 +1,6 @@
 Descripción del proceso completo de creación de un dataset para el grupo SINAI.
 
-*Sara Dueñas Romero | sduenas@ujaen.es | Proyecto ALIA*
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 **Tabla de contenido**
 - [Flujo de Trabajo a seguir](#flujo-de-trabajo-a-seguir)
@@ -211,10 +211,6 @@ Tras **finalizar la descarga**, debe actualizarse el estado ``[Descarga Estado] 
 ### Paso 4: Guardar todos los ficheros en el repositorio
 
 Se deben almacenar todos los ficheros creados hasta el momento del proceso en el [repositorio de almacenamiento común para ALIA](https://ceatic.ujaen.es/gitlab/sinai/alia/-/tree/main?ref_type=heads) a través del servidor interno del CEATIC.
-
-En caso de **no tener acceso al servidor interno**: contactar con los coordinadores del grupo de datos.
-- [sduenas](sduenas@ujaen.es)
-- [ammunoz](ammunoz@ujaen.es)
 
 En caso de **tener acceso al servidor interno** y al **directorio del repositorio**:
  1. Almacenar los scripts de descarga en su carpeta correspondiente (ver [procedimiento standardizado de descarga](data/llms/documentation/processes/process_download.md))

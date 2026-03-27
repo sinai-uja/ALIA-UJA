@@ -1,6 +1,6 @@
 Definir la estructura estandarizada de los datasets del grupo SINAI.
 
-*Sara Dueñas Romero | sduenas@ujaen.es | Proyecto ALIA*
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 **Tabla de contenido**
 - [Estándar de Estructura de Dataset](#estándar-de-estructura-de-dataset)

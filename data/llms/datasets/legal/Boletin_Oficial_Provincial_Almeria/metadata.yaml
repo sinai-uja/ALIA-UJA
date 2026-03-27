@@ -1,0 +1,66 @@
+alia:dataset:
+  dc:identifier: Boletin_Oficial_Provincial_Almeria
+  dc:title: ' Boletines Oficiales de la provincia de Almeria del 1983 to 2025'
+  dc:description: Set of bulletins from Almeria
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://app.dipalme.org/pandora/advanced.vm?view=boletines
+  dc:date: 1/07/2025
+  dcterms:coverage: 1983,2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dc:rights: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 504.9439067840576
+  alia:instances: 11159
+  alia:tokens: 741428963
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: publication_date
+      dc:description: date of publication of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: bullein_number
+      dc:description: ''
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Complete content of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: reading date of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: route_pdf
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: '- Divisor feature. Possible values: 2018, 1989, 1994, 2005,
+        2024, 2007, 2003, 2015, 1986, 2020, 2001, 1988, 2006, 1990, 2012, 1996, 1993,
+        2014, 2023, 2013, 1985, 1997, 1992, 2017, 2004, 2008, 2010, 2022, 1987, 1998,
+        1984, 2019, 2000, 2009, 2025, 2016, 1991, 2021, 1999, 2011, 2002, 1983, 1995'
+      dc:type: String
+  dcterms:hasVersion: v1

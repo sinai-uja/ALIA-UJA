@@ -1,0 +1,52 @@
+alia:dataset:
+  dc:identifier: Agenda_2030
+  dc:title: 'Agenda_2030: Agenda 2030'
+  dc:description: This dataset contains indicators for monitoring the Sustainable
+    Development Goals (SDGs) of the 2030 Agenda, including targets, annual values,
+    and disaggregation by country or region.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.un.org/sustainabledevelopment/es/2015/09/la-asamblea-general-adopta-la-agenda-2030-para-el-desarrollo-sostenible/
+  dc:date: 1/01/2016
+  dcterms:coverage: "Los documentos recopilados no tienen un a\xF1o en espec\xEDfico,\
+    \ sino un objetivo en concreto, estan a la disposici\xF3n de todo el mundo desde\
+    \ 2026 que es cuando se aprob\xF3 la Agenda 2030"
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Commercial use permitted
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 0.028585433959960938
+  alia:instances: 17
+  alia:tokens: 19402
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: identifier corresponding to the target number of the document
+        (there are 17), the id is a number from 1 to 17
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: text
+      dc:description: text with information about the target
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: link to each target
+      dc:type: String
+  - alia:feature:
+      dc:identifier: titulo
+      dc:description: ''
+      dc:type: String
+  dcterms:hasVersion: v1

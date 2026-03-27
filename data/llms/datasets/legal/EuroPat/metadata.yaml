@@ -1,0 +1,42 @@
+alia:dataset:
+  dc:identifier: EuroPat
+  dc:title: Unleashing European Patent Translations
+  dc:description: "EuroPat is a large-scale parallel corpus derived from patent documentation,\
+    \ created by aligning text from related patents across Spanish paired with English.\
+    \ It includes over 51 million Spanish\u2013English aligned sentences in its latest\
+    \ release."
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://europat.net/
+  dc:date: 1/01/2025
+  dcterms:coverage: (2022, 2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: Specific selection of id and spanish text
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Sentence
+  dcterms:extent: 4055.8314809799194
+  alia:instances: 48051881
+  alia:tokens: 2672866408
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: sentence identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: spanish sentence
+      dc:type: String
+  dcterms:hasVersion: v1

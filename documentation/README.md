@@ -14,7 +14,7 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 ## Índice de Documentación
 - [Directorio de Documentación de Datos](/documentation/data)
 - [Directorio de Documentación de Modelos](/documentation/models)
-- [Directorio de Documentación para RAGs](/documentation/rags)
+- [Directorio de Documentación de Evaluación](/documentation/evaluation)
 
 ---
 
@@ -22,7 +22,7 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 - [Directorio de Documentacion](/documentation)
   - [Directorio de Documentación de Datos](/documentation/data)
   - [Directorio de Documentación de Modelos](/documentation/models)
-  - [Directorio de Documentación para RAGs](/documentation/rags)
+  - [Directorio de Documentación de Evaluación](/documentation/evaluation)
 - [Directorio de Datos](/data)
   - [Directorio de Datos para LLMs](/data/llms)
   - [Directorio de Datos para Modelos Encoders](/data/encoders)
@@ -30,6 +30,6 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 - [Directorio de Modelos](/models)
   - [Directorio de Datos para LLMs](/models/llms)
   - [Directorio de Datos para Modelos Encoders](/models/encoders)
-- [Directorio de RAGs](/rags)
+- [Directorio de Evaluación](/evaluation)
 
 **Sigue estas guías para asegurar la coherencia y eficiencia en el trabajo con ALIA.**

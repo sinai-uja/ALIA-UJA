@@ -1,0 +1,51 @@
+alia:dataset:
+  dc:identifier: Ministerio_Transicion_Ecologica_Sala_Prensa
+  dc:title: Latest news released by MITECO
+  dc:description: "The MITECO Press Room section includes information on strategic\
+    \ initiatives\u2014such as the announcement of flagship projects, the inauguration\
+    \ of meteorological infrastructure, and calls for financial aid\u2014as well as\
+    \ updated data on water resources and biodiversity actions."
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.miteco.gob.es/es/prensa/ultimas-noticias.html
+  dc:date: 1/01/2025
+  dcterms:coverage: ''
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Reproduction is authorized as long as the source is cited.
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  - ' English'
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 0.15897655487060547
+  alia:instances: 31
+  alia:tokens: 143820
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: unique identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: link to the original document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: parent_url
+      dc:description: page where the url is located
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the content of the PDF
+      dc:type: String
+  dcterms:hasVersion: v1

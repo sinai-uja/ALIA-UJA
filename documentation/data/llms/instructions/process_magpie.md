@@ -16,7 +16,7 @@ El script llama a un endpoint de OpenAI compatible donde se usa el modelo “Phi
 Dichas generaciones que requieren de un contexto, será el usuario el que porporcionará un archivo _.jsonl_ con los contextos que desea generar datos sintéticos. 
 
 
-*Miguel Montoya Gavilán | mmontoya@ujaen.es | Proyecto ALIA*
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 **Tabla de contenido**
 - [Metodología Magpie](#metodología-magpie)

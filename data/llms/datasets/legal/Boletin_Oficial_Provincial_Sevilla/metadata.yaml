@@ -1,0 +1,87 @@
+alia:dataset:
+  dc:identifier: Boletin_Oficial_Provincial_Sevilla
+  dc:title: "Boletines Oficiales de la Provincia de M\xE1laga del 1999 al 2025"
+  dc:description: Gold standard of oncology clinical cases annotated with CIE-O 3
+    terminology
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://bopsevilla.dipusevilla.es/publica/consulta-de-bops/
+  dc:date: 26/06/2025
+  dcterms:coverage: 1999, 2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: The intellectual property rights of the content of the Portal's pages,
+    its graphic design and codes are owned by the Seville Provincial Council, and
+    therefore their reproduction, distribution, public communication, transformation
+    or any other activity that may be carried out with the contents of its web pages
+    is prohibited, even if the sources are cited, unless written consent is obtained
+    from the Seville Provincial Council.
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 542.6485042572021
+  alia:instances: 25953
+  alia:tokens: 687036486
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: publication_date
+      dc:description: date of publication of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: reading date of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: download_pdf
+      dc:description: path to downloaded pdf
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: 'Year of publication - Divisor feature. Possible values: 2013,
+        2019, 2020, 2007, 2024, 2010, 2023, 2000, 2002, 2014, 2004, 2016, 2011, 2009,
+        2017, 2006, 2022, 2005, 2003, 2015, 2018, 2001, 2012, 2025, 2008, 2021'
+      dc:type: String
+  - alia:feature:
+      dc:identifier: title
+      dc:description: summary of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: administration
+      dc:description: chapter to which the decree belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: department
+      dc:description: department of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: section
+      dc:description: section of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: subsection
+      dc:description: section of the decree
+      dc:type: String
+  dcterms:hasVersion: v1

@@ -1,0 +1,54 @@
+alia:dataset:
+  dc:identifier: Ministerio_Transicion_Ecologica_Calidad_Evaluacion_Ambiental
+  dc:title: Glossaries, regulations, legislation, and reports on Environmental Quality
+    and Assessment
+  dc:description: The Quality and Environmental Assessment section of MITECO offers
+    glossaries, regulations, guides, and files on environmental assessment, legislation,
+    records, reports, and memos on waste prevention and management, contaminated soil,
+    strategies, practices, and bulletins on the circular economy, data, plans, and
+    studies on air quality and atmospheric emissions, the industrial environment,
+    and noise pollution, among other topics.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.miteco.gob.es/es/calidad-y-evaluacion-ambiental/temas.html
+  dc:date: 1/01/2025
+  dcterms:coverage: ''
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Reproduction is authorized as long as the source is cited.
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  - ' English'
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 61.73027992248535
+  alia:instances: 6393
+  alia:tokens: 69708963
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: unique identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: link to the original document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: parent_url
+      dc:description: page where the url is located
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the content of the PDF
+      dc:type: String
+  dcterms:hasVersion: v1

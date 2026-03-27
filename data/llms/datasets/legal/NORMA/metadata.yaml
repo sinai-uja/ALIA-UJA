@@ -1,0 +1,67 @@
+alia:dataset:
+  dc:identifier: NORMA
+  dc:title: "Normativa y doctrina de Econom\xEDa y Hacienda"
+  dc:description: 'Regulations: The set of laws and rules in force in the field of
+    economics and finance.
+
+
+    Doctrine: Interpretation and application of these rules by bodies and experts.'
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.normadoc.gob.es/es-es/
+  dc:date: 23/06/2025
+  dcterms:coverage: -2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: Article 10 of Law 37/2007, of 16 November, on the reuse of public sector
+    information.
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 208.67841243743896
+  alia:instances: 44715
+  alia:tokens: 270311480
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: title
+      dc:description: title of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: summary
+      dc:description: summary of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: 'year of the document - Divisor feature. Possible values: 2025,
+        2024, 2009, 2013, 2016, 1990, 2012, 2004, 2010, 1998, 2020, 1991, 2001, 2017,
+        2011, 1995, 2000, 1992, 1999, 2018, 1989, 2021, 1996, 2014, 1997, 2003, 1994,
+        2019, 2002, 1987, 2008, 1993, 2015, 2023, 2022, 2007, 2006, 2005'
+      dc:type: String
+  - alia:feature:
+      dc:identifier: org
+      dc:description: organisation of the document
+      dc:type: String
+  dcterms:hasVersion: v1

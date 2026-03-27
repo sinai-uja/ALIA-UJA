@@ -1,0 +1,70 @@
+alia:dataset:
+  dc:identifier: Boletin_Oficial_Cantabria
+  dc:title: "Boletines Oficiales de la comunidad aut\xF3noma de Cantabria del 1999\
+    \ to 2025"
+  dc:description: Set of bulletins from the autonomous community of Cantabria
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://boc.cantabria.es/boces/
+  dc:date: 18/06/2025
+  dcterms:coverage: 1999,2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ' Does not appear'
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 870.6798515319824
+  alia:instances: 314398
+  alia:tokens: 1025362961
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: date
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: title
+      dc:description: Name of the section to which it belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: subtitle
+      dc:description: Name of the subsection to which it belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: reading date of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: download_pdf
+      dc:description: path to downloaded pdf
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: '- Divisor feature. Possible values: 2025, 2005, 2015, 2007,
+        2016, 2002, 2001, 2019, 2006, 2008, 2010, 2020, 2011, 2023, 2018, 2013, 2012,
+        2000, 2017, 2024, 2004, 1999, 2003, 2014, 2009, 2021, 2022'
+      dc:type: String
+  dcterms:hasVersion: v1
