@@ -1,0 +1,68 @@
+alia:dataset:
+  dc:identifier: ParlaMint-ES-AN
+  dc:title: Plenary sessions of the parliament of Andalusia
+  dc:description: The source of the data is the official website of the Parliament
+    of Andalusia. On this website, there is a section where the journals of the parliamentary
+    sessions of Andalusia can be searched by date (https://www.parlamentodeandalucia.es/webdinamica/portal-web-parlamento/recursosdeinformacion/diariosdesesiones/plenos.do).
+    Regarding the data contained, it includes information on the parliamentary debates
+    held in the plenary sessions of the Parliament of Andalusia from its inception
+    in 1982 until February 6, 2025. These debates cover topics such as [topic not
+    specified]. It is important to note that, to obtain this data, the PDFs from the
+    indicated link were downloaded and then processed using pytesseract. Therefore,
+    the data may contain errors made by pytesseract in reading these PDFs.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.parlamentodeandalucia.es/webdinamica/portal-web-parlamento/recursosdeinformacion/diariosdesesiones/plenos.do
+  dc:date: 6/02/2025
+  dcterms:coverage: (June-1982, February-2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 174.11132526397705
+  alia:instances: 1536
+  alia:tokens: 145613834
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: string containing the name of the original PDF file associated
+        with the session log, removing the format extension (.pdf)
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: string containing the text content of the session log of the
+        Andalusian Parliament.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: section
+      dc:description: string containing the year and legislative term to which the
+        current session log belongs.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: date
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: plenary_number
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: legislature
+      dc:description: '- Divisor feature. Possible values: VII Legislatura, I Legislatura,
+        VIII Legislatura, IX Legislatura, XII Legislatura, IV Legislatura, V Legislatura,
+        X Legislatura, VI Legislatura, III Legislatura, II Legislatura, XI Legislatura'
+      dc:type: String
+  dcterms:hasVersion: v1

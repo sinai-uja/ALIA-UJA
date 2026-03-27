@@ -98,8 +98,10 @@ test/
 test**/
 **/test**
 launchers/
-rags/evaluation/scripts/
-rags/evaluation/launchers/
+evaluation/encoders/.cache/
+evaluation/encoders/results/**/tmp/
+evaluation/encoders/results/**/cache/
+evaluation/encoders/results/**/*.tmp
 
 # --- ALIA: Deprecated / Old Files ---
 *old

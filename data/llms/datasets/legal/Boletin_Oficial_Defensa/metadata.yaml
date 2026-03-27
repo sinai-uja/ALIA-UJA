@@ -1,0 +1,51 @@
+alia:dataset:
+  dc:identifier: Boletines_Oficiales_Defensa
+  dc:title: "Anuncios oficiales de defensa y seguridad del Bolet\xEDn Oficial de Defensa\
+    \ Espa\xF1a"
+  dc:description: The resource is a collection of official bulletins (BOD) published
+    by the Spanish Ministry of Defense, accessible online. It contains documents in
+    PDF format containing resolutions, regulations, agreements, and technical manuals.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://publicaciones.defensa.gob.es/bod-acceso-libre/idioma/espa%C3%B1ol.html
+  dc:date: 1/01/2025
+  dcterms:coverage: (2018, 2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 16.12446403503418
+  alia:instances: 1422
+  alia:tokens: 22581180
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier for each document, a counter that starts at 0
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text of each document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: anio
+      dc:description: 'Year to which the document belongs - Divisor feature. Possible
+        values: 2023, 2021, 2024, 2022, 2018, 2020, 2019'
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: url
+      dc:description: Link to each file
+      dc:type: String
+  dcterms:hasVersion: v1

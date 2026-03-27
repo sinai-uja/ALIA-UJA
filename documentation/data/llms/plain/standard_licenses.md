@@ -1,4 +1,4 @@
-Sara Dueñas Romero | sduenas@ujaen.es | Proyecto ALIA
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 **Tabla de contenido**
 - [Best Practices for Open Datasets for LLM Training](#best-practices-for-open-datasets-for-llm-training)

@@ -1,0 +1,80 @@
+alia:dataset:
+  dc:identifier: Boletin_Oficial_Castilla_Y_Leon
+  dc:title: " Boletines Oficiales de la comunidad aut\xF3noma de Castilla y Le\xF3\
+    n del 1980 to 2025"
+  dc:description: Set of bulletins from the autonomous community of Castilla y Leon
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://bocyl.jcyl.es/
+  dc:date: 18/03/2025
+  dcterms:coverage: 1980,2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ' Does not appear'
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 1242.6558237075806
+  alia:instances: 426020
+  alia:tokens: 1443387322
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: date
+      dc:description: date of publication of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: title
+      dc:description: Name of the section to which it belongs
+      dc:type: String
+  - alia:feature:
+      dc:identifier: subsection
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: summary
+      dc:description: Summary of the content of the decree.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url_pdf
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: diirect access to the original page of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: reading date of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: download_pdf
+      dc:description: path to downloaded pdf
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: '- Divisor feature. Possible values: 2000, 1995, 1993, 2017,
+        1990, 2014, 1985, 2009, 2020, 2015, 2002, 1992, 2007, 2010, 2005, 1986, 2024,
+        2011, 2004, 2006, 1989, 2003, 2018, 2025, 1982, 1994, 2023, 1991, 1998, 1996,
+        2012, 2019, 2001, 1999, 1988, 1980, 1981, 2021, 2022, 2016, 2008, 1983, 2013,
+        1987, 1997'
+      dc:type: String
+  dcterms:hasVersion: v1

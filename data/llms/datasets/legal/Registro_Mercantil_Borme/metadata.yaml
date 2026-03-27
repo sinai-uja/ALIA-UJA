@@ -1,0 +1,57 @@
+alia:dataset:
+  dc:identifier: Registro_Mercantil_Borme
+  dc:title: "Anuncios oficiales del Bolet\xEDn del Registro Mercantil de Espa\xF1a"
+  dc:description: Dataset extracted from the Official Gazette of the Commercial Registry
+    (BORME) of Spain. It contains official announcements of legal and commercial acts
+    of companies, such as incorporations, appointments, dismissals, mergers, and dissolutions,
+    published daily by the BOE.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.boe.es/diario_borme/
+  dc:date: 1/01/2025
+  dcterms:coverage: (2001, 2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 116.90281867980957
+  alia:instances: 43717
+  alia:tokens: 135349607
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier for each document, a counter that starts at 1
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text of each document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: 'AYear to which the document belongs - Divisor feature. Possible
+        values: 2006, 2001, 2004, 2024, 2015, 2023, 2020, 2005, 2007, 2013, 2012,
+        2002, 2011, 2009, 2021, 2003, 2018, 2019, 2008, 2025, 2010, 2014, 2022, 2017,
+        2016'
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: url
+      dc:description: Link to each file
+      dc:type: String
+  - alia:feature:
+      dc:identifier: date
+      dc:description: ''
+      dc:type: Datetime(time_unit='ns', time_zone=None)
+  dcterms:hasVersion: v1

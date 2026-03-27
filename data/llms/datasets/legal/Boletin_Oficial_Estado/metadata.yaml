@@ -1,0 +1,82 @@
+alia:dataset:
+  dc:identifier: Boletin_Oficial_Estado
+  dc:title: Boletines Oficiales de Estado del 1983 to 2025
+  dc:description: Set of bulletins from Spain
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.boe.es/diario_boe/
+  dc:date: 1/07/2025
+  dcterms:coverage: 1983,2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dc:rights: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 4839.545360565186
+  alia:instances: 1495798
+  alia:tokens: 5531722840
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: publication_date
+      dc:description: date of publication of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: reference
+      dc:description: Number of the bulletin reference
+      dc:type: String
+  - alia:feature:
+      dc:identifier: summary
+      dc:description: Summary with the content of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: section
+      dc:description: Section of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: subsection
+      dc:description: Subsection of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: group
+      dc:description: grouping of the decrees
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Complete content of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: reading date of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: download_pdf
+      dc:description: path to downloaded pdf
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: '- Divisor feature. Possible values: 2003, 2008, 2024, 1986,
+        2023, 1985, 2017, 1990, 2010, 2000, 1987, 2005, 2015, 1984, 1999, 2018, 2004,
+        2007, 2022, 2001, 2020, 2013, 2006, 1988, 2019, 2009, 2016, 1991, 2002, 2025,
+        1998, 1983, 2014, 2021, 1989, 2012, 2011'
+      dc:type: String
+  dcterms:hasVersion: v1

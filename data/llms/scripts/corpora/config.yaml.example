@@ -1,0 +1,352 @@
+# PATHS
+paths:
+  # - scripts
+  path-root-scripts: /path_to/corpora
+  path-file-initial-step: corpora_step_initial.py
+  path-file-clean-step: corpora_step_clean.py
+  path-file-split-step: corpora_step_split.py
+  path-file-datatrove-step: corpora_step_datatrove.py
+  path-file-complete-step: corpora_step_complete.py
+  path-file-downsampling-step: corpora_step_downsampling.py
+  # - data
+  path-root-data: /path_to/plain/processed/{domain}
+  # - corpus
+  path-root-corpora: /path_to/corpora/
+  path-dir-corpus: "{domain}/ALIA-{name}"
+  path-dir-corpus-version: "{domain}/ALIA-{name}-v{version}"
+  # - info
+  path-file-info: "ALIA-{name}.json"
+  path-file-info-version: "ALIA-{name}-v{version}.json"
+  # - count
+  path-dir-stats: "stats"
+  path-file-count: "ALIA-{name}-{step}.csv"
+  path-file-count-version: "ALIA-{name}-v{version}-{step}.csv"
+  # 1 - initial
+  path-file-corpus-initial: "ALIA-{name}-initial.{format}"
+  path-file-corpus-initial-version: "ALIA-{name}-v{version}-initial.{format}"
+  # 2 - cleaning
+  path-file-corpus-clean: "ALIA-{name}-clean.{format}"
+  path-file-corpus-clean-version: "ALIA-{name}-v{version}-clean.{format}"
+  # 3 - split to datatrove
+  path-dir-parts-parquet: "subdatasets_parquet"
+  path-dir-parts-jsonl: "subdatasets_jsonl"
+  # 4 - datatrove
+  path-dir-datatrove: subparquets_curated_datatrove
+  path-dir-datatrove-clean: "03.cleaned"
+  path-file-corpus-datatrove: "ALIA-{name}-datatrove.{format}"
+  path-file-corpus-datatrove-version: "ALIA-{name}-v{version}-datatrove.{format}"
+  path-dir-datatrove-models: "/path_to/utils/datatrove"
+  # 5 - completion
+  path-file-mapping-dataset: "_dataset_mapping.csv"
+  path-file-mapping-feature: "_feature_mapping.csv"
+  path-dir-corpus-enriched: "ALIA-{name}-enriched"
+  path-dir-corpus-enriched-version: "ALIA-{name}-v{version}-enriched"
+  path-file-corpus-enriched: "ALIA-{name}-enriched.{format}"
+  path-file-corpus-enriched-version: "ALIA-{name}-v{version}-enriched.{format}"
+  # 6 - downsampling
+  path-file-template-corpus: "ALIA-{name}-<task>-<sources>-<target>.{format}"
+  path-file-template-corpus-version: "ALIA-{name}-v{version}-<task>-<sources>-<target>.{format}"
+  path-file-info-downsampling: "ALIA-{name}-<task>-<sources>-<target>.csv"
+  path-file-info-downsampling-version: "ALIA-{name}-v{version}-<task>-<sources>-<target>.csv"
+
+# ---
+
+# PARAMETERS
+
+# pipeline
+pipeline:
+  steps: 
+    - initial
+    - clean
+    - split
+    - datatrove
+    - complete
+    - downsampling
+
+# 2 - cleaning
+clean:
+  text-column: text
+  remove-titles: true
+  remove-urls: true
+  remove-skiplines: true
+
+# 3 - split to datatrove
+split:
+  parts: 50
+
+# 4 - datatrove
+datatrove:
+  ## === Language Filter ===
+  language-filter:
+    language_score: 0.7   # bajar más podría dejar pasar demasiado ruido
+    # language_score: 0.6   # Score específico para el dominio patrimonio cultural
+  # === Deduplication ===
+  deduplication:
+    minhash_buckets: 25
+    minhash_hashes: 12
+    minhash_ngrams: 5
+  # === Quality Filter ===
+  quality-filter:
+    # === GopherRepetitionFilter ===
+    gopher_repetition_filter:
+      dup_line_frac: 0.35   # ⚖️ permite hasta 25% líneas repetidas
+      top_n_grams:          # cuántos n-gramas más frecuentes mirar y su fracción máxima
+        - [3, 0.6]          # ⚠️ puede subir si hay frases comunes legales
+        - [4, 0.55]
+        - [5, 0.4]
+      dup_n_grams:          # 👯 duplicación directa por n-gramas
+        - [3, 0.75]
+        - [4, 0.65]
+        - [5, 0.55]
+    # === FineWebQualityFilter ===
+    fineweb_quality_filter:
+      char_duplicates_ratio: 0.35     # >35% del texto con caracteres repetidos = descartar
+      line_punct_thr: 0.1         # >10% !
+      new_line_ratio: 1            # textos con muchas nuevas líneas por tokens
+      # short_line_thr: 1.0          # 100% de líneas cortas para descartar documentos (añadido por patrimonio)
+    # === GopherQualityFilter ===
+    gopher_quality_filter:
+      min_doc_words: 0
+      max_doc_words: 1000000
+      max_avg_word_length: 16
+      min_avg_word_length: 2         # evita textos tipo “aaa aaa aaa”
+      max_non_alpha_words_ratio: 0.3  # fracción de palabras no alfabéticas
+      min_stop_words: 2 
+      stopwords:
+      - alguna
+      - algunas
+      - alguno
+      - algunos
+      - ambos
+      - ampleamos
+      - ante
+      - antes
+      - aquel
+      - aquellas
+      - aquellos
+      - aqui
+      - arriba
+      - atras
+      - bajo
+      - bastante
+      - bien
+      - cada
+      - cierta
+      - ciertas
+      - cierto
+      - ciertos
+      - como
+      - con
+      - conseguimos
+      - conseguir
+      - consigo
+      - consigue
+      - consiguen
+      - consigues
+      - cual
+      - cuando
+      - dentro
+      - desde
+      - donde
+      - dos
+      - el
+      - ellas
+      - ellos
+      - empleais
+      - emplean
+      - emplear
+      - empleas
+      - empleo
+      - en
+      - encima
+      - entonces
+      - entre
+      - era
+      - eramos
+      - eran
+      - eras
+      - eres
+      - es
+      - esta
+      - estaba
+      - estado
+      - estais
+      - estamos
+      - estan
+      - estoy
+      - fin
+      - fue
+      - fueron
+      - fui
+      - fuimos
+      - gueno
+      - ha
+      - hace
+      - haceis
+      - hacemos
+      - hacen
+      - hacer
+      - haces
+      - hago
+      - incluso
+      - intenta
+      - intentais
+      - intentamos
+      - intentan
+      - intentar
+      - intentas
+      - intento
+      - ir
+      - la
+      - largo
+      - las
+      - lo
+      - los
+      - mientras
+      - mio
+      - modo
+      - muchos
+      - muy
+      - nos
+      - nosotros
+      - otro
+      - para
+      - pero
+      - podeis
+      - podemos
+      - poder
+      - podria
+      - podriais
+      - podriamos
+      - podrian
+      - podrias
+      - por
+      - por qué
+      - porque
+      - primero
+      - puede
+      - pueden
+      - puedo
+      - quien
+      - sabe
+      - sabeis
+      - sabemos
+      - saben
+      - saber
+      - sabes
+      - ser
+      - si
+      - siendo
+      - sin
+      - sobre
+      - sois
+      - solamente
+      - solo
+      - somos
+      - soy
+      - su
+      - sus
+      - también
+      - teneis
+      - tenemos
+      - tener
+      - tengo
+      - tiempo
+      - tiene
+      - tienen
+      - todo
+      - trabaja
+      - trabajais
+      - trabajamos
+      - trabajan
+      - trabajar
+      - trabajas
+      - trabajo
+      - tras
+      - tuyo
+      - ultimo
+      - un
+      - una
+      - unas
+      - uno
+      - unos
+      - usa
+      - usais
+      - usamos
+      - usan
+      - usar
+      - usas
+      - uso
+      - va
+      - vais
+      - valor
+      - vamos
+      - van
+      - vaya
+      - verdad
+      - verdadera
+      - verdadero
+      - vosotras
+      - vosotros
+      - voy
+      - yo
+
+# 5 - completion
+completion:
+  dataset-mapping: _dataset_mapping.csv
+  feature-mapping: _feature_mapping.csv
+  features: 
+    legal:
+    - "column_to_preserve"
+    biomedical:
+    - "column_to_preserve"
+    heritage:
+    - "column_to_preserve"
+
+# 6 - downsampling
+downsampling:
+  seed: 42
+  plain-text:
+    text-column: text
+    source-column: source_id
+    special-input-file: ""
+    tasks:
+
+      # INPUT: Corpus
+      # - S fuentes diferentes (valores en la columna "source_id")
+      # - N documentos (filas en el dataframe), 
+      # - NSi número de documentos por fuente Si (filas en el dataframe con source_id=Si)
+      # - T número total de tokens totales (suma de todos los documentos)
+      # - TSi número total de tokens por fuente Si (suma de todos los documentos de la fuente Si)
+
+      # Tarea 1: Downsampling del corpus a un objetivo de tokens T' de manera estratificada
+      - type: tokens_general_stratified
+        params:
+          target: 100 
+
+      # # Tarea 2: Downsampling del corpus a un objetivo de tokens T' de manera equitativa
+      # - type: tokens_general_equitative
+      #   params:
+      #     target: 100
+
+      # # Tarea 3: Downsampling del corpus a un objetivo de tokens TSi' por fuente Si (con i=1..S)
+      # - type: tokens_per_source
+      #   params:
+      #     mapping:
+      #       "source_id_example": 100
+
+      # # Tarea 4: Downsampling del corpus a un objetivo de documentos N' de manera estratificada
+      # - type: documents_general_stratified
+      #   params:
+      #     target: 100
+      
+      # # Tarea 5: Downsampling del corpus a un objetivo de documentos N' de manera equitativa
+      # - type: documents_general_equitative
+      #   params:
+      #     target: 100
+      
+      # # Tarea 6: Downsampling del corpus a un objetivo de documentos NSi' por fuente Si (con i=1..S)
+      # - type: documents_per_source
+      #   params:
+      #     mapping:
+      #       "source_id_example": 100

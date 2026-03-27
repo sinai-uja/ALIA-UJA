@@ -1,0 +1,53 @@
+alia:dataset:
+  dc:identifier: "Agenda_Urbana_Espa\xF1ola"
+  dc:title: Knowledge transfer from the Spanish Urban Agenda
+  dc:description: These documents aim to reflect the sharing and dissemination of
+    knowledge, experiences and good practices that have an impact on towns and cities
+    through the Spanish Urban Agenda, with examples that, due to their characteristics
+    and specifications, can contribute to the fulfillment of some of the objectives
+    of the strategic framework while stimulating creativity and providing viable solutions
+    for sustainable urban development.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.aue.gob.es/transferencia-de-conocimiento
+  dc:date: 1/01/2025
+  dcterms:coverage: ''
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  - ' English'
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 2.28439998626709
+  alia:instances: 51
+  alia:tokens: 2357958
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: parent_url
+      dc:description: link of the page where the url of the original text was found
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  dcterms:hasVersion: v1

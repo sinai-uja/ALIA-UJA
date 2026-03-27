@@ -2,7 +2,7 @@
 
 Descripción del framework y parámetros de entrenamiento para modelos de embeddings y reranker
 
-*Alba María Mármol Romero | amarmol@ujaen.es | Proyecto Vandelvira*
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 ---
 

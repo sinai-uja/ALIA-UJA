@@ -2,7 +2,7 @@
 
 Descripción detallada del proceso completo para crear un dataset de datos sintéticos destinado al entrenamiento de modelos de embeddings y reranker.
 
-*Alba María Mármol Romero, Adrián Moreno Muñoz, Sara Dueñas Romero | amarmol@ujaen.es, ammunoz@ujaen.es, sduenas@ujaen.es | Proyecto Vandelvira*
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 # Flujo de Trabajo a Seguir
 

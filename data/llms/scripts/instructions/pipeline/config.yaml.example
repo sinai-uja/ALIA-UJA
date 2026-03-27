@@ -1,0 +1,84 @@
+seed: 67
+
+pipeline:
+  steps:
+  - initial
+  - downsampling
+
+# PATHS
+paths:
+  # - scripts
+  path-root-scripts: /path_to/data/llms/scripts/instructions/corpora
+  path-script-step-initial: instructions_step_initial.py
+  path-script-step-downsampling: instructions_step_downsampling.py
+  path-script-step-build_raw: instructions_step_build_raw.py
+  path-script-step-build_train: instructions_step_build_train.py
+  # all paths
+  path-dir-root: /path_to/data/llms
+  path-dir-datasets-instructions: data/instructions
+  path-dir-corpora-instructions: instructions/{domain}/{lang}
+  path-dir-stats-instructions: outputs/instructions/{domain}/{lang}
+  path-file-stats-instructions: ALIA-{domain}-{lang}-instructions-{step}-{suffix}-stats.csv
+  # initial
+  path-file-initial-instructions: ALIA-{domain}-{lang}-instructions.{format}
+  # downsampling
+  path-file-downsampling-instructions: ALIA-{domain}-{lang}-instructions-downsample-{suffix}.{format}
+
+general-instruction:
+  special-input-file: ""
+  pattern: '^(.*)_SFT\.jsonl$'
+  text-column: instruction
+  category-column: source_id
+
+domain-instruction:
+  special-input-file: ""
+  pattern: 'datos_sinteticos-(.*)'
+  text-column: instruction
+  category-column: category # category
+  criteria-columns:
+    legal:
+    - query_type
+    - context_type
+    - justification_type
+    biomedical:
+      es:
+      - task_type
+      - context_type
+      en:
+      - task_type
+      - context_type
+    heritage:
+      es:
+      - task_type
+      - context_type
+      en:
+      - task_type
+      - context_type
+
+downsampling-tasks: # valores de ejemplo
+  # ================================================
+  # # Tarea 1: Downsampling de tokens general. Pasar de T tokens totales a T' tokens objetivo. 
+  # # Conservando la distribución de proporción de tokens por tipo de instrucción
+  # - type: tokens_general
+  #   target: 100
+  # ================================================
+  # # Tarea 2: Downsampling de instrucciones general. 
+  # # Pasar de N instrucciones totales a N' instrucciones objetivo. Conservando la distribución de proporción de instrucciones por tipo de instrucción
+  # - type: instructions_general
+  #   target: 100
+  # ================================================
+  # # Tarea 3: Downsampling de tokens para tipos específicos. 
+  # # Pasar de Tc número de tokens para las instrucciones el tipo de categoría Ci a Tc' tokens objetivo
+  # - type: tokens_specific
+  #   target: null
+  #   categories:
+  #     - category: category_id
+  #       tokens: 100
+  # ================================================
+  # Tarea 4: Downsampling de instrucciones para tipos específicos. 
+  # Pasar de Nc número de tokens para las instrucciones el tipo de categoría Ci a Nc' tokens objetivo
+  - type: instructions_specific
+    target: null
+    categories:
+      - category: category_id
+        instructions: 100

@@ -1,0 +1,144 @@
+paths:
+  path-root-data: <PATH_TO_DATA_ROOT>/data/encoders/data
+  path-root-evaluation: <PATH_TO_EVALUATION_ROOT>/evaluation/encoder
+  path-dir-scripts: scripts/evaluation
+  path-dir-outputs: results
+  path-dir-models-biencoders: <PATH_TO_MODELS>/biencoders/
+  path-dir-models-biencoders-alternative: <PATH_TO_MODELS_ALTERNATIVE>/biencoders/
+  path-dir-models-crossencoder: <PATH_TO_MODELS>/crossencoders/
+  path-dir-models-crossencoder-alternative: <PATH_TO_MODELS_ALTERNATIVE>/crossencoders/
+  path-dir-models-sentence-transformers: <PATH_TO_MODELS>/sentence-transformers/
+  # data
+  path-dir-data: evaluation/{domain}
+  path-dir-root-triplets: triplets/triplets/{domain}
+  path-file-root-triplets: ALIA-{domain}-triplets-test.jsonl
+  # predictions
+  path-dir-predictions: predictions/{task_type}/{domain}/{model_name}
+  path-file-prediction: ALIA_{domain}_{model_name}_{eval_set}_predictions.json
+  # results
+  path-dir-results: results/{task_type}/{domain}/{model_name}
+  path-file-result: ALIA_{domain}_{model_name}_{eval_set}_results.jsonl
+
+available-domains:
+- general
+- legal
+- biomedical
+- heritage
+
+max_samples: # ejemplo
+- 100
+
+available-eval-sets:
+  Retrieval:
+    general:
+    - <general_dataset>-Retrieval
+    - <general_dataset>-STS
+    - <general_dataset>-Reranking
+    legal:
+    - <legal_dataset>-Retrieval
+    - <legal_dataset>-STS
+    biomedical:
+    - <biomedical_dataset>-Retrieval
+    - <biomedical_dataset>-STS
+    heritage:
+    - <heritage_dataset>-Retrieval
+    - <heritage_dataset>-STS
+  Reranking:
+    general:
+    - <general_dataset>-Reranking
+    legal:
+    - <legal_dataset>-Reranking
+    biomedical:
+    - <biomedical_dataset>-Reranking
+    heritage:
+    - <heritage_dataset>-Reranking
+
+available-eval-sets-task-mapping:
+  # general
+  <general_dataset>-Retrieval:
+    task_type: Retrieval
+    task_subtypes: [Question answering]
+  <general_dataset>-STS:
+    task_type: STS
+    task_subtypes: []
+  <general_dataset>-Reranking:
+    task_type: Reranking
+    task_subtypes: []
+  # legal
+  <legal_dataset>-Retrieval:
+    task_type: Retrieval
+    task_subtypes: [Question answering]
+  <legal_dataset>-STS:
+    task_type: STS
+    task_subtypes: []
+  <legal_dataset>-Reranking:
+    task_type: Reranking
+    task_subtypes: []
+  # biomedical
+  <biomedical_dataset>-Retrieval:
+    task_type: Retrieval
+    task_subtypes: [Question answering]
+  <biomedical_dataset>-STS:
+    task_type: STS
+    task_subtypes: []
+  <biomedical_dataset>-Reranking:
+    task_type: Reranking
+    task_subtypes: []
+  # heritage
+  <heritage_dataset>-Retrieval:
+    task_type: Retrieval
+    task_subtypes: [Question answering]
+  <heritage_dataset>-STS:
+    task_type: STS
+    task_subtypes: []
+  <heritage_dataset>-Reranking:
+    task_type: Reranking
+    task_subtypes: []
+
+
+TaskMetadata:
+  name: ALIA_{domain}_{model_name}_{eval_set}
+  description: "ALIA: Evaluación de embeddings para el dominio '{domain}' del modelo '{model_name}' con '{eval_set}' como conjunto de evaluación."
+  reference: null
+  category: "t2t"
+  eval_splits: ["test"]
+  eval_langs: ["es-ES"]
+  main_score: "ndcg_at_10"
+  dataset: 
+    path: "jsonl_local" 
+    revision: "0.0.0"
+
+source_column: source
+query_column: query
+text_id_column: id
+text_column: passage
+
+Evaluator:
+  force_sentence_transformer: false
+  pooling:
+    pooling_mode_mean_tokens: true
+    pooling_mode_cls_token: false
+    pooling_mode_max_tokens: false
+  seed: 42
+  max_seq_length: 512
+
+model-configurations:
+  DEFAULT:
+    encode_kwargs: 
+      batch_size: 16
+  "BAAI/bge-m3":
+    encode_kwargs: 
+      batch_size: 16
+    prompts:
+      query: "Represent this sentence for searching relevant passages: "
+      document: ""
+  "Qwen/Qwen3-Embedding-0.6B":
+    encode_kwargs: 
+      batch_size: 1
+    prompts:
+      query: "Instruct: Retrieve relevant passages\nQuery: "
+      document: ""
+  "tomaarsen/Qwen3-Reranker-0.6B-seq-cls":
+    encode_kwargs:
+      batch_size: 8
+    reranker_instruction: "Given a web search query, retrieve relevant passages that answer the query"

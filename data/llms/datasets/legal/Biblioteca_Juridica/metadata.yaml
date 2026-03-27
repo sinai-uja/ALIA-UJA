@@ -1,0 +1,65 @@
+alia:dataset:
+  dc:identifier: Biblioteca_Juridica
+  dc:title: "C\xF3digos Electr\xF3nicos de la Biblioteca Jur\xEDdica Digital del BOE"
+  dc:description: Official BOE compilation of electronic codes that compile current
+    Spanish legislation, organized by subject. Both codes and university codes have
+    been compiled.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.boe.es/biblioteca_juridica/index.php?tipo=C&modo=2
+  dc:date: 1/01/2025
+  dcterms:coverage: 2025
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 364.76575565338135
+  alia:instances: 358
+  alia:tokens: 408781210
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier of the compiled code, provided by the legal library
+        itself.
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: title
+      dc:description: Title of the compiled code.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: Link to the document.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: section
+      dc:description: "Section to which the document belongs. - Divisor feature. Possible\
+        \ values: Derecho de la Discapacidad, Derecho Mercantil, Educaci\xF3n, Constituci\xF3\
+        n Espa\xF1ola, Derecho Administrativo General, C\xF3digos Electr\xF3nicos\
+        \ Universitarios, Organizaci\xF3n Administrativa, Agricultura, Ganader\xED\
+        a, Pesca y Alimentaci\xF3n, Derecho Financiero, Industria y Energ\xEDa, Vivienda,\
+        \ Plan de Recuperaci\xF3n, Transformaci\xF3n y Resiliencia, Cultura, Defensa\
+        \ y Seguridad, Derecho Civil, Otros C\xF3digos Universitarios, Seguridad Nacional,\
+        \ Auditor\xEDa y Contabilidad, Funci\xF3n P\xFAblica, Derecho Procesal, Derecho\
+        \ Urban\xEDstico, Comunidades Aut\xF3nomas, Sanidad y Farmacia, Medio Ambiente,\
+        \ Sociedades Mercantiles, Deporte, Derecho Penal, Derecho Tributario, Derecho\
+        \ Constitucional, Mercados, Entidades y Operaciones Financieros, Legislaci\xF3\
+        n Social, Seguridad Vial, Transporte y Telecomunicaciones"
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text of the document
+      dc:type: String
+  dcterms:hasVersion: v1

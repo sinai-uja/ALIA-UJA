@@ -1,0 +1,44 @@
+{
+    "datasets": [
+        "AEPCP",
+        "AEPED",
+        "BARR_2",
+        "CARMEN_I",
+        "CIMA_AEMPS",
+        "Guia_Salud",
+        "MESINESP_2",
+        "MedlinePlus",
+        "Ministerio_Sanidad_Estrategias",
+        "Ministerio_Sanidad_Medic_Trans",
+        "Miscelanea_Roberta",
+        "Multi_Clin_Sum",
+        "Prod_Cient_AETSA",
+        "RECCMI",
+        "SANGVA",
+        "SECOMCYC",
+        "SER",
+        "SEOM",
+        "SPA_Junta_De_Andalucia",
+        "Tox_Habits",
+        "Translated_Pubmed",
+        "Wikipedia_Biomedical"
+    ],
+    "initial": {
+        "total-instances": 10925528,
+        "total-tokens": 6516699843,
+        "total-tokens-mill": 6516.699843,
+        "total-tokens-bill": 6.516699843
+    },
+    "clean": {
+        "total-instances": 10925528,
+        "total-tokens": 6514755004,
+        "total-tokens-mill": 6514.755004,
+        "total-tokens-bill": 6.514755004
+    },
+    "datatrove": {
+        "total-instances": 10302647,
+        "total-tokens": 5571383409,
+        "total-tokens-mill": 5571.383409,
+        "total-tokens-bill": 5.571383409
+    }
+}

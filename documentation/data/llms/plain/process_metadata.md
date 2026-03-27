@@ -1,6 +1,6 @@
 Para cada dataset descargado y tratado en el marco del Proyecto ALIA, se debe generar la documentación descriptiva correspondiente que incluya sus metadatos estructurados.
 
-*Sara Dueñas Romero | sduenas@ujaen.es | Proyecto ALIA*
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 **Tabla de contenido**
 - [Funcionamiento de las clases internas](#funcionamiento-de-las-clases-internas)

@@ -2,7 +2,7 @@
 
 Dataset curado de **1.145 preguntas válidas** extraídas de exámenes oficiales del INAP (Cuerpos AGE, 2015–2024).
 
-Fabián Suárez Maroto | fsmaroto@ujaen.es | Proyecto ALIA
+*Grupo de investigación de Sistemas Inteligentes de Acceso a la Información | sinai@ujaen.es | Proyecto ALIA*
 
 **Tabla de contenido**
 - [Descripción General](#descripción-general)

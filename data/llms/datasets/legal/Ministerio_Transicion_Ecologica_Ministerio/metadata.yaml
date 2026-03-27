@@ -1,0 +1,63 @@
+alia:dataset:
+  dc:identifier: Ministerio_Transicion_Ecologica_Ministerio
+  dc:title: Strategic documents and plans of the Ministry for Ecological Transition
+  dc:description: "The \u201CMinistry\u201D section of the website of the Ministry\
+    \ for Ecological Transition and Demographic Challenge (MITECO) provides a comprehensive\
+    \ overview of the ministry's structure, functions, and activities. It includes\
+    \ detailed information on its organization, highlighting the various secretariats\
+    \ and commissioners, such as the Secretary of State for Energy and the Secretary\
+    \ of State for the Environment. It also presents the public bodies attached to\
+    \ it, such as the State Meteorological Agency (AEMET) and the Hydrographic Confederations.\
+    \ The section provides access to strategic documents and plans, such as the Integrated\
+    \ National Energy and Climate Plan, the Just Transition Strategy, and the Green\
+    \ Public Procurement Plan. In addition, specific initiatives related to the Mar\
+    \ Menor and Do\xF1ana are detailed, as well as information on public employment,\
+    \ training, scholarships, and internships. Resources for citizens are also provided,\
+    \ including service units, public participation, and services by area of activity.\
+    \ Overall, this section acts as a documentation and consultation center for understanding\
+    \ MITECO's policies and actions in key areas such as energy, the environment,\
+    \ and demographic challenges."
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.miteco.gob.es/es/ministerio.html
+  dc:date: 1/01/2025
+  dcterms:coverage: (2009, 2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Reproduction is authorized as long as the source is cited.
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  - ' English'
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 45.068297386169434
+  alia:instances: 3110
+  alia:tokens: 47769443
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: unique identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: link to the original document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: parent_url
+      dc:description: page where the url is located
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the content of the PDF
+      dc:type: String
+  dcterms:hasVersion: v1

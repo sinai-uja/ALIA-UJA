@@ -1,0 +1,65 @@
+alia:dataset:
+  dc:identifier: Licitaciones
+  dc:title: '"Contracts and published tenders'
+  dc:description: Contracts and published tenders
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://contrataciondelsectorpublico.gob.es/wps/portal/!ut/p/b1/jc5JDoJAEAXQs3CCqh5oZdlMTRMUlEHpDWFhDIZhYzy_rXErWrufvJ_6YKAl6HLOkAoCZzBz_xiu_X1Y5n58ZSM6HuVBECcUtyULkWZhXYvERuVa0FrgsoA3aVOIUitEncRhVhMXFRX_9fHLSfzVP4FZJ_QD1ia-wcqGfbJMF2gt23SyiQ5Sewxz_2gfpcWuKhQliBwqaH2YzBh7-sZ76ThPthY6wQ!!/dl4/d5/L2dBISEvZ0FBIS9nQSEh/pw/Z7_AVEQAI930OBRD02JPMTPG21004/act/id=0/p=javax.servlet.include.path_info=QCPjspQCPbusquedaQCPMainBusqueda.jsp/614506238663/-/
+  dc:date: 22/07/2025
+  dcterms:coverage: 2017-2033
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: Law 30/2007, of 30 October, on Public Sector Contracts (LCSP)
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 594.2421817779541
+  alia:instances: 11573
+  alia:tokens: 1194083306
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier (this MUST be the PDF file name; either
+        the original or a new created)
+      dc:type: String
+  - alia:feature:
+      dc:identifier: date
+      dc:description: Date of publication
+      dc:type: String
+  - alia:feature:
+      dc:identifier: publication_date
+      dc:description: File number with publication date
+      dc:type: String
+  - alia:feature:
+      dc:identifier: record
+      dc:description: Information of the saving data
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: Reading date of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: '- Divisor feature. Possible values: 2021, 2019, 2023, 2020,
+        2025, 2018, 2022, 2017, 2033, 2024'
+      dc:type: String
+  dcterms:hasVersion: v1

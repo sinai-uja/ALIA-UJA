@@ -1,0 +1,76 @@
+alia:dataset:
+  dc:identifier: Boletin_Oficial_Canarias
+  dc:title: Boletin Oficial de Canarias
+  dc:description: It comes from the official bulletin of Canarias
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.gobiernodecanarias.org/boc/
+  dc:date: 27/02/2025
+  dcterms:coverage: ''
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Reproduction is authorized as long as the source is cited, unless
+    otherwise indicated.
+  dc:rights: ' The intellectual property rights of this website and the different
+    elements contained therein are owned by the Government of the Canary Islands.
+    Reproduction is authorized as long as the source is cited, unless otherwise indicated.'
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 357.55391788482666
+  alia:instances: 100144
+  alia:tokens: 475003332
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: date
+      dc:description: date of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: section
+      dc:description: section the document belongs to
+      dc:type: String
+  - alia:feature:
+      dc:identifier: subsection
+      dc:description: subsection the document belongs to
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url_html
+      dc:description: direct access to the original text's html site
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: date the document was read
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url_pdf
+      dc:description: ''
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: 'year of the document - Divisor feature. Possible values: 2002,
+        2010, 2015, 2017, 2013, 2016, 2006, 2025, 2004, 1998, 2011, 2007, 2003, 2005,
+        2001, 2014, 2008, 2012'
+      dc:type: String
+  dcterms:hasVersion: v1

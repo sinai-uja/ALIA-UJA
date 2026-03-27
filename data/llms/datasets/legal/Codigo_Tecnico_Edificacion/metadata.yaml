@@ -1,0 +1,53 @@
+alia:dataset:
+  dc:identifier: Codigo_Tecnico_Edificacion
+  dc:title: Spanish Technical Building Code
+  dc:description: The Technical Building Code (CTE) in Spain provides direct access
+    to Basic Documents (DB) such as structural, fire, accessibility, energy efficiency,
+    noise, health, and safety, in addition to the Royal Decree and Part I, together
+    with support guides, a catalog of construction elements, acoustic calculation
+    programs, and complementary resources, forming a complete framework for the regulatory
+    and technical verification of buildings, including programs, interpretive manuals,
+    and data sheets.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://www.codigotecnico.org/
+  dc:date: 1/01/2025
+  dcterms:coverage: (2011, 2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Permission must be requested from the organization
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 12.91283130645752
+  alia:instances: 276
+  alia:tokens: 15903128
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: unique identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: link to the original document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: parent_url
+      dc:description: page where the url is located
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the content of the PDF
+      dc:type: String
+  dcterms:hasVersion: v1

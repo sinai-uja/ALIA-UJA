@@ -1,0 +1,60 @@
+alia:dataset:
+  dc:identifier: EURLEX
+  dc:title: Documentos pertenecientes al EUR-Lex
+  dc:description: EUR-Lex documents include EU legislation (treaties, regulations,
+    directives, decisions), case law from the Court of Justice of the EU, legislative
+    proposals, preparatory documents, and editions of the Official Journal. They are
+    available in all official EU languages, with CELEX identifiers and free access
+    in HTML and PDF formats.
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: https://eur-lex.europa.eu/search.html?scope=EURLEX&lang=es&type=quick&qid=1748339740758
+  dc:date: 1/01/2013
+  dcterms:coverage: (1807-2025)
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: Creative Commons Attribution 4.0 International (cc-by-4.0)
+  dc:rights: ''
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - "espa\xF1ol"
+  - " ingl\xE9s"
+  - " alem\xE1n"
+  - " franc\xE9s"
+  - " italiano y portugu\xE9s"
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 1556.4588623046875
+  alia:instances: 108397
+  alia:tokens: 1568781125
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: Identifier for each document, provided by the EUR-Lex website
+        itself.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: Link to the document.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: Year of publication of the document.
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: title
+      dc:description: Title of the document.
+      dc:type: String
+  - alia:feature:
+      dc:identifier: text
+      dc:description: Text of the document.
+      dc:type: String
+  dcterms:hasVersion: v1

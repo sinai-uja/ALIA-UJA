@@ -1,0 +1,65 @@
+alia:dataset:
+  dc:identifier: Boletin_Oficial_Provincial_Granada
+  dc:title: Boletines Oficiales de la Provincia de Granada del 2002 al 2024
+  dc:description: Set of bulletins from the province of Granada
+  dcterms:subject: legal
+  dc:relation: All data from the original resource is included in this corpus.
+  dc:source: 'https://bop.dipgra.es/publica/boletines-anteriores/resultados-bop-anteriores/ '
+  dc:date: 1/07/2025
+  dcterms:coverage: 2002,2024
+  dcterms:provenance: processed
+  dc:publisher: Grupo SINAI
+  dcterms:license: No license identifier found
+  dc:rights: ' Does not appear'
+  dcterms:bibliographicCitation: ''
+  alia:processing:
+    alia:downloading: Automated download of data from the website, allowing for the
+      systematic retrieval of available information. This process ensures that files
+      and content are collected in an organized and efficient manner.
+    alia:filtering: ''
+  dc:language:
+  - Spanish
+  dc:format:
+  - 'Data: parquet'
+  - 'Metadata: YAML'
+  alia:textEncoding: Utf-8
+  alia:level: Document
+  dcterms:extent: 427.9582633972168
+  alia:instances: 5563
+  alia:tokens: 573201819
+  alia:features:
+  - alia:feature:
+      dc:identifier: id
+      dc:description: document identifier
+      dc:type: String
+  - alia:feature:
+      dc:identifier: publication_date
+      dc:description: date of publication of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: bulletin
+      dc:description: bulletin number of the published decree
+      dc:type: Int64
+  - alia:feature:
+      dc:identifier: text
+      dc:description: the text of the document
+      dc:type: String
+  - alia:feature:
+      dc:identifier: url
+      dc:description: direct access to the original text
+      dc:type: String
+  - alia:feature:
+      dc:identifier: read_date
+      dc:description: reading date of the decree
+      dc:type: String
+  - alia:feature:
+      dc:identifier: download_pdf
+      dc:description: path to downloaded pdf
+      dc:type: String
+  - alia:feature:
+      dc:identifier: year
+      dc:description: '- Divisor feature. Possible values: 2022, 2005, 2007, 2004,
+        2014, 2002, 2019, 2021, 2016, 2020, 2024, 2023, 2009, 2017, 2015, 2008, 2012,
+        2011, 2006, 2013, 2018, 2003, 2010'
+      dc:type: String
+  dcterms:hasVersion: v1

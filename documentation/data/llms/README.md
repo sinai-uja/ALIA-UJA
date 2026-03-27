@@ -21,12 +21,11 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
     - [Estándar de Licencias Disponibles y Usables](/documentation/data/llms/plain/standard_licenses.md)
   - [Información sobre los datasets contruidos](/documentation/data/llms/plain/datasets)
 - Documentación de Corpora
-  - [Proceso de Construcción de un Corpus](/documentation/data/llms/corpora/process_build_corpus.md)
-  - [Proceso de Limpieza de Datos](/documentation/data/llms/corpora/process_curation.md)
+  - [Proceso de Construcción de un Corpus](/documentation/data/llms/corpora/process_pipeline_corpus.md)
+  - [Proceso de Limpieza de Datos](/documentation/data/llms/corpora/process_step_datatrove_curation.md)
 - Documentación de Instrucciones
-  - [Documentación de Genración de cabeceras para contextos](/documentation/data/llms/instructions/generate_headers.md)
-  - [Documentación de Construcción de contextos](/documentation/data/llms/instructions/agreggate_contexts.md)
   - [Documentación de Generación de Instrucciones Sintéticas con MAGPIE](/documentation/data/llms/instructions/process_magpie.md)
+  - [Documentación de Contrucción de Corpus de Instrucciones](/documentation/data/llms/instructions/process_pipeline_instructions.md)
 - Documentación de Evaluación
   - [Tests de Evaluación para Oposiciones Legal-Administrativas Españolas](/documentation/data/llms/evaluation/legal_dataset.md)
   - [Tests de Evaluación para Oposiciones Sanitarias Españolas](/documentation/data/llms/evaluation/biomedical_dataset.md)
@@ -37,7 +36,7 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 - [Directorio de Documentacion](/documentation)
   - [Directorio de Documentación de Datos](/documentation/data)
   - [Directorio de Documentación de Modelos](/documentation/models)
-  - [Directorio de Documentación para RAGs](/documentation/rags)
+  - [Directorio de Documentación de Evaluación](/documentation/evaluation)
 - [Directorio de Datos](/data)
   - [Directorio de Datos para LLMs](/data/llms)
   - [Directorio de Datos para Modelos Encoders](/data/encoders)
@@ -45,6 +44,6 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 - [Directorio de Modelos](/models)
   - [Directorio de Datos para LLMs](/models/llms)
   - [Directorio de Datos para Modelos Encoders](/models/encoders)
-- [Directorio de RAGs](/rags)
+- [Directorio de Evaluación](/evaluation)
 
 **Sigue estas guías para asegurar la coherencia y eficiencia en el trabajo con ALIA.**
