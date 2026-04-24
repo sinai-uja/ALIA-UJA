@@ -3,7 +3,7 @@
 Parámetros específicos usados en el entrenamiento de cada modelo por dominio y arquitectura.
 Para entender la metodología general ver [metodology.md](./metodology.md).
 
-*Alba María Mármol Romero, Arturo Montejo Ráez | amarmol@ujaen.es, amontejo@ujaen.es | Proyecto ALIA*
+*Proyecto ALIA*
 
 ---
 
