@@ -1,0 +1,112 @@
+# ─────────────────────────────────────────────
+# config_optuna.yaml.example
+# Configuration template for Optuna-based hyperparameter search
+# with Sentence Transformers models.
+# Copy this file as config_optuna.yaml and adjust the values accordingly.
+# ─────────────────────────────────────────────
+
+
+# ─────────────────────────────────────────────
+# PATHS
+# ─────────────────────────────────────────────
+
+# Path to the base model to use
+MODEL_PATH = "/path/to/base/model"
+
+# Path to the dataset used for Optuna search
+# (can be a subset or specific version of the full dataset)
+DATASET_OPTUNA_PATH = "/path/to/dataset/hard_negatives_dataset.jsonl"
+
+# Base directory for saving logs, checkpoints and Optuna study artifacts
+# {batch_size} is available as a dynamic placeholder
+OUTPUT_BASE_DIR_TEMPLATE = "/path/to/base/logs/optuna_search_{batch_size}"
+
+# Path to import project utilities
+ALIA_UTILS_PATH = "/path/to/project/"
+
+
+# ─────────────────────────────────────────────
+# GENERAL TRAINING CONFIGURATION
+# ─────────────────────────────────────────────
+
+# Number of epochs per Optuna trial
+EPOCHS = 1
+
+# Number of training examples to use from the dataset
+# Recommended: 1000 for CosEncoder, 5000 for BiEncoder
+TRAIN_SIZE_OPTUNA = 1000
+
+# Maximum sequence length for the transformer (in tokens)
+MAX_SEQ_LENGTH = 512
+
+# Random seed for reproducibility
+RANDOM_SEED = 42
+
+# Logging steps during training
+LOGGING_STEPS = 100
+
+# Disable Weights & Biases logging (true = offline/disabled)
+WANDB_OFFLINE = true
+
+# PyTorch CUDA memory allocation strategy
+# Common options: "expandable_segments:True"
+PYTORCH_CUDA_ALLOC_CONF = "expandable_segments:True"
+
+
+# ─────────────────────────────────────────────
+# EVALUATION CONFIGURATION
+# ─────────────────────────────────────────────
+
+# Batch size for the Information Retrieval evaluator
+IR_EVALUATOR_BATCH_SIZE = 128
+
+# Top-K values for MRR, NDCG and MAP metrics (BiEncoder)
+EVALUATION_K_BIENCODER = [10]
+
+# Top-K value for metrics (CrossEncoder)
+EVALUATION_K_CROSSENCODER = 10
+
+# Fraction of the training set reserved for validation (between 0.0 and 1.0)
+EVAL_SPLIT_RATIO = 0.05
+
+
+# ─────────────────────────────────────────────
+# HYPERPARAMETER SEARCH (OPTUNA)
+# ─────────────────────────────────────────────
+
+# Number of trials to run in the search
+N_TRIALS = 20
+
+# Number of startup trials before the pruner begins evaluating
+OPTUNA_STARTUP_TRIALS = 3
+
+# Learning rate search range [min, max]
+LEARNING_RATE_RANGE = [1.0e-6, 5.0e-5]
+
+# Mini batch size options for CachedMultipleNegativesRankingLoss (BiEncoder)
+MINI_BATCH_SIZE_OPTIONS = [1, 4, 8, 12]
+
+# Gradient accumulation steps options (CrossEncoder)
+GRADIENT_ACCUMULATION_STEPS_OPTIONS = [4, 8, 16, 32]
+
+# Warmup ratio search range [min, max]
+WARMUP_RATIO_RANGE = [0.05, 0.2]
+
+# Weight decay search range [min, max]
+WEIGHT_DECAY_RANGE = [0.0, 0.1]
+
+
+# ─────────────────────────────────────────────
+# OPTUNA STUDY CONFIGURATION
+# ─────────────────────────────────────────────
+
+# Base name for the study. Available placeholder: {type_hn}
+OPTUNA_STUDY_NAME_TEMPLATE = "hparam_search_{type_hn}"
+
+# SQLite database path for storing study results
+# Available placeholders: {output_base_dir}, {type_hn}
+OPTUNA_DB_TEMPLATE = "sqlite:///{output_base_dir}/optuna_study_{type_hn}.db"
+
+# Base run name for logging purposes
+# Available placeholder: {type_hn}
+RUN_NAME_TEMPLATE = "optuna_{type_hn}"
