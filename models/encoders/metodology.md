@@ -2,7 +2,7 @@
 
 Descripción de la metodología completa seguida para obtener los modelos bi-encoders y cross-encoders.
 
-*Alba María Mármol Romero, Arturo Montejo Ráez | amarmol@ujaen.es, amontejo@ujaen.es | Proyecto ALIA*
+*Proyecto ALIA*
 
 ---
 
