@@ -56,7 +56,7 @@ El script permite indicar estos nombres mediante parámetros.
 
 # Formato de Salida
 
-Cada registro generado tendrá la estructura requerida por SWIFT:
+Cada registro generado tendrá la estructura requerida:
 
 ``` json
 {
@@ -88,9 +88,7 @@ Cada negativo se guarda como una lista independiente dentro de
 
 Requisitos:
 
--   Python 3.8 o superior
-
-No requiere librerías externas.
+-   Python 3.11 o superior
 
 ------------------------------------------------------------------------
 
