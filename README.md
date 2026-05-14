@@ -4,7 +4,7 @@ Bienvenido al repositorio de código del [Grupo SINAI](https://sinai.ujaen.es/al
 
 Investigamos en tecnologías del lenguaje y queremos que estas tecnologías sean abiertas y transparentes. Por eso, compartir nuestro código es parte de este compromiso.
 
-En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos del lenguaje grandes**, sino también la documentación que hemos generado en el proceso y que puede ser útil para entender cómo hemos construido nuestros modelos (que también son tuyos).
+En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos del lenguaje grandes**, sino también la documentación que hemos generado en el proceso y que puede ser útil para entender cómo hemos construido nuestros datos y modelos (que también son tuyos).
 
 *Happy coding*
 
@@ -19,6 +19,7 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
   - [Directorio de Datos para LLMs](/data/llms)
   - [Directorio de Datos para Modelos Encoders](/data/encoders)
   - [Directorio de Datos Paralelos](/data/parallel)
+  - [Directorio de Datos Discriminativos](/data/discriminative)
 - [Directorio de Modelos](/models)
   - [Directorio de Datos para LLMs](/models/llms)
   - [Directorio de Datos para Modelos Encoders](/models/encoders)
