@@ -16,8 +16,20 @@ The pipeline consists of **5 steps**, executed in order:
 
 ## Prerequisites
 
+It is recommended to use a virtual environment:
+
 ```bash
-pip install pandas openpyxl
+# Create a virtual environment
+python -m venv venv
+
+# Activate it
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r ../requirements.txt
 ```
 
 ---
