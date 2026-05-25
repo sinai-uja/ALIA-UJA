@@ -116,7 +116,7 @@ A Google Apps Script that automatically creates 60 Google Forms from the annotat
 **What it does:**
 - Creates 60 Google Forms, one per annotation block
 - Each form contains 55 questions (50 real samples + 5 gold standards, shuffled)
-- Three options per question: *FAVOR*, *AGAINST*, *NEUTRAL*
+- Three options per question: *A favor*, *En contra*, *Neutral*
 - An optional free-text observation field
 - Embeds a completion redirect URL for Prolific
 
@@ -156,15 +156,15 @@ Processes the 60 Excel response files from Google Forms.
 5. Computes Fleiss' kappa and agreement statistics
 
 **Output columns:**
-- `id`, `target`, `description`, `comment`
-- `anotation_1`, `anotation_2`, `anotation_3` (individual labels)
-- `majority_label` (majority-vote label)
-- `agreement` (`3/3`, `2/3`, or `1/3`)
-- `observation_1`, `observation_2`, `observation_3` (optional annotator comments)
+- `id`, `target`, `descripcion`, `comentario`
+- `anotacion_1`, `anotacion_2`, `anotacion_3` (individual labels)
+- `etiqueta_mayoria` (majority-vote label)
+- `acuerdo` (`3/3`, `2/3`, or `1/3`)
+- `observacion_1`, `observacion_2`, `observacion_3` (optional annotator comments)
 
 **Usage:**
 ```bash
-python process_responses.py [path_to_responses_folder]
+python 05_process_responses.py [path_to_responses_folder]
 ```
 
 ---
@@ -178,9 +178,9 @@ import pandas as pd
 
 df = pd.read_csv('data/corpus_final_3000_anotado.csv', sep=';')
 df_curated = df[df['acuerdo'].isin(['2/3', '3/3'])][
-    ['id', 'target', 'description', 'comment', 'majority_label']
+    ['id', 'target', 'descripcion', 'comentario', 'etiqueta_mayoria']
 ].copy()
-df_curated.rename(columns={'majority_label': 'label'}, inplace=True)
+df_curated.rename(columns={'etiqueta_mayoria': 'label'}, inplace=True)
 df_curated['id'] = range(1, len(df_curated) + 1)
 df_curated.to_csv('data/corpus_final_curado.csv', index=False, sep=';')
 ```

@@ -20,10 +20,18 @@
  * If a batch fails due to timeout, reduce the range.
  */
 
-var COMPLETION_URL = "https://app.prolific.com/submissions/complete?cc=C1OCPI04"; // <-- Change this
-var GUIA_URL = "https://drive.google.com/file/d/1lqUvUOaEnR2jtiH0i_EDJvbC9-eTjH3U/view?usp=sharing"; // <-- Change this to your guide URL
-var DRIVE_FOLDER = "bloques_60"; // Name of the Drive folder where the CSVs are
-var FORMS_FOLDER = "formularios_60"; // Drive folder where forms will be saved
+// Settings are centralized below. For the Python pipeline, see config.yaml
+// in the same folder. Keep both files in sync when changing values.
+var CONFIG = {
+  // TODO: update these URLs before running the study
+  COMPLETION_URL: "https://app.prolific.com/submissions/complete?cc=C1OCPI04",
+  GUIA_URL: "https://drive.google.com/file/d/1lqUvUOaEnR2jtiH0i_EDJvbC9-eTjH3U/view?usp=sharing",
+  DRIVE_FOLDER: "bloques_60",
+  FORMS_FOLDER: "formularios_60",
+  NUM_BLOCKS: 60,
+  BATCH_SIZE: 10,
+  CHOICES: ["A favor", "En contra", "Neutral"]
+};
 
 // ============================================================
 // BATCHES OF 10 (execute one by one, waiting for each to finish)
@@ -42,9 +50,9 @@ function crearUnoPrueba() { crearRango(1, 1); }
 // CREATE FORMS FOR A RANGE OF BLOCKS
 // ============================================================
 function crearRango(desde, hasta) {
-  var carpeta = buscarCarpeta(DRIVE_FOLDER);
+  var carpeta = buscarCarpeta(CONFIG.DRIVE_FOLDER);
   if (!carpeta) {
-    Logger.log("ERROR: Folder '" + DRIVE_FOLDER + "' not found in Drive.");
+    Logger.log("ERROR: Folder '" + CONFIG.DRIVE_FOLDER + "' not found in Drive.");
     return;
   }
 
@@ -79,8 +87,8 @@ function crearFormularioDesdeCSV(nombreArchivo, numeroBloque) {
 
   // Create the form
   var form = FormApp.create('Stance Detection - Block ' + (numeroBloque < 10 ? "0" + numeroBloque : numeroBloque));
-  form.setDescription('Instructions and link to annotation guide: ' + GUIA_URL);
-  form.setConfirmationMessage('Thank you for your participation. Click here to return to Prolific: ' + COMPLETION_URL);
+  form.setDescription('Instructions and link to annotation guide: ' + CONFIG.GUIA_URL);
+  form.setConfirmationMessage('Thank you for your participation. Click here to return to Prolific: ' + CONFIG.COMPLETION_URL);
   form.setCollectEmail(false);
 
   // Add questions
@@ -94,13 +102,13 @@ function crearFormularioDesdeCSV(nombreArchivo, numeroBloque) {
     var pregunta = 'Target: ' + datos['target'] + '\n\nDescription: ' + datos['description'] + '\n\nComment: ' + datos['comment'];
     var item = form.addMultipleChoiceItem();
     item.setTitle(pregunta);
-    item.setChoiceValues(['A favor', 'En contra', 'Neutral']);
+    item.setChoiceValues(CONFIG.CHOICES);
     item.setRequired(true);
   }
 
   // Move form to the specified folder
   var formFile = DriveApp.getFileById(form.getId());
-  var carpetaForms = buscarCarpeta(FORMS_FOLDER);
+  var carpetaForms = buscarCarpeta(CONFIG.FORMS_FOLDER);
   if (carpetaForms) {
     carpetaForms.addFile(formFile);
     DriveApp.getRootFolder().removeFile(formFile);

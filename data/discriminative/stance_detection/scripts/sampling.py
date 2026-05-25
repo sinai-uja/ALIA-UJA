@@ -28,33 +28,32 @@ import os
 import sys
 import math
 import re
+
 import pandas as pd
+import yaml
 
 sys.stdout.reconfigure(encoding='utf-8')
-
-RANDOM_SEED   = 42
-RATE          = 0.33   # % of quality comments of the topic to include
-MIN_SLOTS     = 3      # minimum per topic even if small
-MAX_SLOTS     = 50     # cap for very large topics
-MIN_TOPIC_COM = 10     # minimum comments that pass filters to include the topic
-MIN_CHARS     = 80
-MAX_CHARS     = 800
-MIN_WORDS     = 5
-MIN_DESC_CHARS_NO_URL = 30
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir   = os.path.dirname(script_dir)
 
+config_path = os.path.join(root_dir, 'config.yaml')
+with open(config_path, 'r', encoding='utf-8') as f:
+    cfg = yaml.safe_load(f)
+
+SAMPLING = cfg['sampling']
+PATHS    = cfg['paths']
+
 if len(sys.argv) > 1:
     csv_path = sys.argv[1]
 else:
-    csv_path = os.path.join(root_dir, 'corpus_stance_madrid_recuento.csv')
+    csv_path = os.path.join(root_dir, PATHS['corpus_input'])
 
-out_path = os.path.join(root_dir, 'data', 'corpus_final_decide_madrid.csv')
+out_path = os.path.join(root_dir, PATHS['corpus_output'])
 
 # -- Load corpus --
 print("Loading corpus...")
-df = pd.read_csv(csv_path, encoding='utf-8-sig', low_memory=False)
+df = pd.read_csv(csv_path, encoding=PATHS['csv_encoding'], low_memory=False)
 df['len_com'] = df['Texto (Opinion)'].str.len()
 print(f"  Total: {len(df):,} comments, {df['Target (Tema)'].nunique():,} topics")
 
@@ -65,12 +64,12 @@ def desc_without_url_is_short(desc):
     if pd.isna(desc):
         return True
     text_no_url = re.sub(r'https?://\S+', '', str(desc)).strip()
-    return len(text_no_url) < MIN_DESC_CHARS_NO_URL
+    return len(text_no_url) < SAMPLING['min_desc_chars_no_url']
 
 desc_is_basically_url = df['Descripcion Target'].apply(desc_without_url_is_short)
 
-length_ok  = df['len_com'].between(MIN_CHARS, MAX_CHARS)
-words_ok   = df['Texto (Opinion)'].str.split().str.len() >= MIN_WORDS
+length_ok  = df['len_com'].between(SAMPLING['min_chars'], SAMPLING['max_chars'])
+words_ok   = df['Texto (Opinion)'].str.split().str.len() >= SAMPLING['min_words']
 
 df_q = df[~url_in_text & ~desc_is_basically_url & length_ok & words_ok].copy()
 print(f"  After quality filters: {len(df_q):,} comments, "
@@ -85,17 +84,17 @@ print(f"  After deduplication (same topic+text): {len(df_q):,} comments "
 
 # -- Statistics by topic and filter out small topics --
 topic_counts = df_q.groupby('Target (Tema)')['Texto (Opinion)'].count()
-valid_topics = topic_counts[topic_counts >= MIN_TOPIC_COM].index
+valid_topics = topic_counts[topic_counts >= SAMPLING['min_topic_comments']].index
 df_v = df_q[df_q['Target (Tema)'].isin(valid_topics)].copy()
-print(f"  Topics with >={MIN_TOPIC_COM} quality comments: {len(valid_topics):,}")
+print(f"  Topics with >={SAMPLING['min_topic_comments']} quality comments: {len(valid_topics):,}")
 print(f"  Comments in those topics: {len(df_v):,}")
 
 # -- Sampling function per topic --
-def sample_topic(group, n_slots, seed=RANDOM_SEED):
+def sample_topic(group, n_slots, seed=SAMPLING['random_seed']):
     g = group.copy()
     chosen_idx = set()
 
-    bands = pd.cut(g['len_com'], bins=[0, 200, 450, 800],
+    bands = pd.cut(g['len_com'], bins=SAMPLING['length_bins'],
                    labels=['short', 'medium', 'long'])
     g['_band'] = bands
 
@@ -118,42 +117,41 @@ def sample_topic(group, n_slots, seed=RANDOM_SEED):
     return g.loc[list(chosen_idx)].drop(columns=['_band'], errors='ignore')
 
 # -- Proportional sampling --
-print(f"\nSampling with RATE={RATE}, MIN_SLOTS={MIN_SLOTS}, MAX_SLOTS={MAX_SLOTS}...")
+print(f"\nSampling with RATE={SAMPLING['rate']}, "
+      f"MIN_SLOTS={SAMPLING['min_slots']}, MAX_SLOTS={SAMPLING['max_slots']}...")
 
 parts = []
 slots_per_topic = {}
 selected_idx = set()
 for topic, group in df_v.groupby('Target (Tema)'):
     n_q = len(group)
-    n_slots = int(min(max(round(n_q * RATE), MIN_SLOTS), MAX_SLOTS))
+    n_slots = int(min(max(round(n_q * SAMPLING['rate']), SAMPLING['min_slots']), SAMPLING['max_slots']))
     slots_per_topic[topic] = n_slots
     selection = sample_topic(group, n_slots)
     selected_idx.update(selection.index)
     parts.append(selection)
 
-N_TARGET = 3000
-
 sample = pd.concat(parts, ignore_index=True)
 print(f"  Sample before adjustment: {len(sample):,} comments from "
       f"{sample['Target (Tema)'].nunique():,} topics")
 
-# Adjust to the target of 3,000
-if len(sample) > N_TARGET:
-    excess = len(sample) - N_TARGET
+# Adjust to the target total
+if len(sample) > SAMPLING['target_total']:
+    excess = len(sample) - SAMPLING['target_total']
     sample_counts = sample['Target (Tema)'].value_counts()
     idx_remove = set()
     for topic in sample_counts.index:
         if excess <= 0:
             break
         candidates = sample[sample['Target (Tema)'] == topic].index.tolist()
-        if len(candidates) > MIN_SLOTS:
-            remove = sample.loc[candidates].sample(1, random_state=RANDOM_SEED).index
+        if len(candidates) > SAMPLING['min_slots']:
+            remove = sample.loc[candidates].sample(1, random_state=SAMPLING['random_seed']).index
             idx_remove.update(remove)
             excess -= 1
     sample = sample.drop(index=list(idx_remove))
 
-elif len(sample) < N_TARGET:
-    missing = N_TARGET - len(sample)
+elif len(sample) < SAMPLING['target_total']:
+    missing = SAMPLING['target_total'] - len(sample)
     print(f"  Sample below target by {missing} -- filling...")
     reserve_parts = []
     for topic, group in df_v.groupby('Target (Tema)'):
@@ -166,7 +164,7 @@ elif len(sample) < N_TARGET:
         if missing <= 0:
             break
         n_extra = min(missing, len(pool))
-        extra = pool.sample(n_extra, random_state=RANDOM_SEED)
+        extra = pool.sample(n_extra, random_state=SAMPLING['random_seed'])
         extras.append(extra)
         selected_idx.update(extra.index)
         missing -= n_extra
@@ -185,7 +183,7 @@ sample_out = pd.DataFrame({
 })
 
 os.makedirs(os.path.dirname(out_path), exist_ok=True)
-sample_out.to_csv(out_path, index=False, sep=';', encoding='utf-8-sig')
+sample_out.to_csv(out_path, index=False, sep=PATHS['csv_separator'], encoding=PATHS['csv_encoding'])
 
 # -- Summary --
 print(f"\n{'='*60}")
