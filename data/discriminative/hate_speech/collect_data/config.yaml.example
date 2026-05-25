@@ -1,0 +1,77 @@
+tiktok:
+  paths:
+    base_output_dir: "PATH/TO/OUTPUT/DIR"
+
+  logging:
+    logs_dir: "PATH/TO/LOGS/DIR"
+    log_filename: "tiktok.log"
+
+  output:
+    videos_file: "videos_raw.jsonl"
+    comments_file: "comments_raw.jsonl"
+
+  tiktok_cfg:
+    client_key: ""
+    client_secret: ""
+    qps: 5
+    query:
+      region_code: "ES"
+      default_start_date: "20200101"
+      default_end_date: "today"
+      max_count: 100
+      max_total: 100000
+      default_video_fields: "id,video_description,create_time,region_code,share_count,view_count,like_count,comment_count,music_id,hashtag_names,username,effect_ids,playlist_id,voice_to_text,is_stem_verified,video_duration,hashtag_info_list,sticker_info_list,effect_info_list,video_mention_list,video_label,video_tag"
+
+  jobs:
+    hashtags:
+      output_subdir: "FOLDER_NAME_FOR_THIS_JOB"
+      hashtags:
+        - "TorrePacheco"
+        - "Hortaleza"
+        - "Jumilla"
+        - "InseguridadCiudadana"
+        - "DeportThemNow"
+        - "EspañaDespierta"
+      start_date: "20250707"
+      end_date: "today"
+      max_count: 100
+      max_total: 100000
+
+youtube:
+  output_dir: "PATH/TO/OUTPUT/DIR"
+  youtube_api_key: "your_youtube_api_key_here"
+
+  defaults:
+    max_videos: 500
+    max_comments: null
+    date_range:
+      from: "07/07/2025"
+      to: "today"
+
+  jobs:
+    defaults:
+      max_videos: 500
+      max_comments: null
+      date_range:
+        from: "07/07/2025"
+        to: "today"
+    queries:
+      - query: "Torre Pacheco"
+        date_range:
+          from: "07/07/2025"
+          to: "today"
+        max_videos: 500
+        max_comments: null
+      - query: "Hortaleza"
+        date_range:
+          from: "31/08/2025"
+          to: "today"
+        max_videos: 500
+        max_comments: null
+      - query: "Jumilla"
+        date_range:
+          from: "07/08/2025"
+          to: "today"
+        max_videos: 500
+        max_comments: null
+

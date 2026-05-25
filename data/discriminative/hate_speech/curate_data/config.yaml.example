@@ -1,0 +1,58 @@
+# Configuration for analyzing JSONL comments
+# Base path for datasets
+data_base_path: "PATH/TO/RAW/DATASETS/DIR"
+
+# Files to process per source
+sources:
+  tiktok:
+    - name: "SUBSET_NAME_OR_HASHTAG"
+      path: "PATH/TO/TIKTOK/COMMENTS/SUBSET.jsonl"
+  youtube:
+    - name: "SUBSET_1"
+      path: "PATH/TO/YOUTUBE/COMMENTS/SUBSET_1.jsonl"
+    - name: "SUBSET_2"
+      path: "PATH/TO/YOUTUBE/COMMENTS/SUBSET_2.jsonl"
+    - name: "SUBSET_3"
+      path: "PATH/TO/YOUTUBE/COMMENTS/SUBSET_3.jsonl"
+
+# Thresholds definition for comments
+comment_length:
+  short_max: 50  # maximum characters for a short comment
+  long_min: 200  # minimum characters for a long comment
+
+# Output configuration
+output:
+  report_filename: "PATH/TO/COLLECTED/CURATED/analysis_report.json"
+  verbose: false
+  encoding: "utf-8"
+
+# Emoji configuration
+emoji:
+  include_analysis: true
+  min_emoji_threshold: 1  # minimum number of emojis to classify as "with emojis"
+
+# Parameters for filtering and anonymization
+filter:
+  curated_base_path: "PATH/TO/COLLECTED/CURATED"
+ 
+  # ── LanguageFilter (fastText via datatrove) ──────────────────────────────
+  # Minimum probability that the text is Spanish.
+  # FineWeb uses 0.65 for English; 0.7 is more strict and suitable for
+  # short comments where detection is less reliable.
+  language_threshold: 0.7
+ 
+  # ── Heuristic spam (LambdaFilter) ───────────────────────────────────
+  max_length: 2000        # maximum characters
+  max_urls: 1             # allowed URLs
+  max_mentions: 5         # allowed @user mentions
+  max_repeated_seq: 15    # maximum identical consecutive characters
+  max_nonalpha_ratio: 0.7 # maximum ratio of non-alpha characters
+
+# MinHash deduplication configuration
+minhash:
+  # Number of buckets: MUST satisfy: tasks % num_buckets == 0
+  # With tasks=1, use num_buckets=1
+  # With tasks=8, use num_buckets=1, 2, 4, or 8
+  num_buckets: 1
+  hashes_per_bucket: 8
+
