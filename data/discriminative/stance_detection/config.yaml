@@ -1,0 +1,33 @@
+# Centralized configuration for the stance detection pipeline.
+# Reviewer note: please update the URLs below before running the study.
+
+sampling:
+  random_seed: 42
+  rate: 0.33
+  min_slots: 3
+  max_slots: 50
+  min_topic_comments: 10
+  min_chars: 80
+  max_chars: 800
+  min_words: 5
+  min_desc_chars_no_url: 30
+  target_total: 3000
+  length_bins: [0, 200, 450, 800]
+
+paths:
+  corpus_input: "corpus_stance_madrid_recuento.csv"
+  corpus_output: "data/corpus_final_decide_madrid.csv"
+  csv_separator: ";"
+  csv_encoding: "utf-8-sig"
+
+forms:
+  completion_url: "YOUR_PROLIFIC_COMPLETION_URL_HERE"
+  guia_url: "YOUR_ANNOTATION_GUIDE_URL_HERE"
+  drive_folder: "bloques_60"
+  forms_folder: "formularios_60"
+  num_blocks: 60
+  samples_per_block: 50
+  choices:
+    - "A favor"
+    - "En contra"
+    - "Neutral"
