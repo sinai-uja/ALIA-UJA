@@ -195,7 +195,7 @@ La pérdida bajó de 1.7914 a 0.0032 (↓ 99.8%). Caída drástica en la Fase 1.
 
 | Fase | Tipo de negativos | Dificultad | Épocas | Muestras máx. |
 |---|---|---|---|---|
-| 1 | Random | General | 2 | Sin límite |
+| 1 | Random | General | 1 | Sin límite |
 | 2 | PAM (hard negatives) | Fácil | 1 | Sin límite |
 | 3 | PAM (hard negatives) | Medio | 1 | 248.258 |
 | 4 | PAM (hard negatives) | Difícil | 1 | Sin límite |
@@ -243,13 +243,13 @@ La pérdida bajó de 0.7287 a 0.0507 (↓ 93.0%). Descenso progresivo y fluido a
 | Fase | Tipo de negativos | Dificultad | Épocas | Muestras máx. |
 |---|---|---|---|---|
 | 1 | Random | General | 2 | Sin límite |
-| 2 | Random | Fácil | 2 | 100.000 |
-| 3 | Random | Medio | 2 | 100.000 |
-| 4 | Random | Difícil | 2 | 100.000 |
+| 2 | Random | Fácil | 2 | Sin límite |
+| 3 | Random | Medio | 2 | 207.376 |
+| 4 | Random | Difícil | 2 | Sin límite |
 | 5 | PAM (hard negatives) | General | 1 | Sin límite |
-| 6 | PAM (hard negatives) | Fácil | 1 | 100.000 |
-| 7 | PAM (hard negatives) | Medio | 1 | 100.000 |
-| 8 | PAM (hard negatives) | Difícil | 1 | 100.000 |
+| 6 | PAM (hard negatives) | Fácil | 1 | Sin límite |
+| 7 | PAM (hard negatives) | Medio | 1 | 207.376 |
+| 8 | PAM (hard negatives) | Difícil | 1 | Sin límite |
 
 **Curva de entrenamiento**
 
@@ -257,7 +257,7 @@ La curva muestra una caída drástica inicial durante la Fase 1 (General Random)
 
 **Notas**
 
-> Se limitó el número máximo de mensajes por fase a 100.000.
+> Al igual que en el bi-encoder biomédico, el pipeline incorpora datos genéricos mejorando la versión inicial (dominio legal) y se ha limitado el tamaño máximo del conjunto de dificultad media para que coincida en tamaño con el conjunto de dificultad fácil, garantizando un mejor balance durante el entrenamiento del bi-encoder.
 
 ---
 
@@ -280,10 +280,10 @@ La curva muestra una caída drástica inicial durante la Fase 1 (General Random)
 
 | Fase | Tipo de negativos | Dificultad | Épocas | Muestras máx. |
 |---|---|---|---|---|
-| 1 | Random | General | 2 | Sin límite |
-| 2 | PAM (hard negatives) | Fácil | 1 | 100.000 |
-| 3 | PAM (hard negatives) | Medio | 1 | 100.000 |
-| 4 | PAM (hard negatives) | Difícil | 1 | 100.000 |
+| 1 | Random | General | 1 | Sin límite |
+| 2 | PAM (hard negatives) | Fácil | 1 | Sin límite  |
+| 3 | PAM (hard negatives) | Medio | 1 | 207.376 |
+| 4 | PAM (hard negatives) | Difícil | 1 | Sin límite  |
 | 5 | PAM (hard negatives) | General | 1 | Sin límite |
 
 **Curva de entrenamiento**
@@ -295,4 +295,4 @@ A diferencia del Bi-Encoder, el Cross-Encoder presenta una curva con mayores flu
 
 **Notas**
 
-> Se limitó el número máximo de mensajes por fase a 100.000.
+> Al igual que en el cross-encoder biomédico, el pipeline incorpora datos genéricos mejorando la versión inicial (dominio legal) y se ha limitado el tamaño máximo del conjunto de dificultad media para que coincida en tamaño con el conjunto de dificultad fácil, garantizando un mejor balance durante el entrenamiento del reranker.

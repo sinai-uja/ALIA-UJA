@@ -19,7 +19,7 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 - Ficheros de código
   - [Directorio de scripts para extracción de pasajes](/encoders/scripts/passages)
   - [Directorio de scripts para generación de tripletas](/encoders/scripts/triplets/triplets)
-
+  - [Directorio de scripts para generación de hard-negatives](/encoders/scripts/hard_negatives/hard_negatives)
 
 ---
 
