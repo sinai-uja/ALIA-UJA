@@ -24,8 +24,8 @@
 // in the same folder. Keep both files in sync when changing values.
 var CONFIG = {
   // TODO: update these URLs before running the study
-  COMPLETION_URL: "https://app.prolific.com/submissions/complete?cc=C1OCPI04",
-  GUIA_URL: "https://drive.google.com/file/d/1lqUvUOaEnR2jtiH0i_EDJvbC9-eTjH3U/view?usp=sharing",
+  COMPLETION_URL: "",
+  GUIA_URL: "",
   DRIVE_FOLDER: "bloques_60",
   FORMS_FOLDER: "formularios_60",
   NUM_BLOCKS: 60,
