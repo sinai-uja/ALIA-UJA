@@ -1,0 +1,126 @@
+input_path: "../input/example_dataset.jsonl"
+output_dir: "../output/example_vllm_run"
+
+# OpenAI-compatible vLLM endpoint used by process_questions.py.
+vllm_base_url: "CHANGE_ME_VLLM_OPENAI_BASE_URL"
+vllm_api_key: ""
+
+concurrency: 16
+variation_mode: "all_random"
+max_retries: 3
+checkpoint_every: 100
+
+
+variation_prompts:
+# ── Estilos base ──────────────────────────────────────────────
+
+  coloquial: >
+    Reescribe la siguiente pregunta en un tono muy coloquial y casual,
+    como si la dijera alguien en una conversación informal de la calle.
+    Usa expresiones cotidianas, contracciones y lenguaje popular.
+    Se te proporciona la respuesta a esa pregunta como contexto para que
+    la reformulación sea coherente con ella.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  faltas_ortografia: >
+    Reescribe la siguiente pregunta introduciendo faltas de ortografía
+    y errores tipográficos realistas (como los que se cometen al escribir
+    rápido en el móvil: letras cambiadas, acentos ausentes, palabras pegadas,
+    errores b/v, g/j, h muda ausente, etc.).
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta con errores, sin explicaciones.
+
+  telegrafico: >
+    Reescribe la siguiente pregunta de forma muy telegráfica y corta,
+    como si se buscara en Google: elimina artículos, preposiciones
+    innecesarias y palabras de relleno.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta recortada, sin explicaciones.
+
+  exclamativo: >
+    Reescribe la siguiente pregunta con mucha energía y énfasis,
+    usando exclamaciones, signos de admiración, mayúsculas para
+    enfatizar palabras clave y un tono urgente o emocionado.
+    Se te proporciona la respuesta a esa pregunta como contexto para que
+    la reformulación sea coherente con ella.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  dubitativo: >
+    Reescribe la siguiente pregunta con un tono dubitativo e inseguro,
+    añadiendo muletillas como "eeh", "no sé si...", "a ver si me explico",
+    "perdona la pregunta pero...". Hazla sonar como alguien que no está
+    seguro de cómo preguntar algo.
+    Se te proporciona la respuesta a esa pregunta como contexto para que
+    la reformulación sea coherente con ella.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  informal_chat: >
+    Reescribe la siguiente pregunta como si fuera un mensaje de WhatsApp
+    entre amigos: usa abreviaturas (xq, tb, q tal, etc.), emojis relevantes,
+    minúsculas, y un tono muy relajado.
+    Se te proporciona la respuesta a esa pregunta como contexto para que
+    la reformulación sea coherente con ella.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  coloquial_con_faltas: >
+    Reescribe la siguiente pregunta en un tono muy coloquial e informal,
+    como si la escribiera alguien rápidamente en el móvil.
+    Incluye expresiones cotidianas Y faltas de ortografía realistas
+    (acentos ausentes, errores b/v, palabras pegadas, letras cambiadas, etc.).
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  chat_exclamativo: >
+    Reescribe la siguiente pregunta como un mensaje de WhatsApp muy
+    entusiasmado o urgente: usa abreviaturas, emojis expresivos,
+    signos de admiración y mayúsculas para énfasis.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  coloquial_exclamativo: >
+    Reescribe la siguiente pregunta de forma coloquial y muy enérgica,
+    como si alguien preguntara emocionado o con urgencia en una conversación
+    informal: lenguaje de calle, signos de admiración y énfasis emocional.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  coloquial_dubitativo: >
+    Reescribe la siguiente pregunta de forma coloquial pero insegura,
+    como alguien que no sabe muy bien cómo preguntar algo en una
+    conversación informal: muletillas populares, titubeos y lenguaje de calle.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  telegrafico_exclamativo: >
+    Reescribe la siguiente pregunta de forma muy corta y urgente,
+    como una búsqueda rápida en Google escrita con prisas y énfasis:
+    pocas palabras, signos de admiración o interrogación múltiples,
+    sin artículos ni relleno.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  dubitativo_con_faltas: >
+    Reescribe la siguiente pregunta con un tono dubitativo e inseguro
+    Y con faltas de ortografía realistas, como alguien que escribe
+    rápido en el móvil sin saber muy bien cómo preguntar algo.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  exclamativo_con_faltas: >
+    Reescribe la siguiente pregunta con mucha energía y urgencia,
+    usando signos de admiración y énfasis, Y con faltas de ortografía
+    realistas típicas de alguien que escribe muy deprisa en el móvil.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+# vLLM server settings used by run.py or the SLURM launcher.
+vllm_model: "CHANGE_ME_MODEL_ID_OR_LOCAL_PATH"
+vllm_scheme: "http"
+vllm_host: "127.0.0.1"
+vllm_port: 8000
+vllm_startup_timeout: 900
+vllm_max_model_len: 8192
+vllm_gpu_memory_util: 0.90
+vllm_tensor_parallel_size: 1
+vllm_dtype: "bfloat16"
+vllm_extra_args: []

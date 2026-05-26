@@ -1,0 +1,132 @@
+# Question Variator - non-vLLM inference mode
+
+input_path: "./input/example_dataset.jsonl"
+output_dir: "./output/example_run"
+
+api:
+  # For new_questions.py, use a single OpenAI-compatible base_url.
+  base_url: "CHANGE_ME_OPENAI_COMPATIBLE_BASE_URL"
+  api_key: "CHANGE_ME_API_KEY"
+  model: "CHANGE_ME_MODEL_NAME"
+
+  # For process_questions.py, use explicit auth/models/chat endpoints.
+  auth_url: "CHANGE_ME_AUTH_ENDPOINT"
+  models_url: "CHANGE_ME_MODELS_ENDPOINT"
+  chat_url: "CHANGE_ME_CHAT_COMPLETIONS_ENDPOINT"
+  username_field: "user"
+  password_field: "password"
+  token_field: "token"
+  models_path: "data"
+
+variation_mode: "all_random"
+max_retries: 3
+retry_base_delay: 1.0
+request_delay: 0.5
+checkpoint_every: 50
+save_every_rows: 100
+max_concurrency: 16
+request_timeout: 120.0
+temperature: 0.7
+random_seed: 42
+
+variation_prompts:
+# ── Estilos base ──────────────────────────────────────────────
+
+  coloquial: >
+    Reescribe la siguiente pregunta en un tono muy coloquial y casual,
+    como si la dijera alguien en una conversación informal de la calle.
+    Usa expresiones cotidianas, contracciones y lenguaje popular.
+    Se te proporciona la respuesta a esa pregunta como contexto para que
+    la reformulación sea coherente con ella.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  faltas_ortografia: >
+    Reescribe la siguiente pregunta introduciendo faltas de ortografía
+    y errores tipográficos realistas (como los que se cometen al escribir
+    rápido en el móvil: letras cambiadas, acentos ausentes, palabras pegadas,
+    errores b/v, g/j, h muda ausente, etc.).
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta con errores, sin explicaciones.
+
+  telegrafico: >
+    Reescribe la siguiente pregunta de forma muy telegráfica y corta,
+    como si se buscara en Google: elimina artículos, preposiciones
+    innecesarias y palabras de relleno.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta recortada, sin explicaciones.
+
+  exclamativo: >
+    Reescribe la siguiente pregunta con mucha energía y énfasis,
+    usando exclamaciones, signos de admiración, mayúsculas para
+    enfatizar palabras clave y un tono urgente o emocionado.
+    Se te proporciona la respuesta a esa pregunta como contexto para que
+    la reformulación sea coherente con ella.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  dubitativo: >
+    Reescribe la siguiente pregunta con un tono dubitativo e inseguro,
+    añadiendo muletillas como "eeh", "no sé si...", "a ver si me explico",
+    "perdona la pregunta pero...". Hazla sonar como alguien que no está
+    seguro de cómo preguntar algo.
+    Se te proporciona la respuesta a esa pregunta como contexto para que
+    la reformulación sea coherente con ella.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  informal_chat: >
+    Reescribe la siguiente pregunta como si fuera un mensaje de WhatsApp
+    entre amigos: usa abreviaturas (xq, tb, q tal, etc.), emojis relevantes,
+    minúsculas, y un tono muy relajado.
+    Se te proporciona la respuesta a esa pregunta como contexto para que
+    la reformulación sea coherente con ella.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  coloquial_con_faltas: >
+    Reescribe la siguiente pregunta en un tono muy coloquial e informal,
+    como si la escribiera alguien rápidamente en el móvil.
+    Incluye expresiones cotidianas Y faltas de ortografía realistas
+    (acentos ausentes, errores b/v, palabras pegadas, letras cambiadas, etc.).
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  chat_exclamativo: >
+    Reescribe la siguiente pregunta como un mensaje de WhatsApp muy
+    entusiasmado o urgente: usa abreviaturas, emojis expresivos,
+    signos de admiración y mayúsculas para énfasis.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  coloquial_exclamativo: >
+    Reescribe la siguiente pregunta de forma coloquial y muy enérgica,
+    como si alguien preguntara emocionado o con urgencia en una conversación
+    informal: lenguaje de calle, signos de admiración y énfasis emocional.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  coloquial_dubitativo: >
+    Reescribe la siguiente pregunta de forma coloquial pero insegura,
+    como alguien que no sabe muy bien cómo preguntar algo en una
+    conversación informal: muletillas populares, titubeos y lenguaje de calle.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  telegrafico_exclamativo: >
+    Reescribe la siguiente pregunta de forma muy corta y urgente,
+    como una búsqueda rápida en Google escrita con prisas y énfasis:
+    pocas palabras, signos de admiración o interrogación múltiples,
+    sin artículos ni relleno.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  dubitativo_con_faltas: >
+    Reescribe la siguiente pregunta con un tono dubitativo e inseguro
+    Y con faltas de ortografía realistas, como alguien que escribe
+    rápido en el móvil sin saber muy bien cómo preguntar algo.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.
+
+  exclamativo_con_faltas: >
+    Reescribe la siguiente pregunta con mucha energía y urgencia,
+    usando signos de admiración y énfasis, Y con faltas de ortografía
+    realistas típicas de alguien que escribe muy deprisa en el móvil.
+    Se te proporciona la respuesta como contexto.
+    Devuelve SOLO la pregunta reescrita, sin explicaciones.

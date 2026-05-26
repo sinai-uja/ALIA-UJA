@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+# Generic SLURM launcher for the local vLLM workflow.
+
+#SBATCH --job-name=question_variator
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem=64G
+#SBATCH --partition=CHANGE_ME_PARTITION
+#SBATCH --qos=CHANGE_ME_QOS
+#SBATCH --cpus-per-task=16
+#SBATCH --gres=gpu:1
+#SBATCH --time=2-00:00:00
+#SBATCH --chdir="/path/to/question_variator/github/vllm"
+#SBATCH --output="logs/variator_%A.out.log"
+#SBATCH --error="logs/variator_%A.err.log"
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VLLM_DIR="${SCRIPT_DIR}"
+LOG_DIR="${VLLM_DIR}/logs"
+mkdir -p "${LOG_DIR}"
+
+# Load your cluster environment here.
+module purge || true
+module load CUDA/CHANGE_ME_CUDA_VERSION || true
+source /path/to/miniforge3/etc/profile.d/conda.sh
+conda activate CHANGE_ME_CONDA_ENV
+
+# Keep the launcher generic: all runtime details come from config.yaml.
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"
+export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-0}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
+export VLLM_OFFLINE="${VLLM_OFFLINE:-0}"
+export HUGGINGFACE_HUB_CACHE="${HUGGINGFACE_HUB_CACHE:-$HOME/.cache/huggingface/hub}"
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
+export no_proxy="${no_proxy:-127.0.0.1,localhost,0.0.0.0,::1}"
+export NO_PROXY="${NO_PROXY:-127.0.0.1,localhost,0.0.0.0,::1}"
+export PYTHONUNBUFFERED=1
+
+CONFIG_FILE="${VLLM_DIR}/config.yaml"
+if [ ! -f "${CONFIG_FILE}" ]; then
+    echo "[ERROR] Missing config file: ${CONFIG_FILE}"
+    exit 1
+fi
+
+eval "$(
+python3 - <<'PYEOF'
+from pathlib import Path
+import shlex
+import yaml
+
+cfg = yaml.safe_load(Path("config.yaml").read_text(encoding="utf-8")) or {}
+
+def emit(name, value):
+    print(f"{name}={shlex.quote(str(value))}")
+
+emit("VLLM_MODEL", cfg.get("vllm_model", "CHANGE_ME_MODEL_ID_OR_LOCAL_PATH"))
+emit("VLLM_SCHEME", cfg.get("vllm_scheme", "http"))
+emit("VLLM_HOST", cfg.get("vllm_host", "127.0.0.1"))
+emit("VLLM_PORT", cfg.get("vllm_port", 8000))
+emit("VLLM_STARTUP_TIMEOUT", cfg.get("vllm_startup_timeout", 900))
+emit("VLLM_MAX_MODEL_LEN", cfg.get("vllm_max_model_len", ""))
+emit("VLLM_GPU_MEMORY_UTIL", cfg.get("vllm_gpu_memory_util", ""))
+emit("VLLM_TENSOR_PARALLEL_SIZE", cfg.get("vllm_tensor_parallel_size", ""))
+emit("VLLM_DTYPE", cfg.get("vllm_dtype", ""))
+emit("VLLM_EXTRA_ARGS", " ".join(str(arg) for arg in cfg.get("vllm_extra_args", [])))
+PYEOF
+)"
+
+VLLM_BASE_URL="${VLLM_SCHEME}://${VLLM_HOST}:${VLLM_PORT}/v1"
+VLLM_LOG="${LOG_DIR}/vllm_${SLURM_JOB_ID:-local}.log"
+
+cleanup() {
+    if [ -n "${VLLM_PID:-}" ] && kill -0 "${VLLM_PID}" 2>/dev/null; then
+        kill "${VLLM_PID}" 2>/dev/null || true
+        wait "${VLLM_PID}" 2>/dev/null || true
+    fi
+}
+trap cleanup EXIT SIGTERM SIGINT
+
+cd "${VLLM_DIR}"
+
+VLLM_CMD=(vllm serve "${VLLM_MODEL}" --host "${VLLM_HOST}" --port "${VLLM_PORT}")
+if [ -n "${VLLM_DTYPE}" ]; then VLLM_CMD+=(--dtype "${VLLM_DTYPE}"); fi
+if [ -n "${VLLM_MAX_MODEL_LEN}" ]; then VLLM_CMD+=(--max-model-len "${VLLM_MAX_MODEL_LEN}"); fi
+if [ -n "${VLLM_GPU_MEMORY_UTIL}" ]; then VLLM_CMD+=(--gpu-memory-utilization "${VLLM_GPU_MEMORY_UTIL}"); fi
+if [ -n "${VLLM_TENSOR_PARALLEL_SIZE}" ]; then VLLM_CMD+=(--tensor-parallel-size "${VLLM_TENSOR_PARALLEL_SIZE}"); fi
+if [ -n "${VLLM_EXTRA_ARGS}" ]; then
+    # shellcheck disable=SC2206
+    EXTRA_ARGS_ARRAY=(${VLLM_EXTRA_ARGS})
+    VLLM_CMD+=("${EXTRA_ARGS_ARRAY[@]}")
+fi
+
+echo "Starting vLLM server on ${VLLM_BASE_URL}"
+"${VLLM_CMD[@]}" > "${VLLM_LOG}" 2>&1 &
+VLLM_PID=$!
+
+WAITED=0
+until curl -sf "${VLLM_BASE_URL}/models" > /dev/null 2>&1; do
+    if ! kill -0 "${VLLM_PID}" 2>/dev/null; then
+        echo "[ERROR] vLLM exited unexpectedly. Check ${VLLM_LOG}"
+        exit 1
+    fi
+    if [ "${WAITED}" -ge "${VLLM_STARTUP_TIMEOUT}" ]; then
+        echo "[ERROR] vLLM did not answer within ${VLLM_STARTUP_TIMEOUT}s"
+        exit 1
+    fi
+    sleep 5
+    WAITED=$((WAITED + 5))
+    echo "Waiting... ${WAITED}s"
+done
+
+python3 process_questions.py
