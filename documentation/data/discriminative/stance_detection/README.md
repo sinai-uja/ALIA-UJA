@@ -20,6 +20,7 @@ This document explains the origin of the data, the filtering rationale, raw-data
   - [Step 6 — Select annotation columns](#step-6--select-annotation-columns)
 - [Filter Summary](#filter-summary)
 - [Sampling for Annotation](#sampling-for-annotation)
+- [Annotation Guide](#annotation-guide)
 - [Terms of Service](#terms-of-service)
 
 ---
@@ -269,6 +270,14 @@ The pilot validated that:
 4. The **stratification by comment length** (short/medium/long) inside each topic produced a balanced and representative block experience.
 
 These parameters were carried over unchanged into the full study of 3,000 samples across 60 blocks.
+
+---
+
+## Annotation Guide
+
+A detailed annotation guide was designed to support the Prolific annotators. It defines the three labels (**FAVOR**, **CONTRA**, **NEUTRAL**), provides a decision tree for difficult cases, and includes real-world examples drawn from the Decide Madrid platform.
+
+The full guide (in Spanish) is available here: [guia_anotacion.md](guia_anotacion.md).
 
 ---
 
