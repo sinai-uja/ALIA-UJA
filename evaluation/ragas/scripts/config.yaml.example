@@ -1,0 +1,65 @@
+# ============================================================
+#  Configuración general — RAGAS (Anonimizado)
+# ============================================================
+
+# ---------- Inference (modelo de generación, vLLM + OpenAI-compatible) ----------
+llm-api:
+  api_key: "TU_API_KEY_AQUI"
+  base_url: "TU_BASE_URL_AQUI"
+  model_name: "MODELO_LLM_AS_JUDGE"
+  max_tokens: 8192 #2048
+  temperature: 0.0
+  inference_delay_s: 2.0  # Retardo (s) antes de cada llamada de inferencia a RAGAS/LLM
+
+encoder-api:
+  api_key: "TU_API_KEY_AQUI"
+  base_url: "TU_BASE_URL_AQUI"
+  model_name: "MODELO_EMBEDDINGS_A_EVALUAR"
+
+
+# ---------- RAGAS (evaluador LLM, vLLM + OpenAI-compatible) ----------
+ragas:
+  
+  # Métricas RAGAS a evaluar (ragas 0.4.3)
+  metrics:
+    - context_precision
+    - context_utilization
+    - context_relevance
+    - faithfulness
+    - answer_relevancy
+    - factual_correctness
+
+  # ------- Control de envío incremental / límites para RAGAS -------
+  # Estas opciones permiten limitar y enviar las peticiones a RAGAS poco a poco,
+  # reducir concurrencia, activar cache local y controlar reintentos/backoff.
+  # Ajusta según capacidad de la API y coste deseado.
+  send_incrementally: true     # Si true, envía en bloques (chunking)
+  sample_fraction: 1.0         # Fracción de muestras a evaluar (0.0-1.0). 1.0 = todas
+  chunk_size: 4                # Número de muestras por llamada/paquete a RAGAS
+  max_calls: 2                 # 0 = no limitar por número máximo de llamadas (enviar todo)
+  max_concurrency: 4           # Nº máximo de llamadas concurrentes a RAGAS
+  max_retries: 2               # Reintentos por fallo (exponential backoff)
+  backoff_base_s: 2            # Base (segundos) para backoff exponencial
+  global_retry_wait_s: 2.0     # Espera (s) antes del unico reintento global por muestra tras un except
+  inference_delay_s: 2.0       # Retardo (s) antes de cada llamada de inferencia a RAGAS/LLM
+  cache_path: ""  # Ruta para cache opcional de resultados (archivo JSON). "" para desactivar
+  
+  # ------- Checkpoints y backup de progreso -------
+  # Para evitar pérdida de datos si la ejecución se interrumpe
+  backup_batch_size: 100       # Número de muestras entre cada guardado de backup (default 100)
+  backup_dir: ".ragas_backups" # Directorio para almacenar archivos de backup temporales
+
+# ---------- Evaluación ----------
+evaluation:
+  run_evals_first: true
+  export_only_success: true
+  wait_timeout_s: 2400
+  wait_poll_s: 2.0
+
+# ---------- Salida ----------
+output_file: "evaluations_export_project_model_context.csv"
+
+# ---------- Entrada ----------
+# JSONL con columnas:
+# ["id", "user_input", "response", "reference", "retrieved_contexts", "reference_contexts"]
+input_jsonl: "evaluations_input.jsonl"
