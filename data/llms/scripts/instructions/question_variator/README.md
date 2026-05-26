@@ -26,7 +26,6 @@ Estructura:
 - `vllm/process_questions.py`: cliente asincrono para el servidor vLLM local.
 - `vllm/run.py`: arranca vLLM y despues ejecuta `process_questions.py`.
 - `vllm/launcher_question_variator.sh.example`: plantilla SLURM generica para lanzar el flujo local con vLLM.
-- `vllm/inference_server.env.example`: variables de entorno para un servidor de inferencia.
 - `vllm/README.md`: notas de ejecucion para vLLM.
 
 ## Endpoint compatible con OpenAI
