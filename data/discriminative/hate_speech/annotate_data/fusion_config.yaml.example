@@ -1,0 +1,32 @@
+model_artifact: PATH/TO/FUSION/MODEL/fusion_model.pkl
+annotated_data_folder: PATH/TO/ANNOTATED/DATA/FOLDER
+output_jsonl: PATH/TO/OUTPUT/FUSED/DATA/fused_results.jsonl
+
+foe_config:
+  text_column: text
+  input_features:
+    binary_annotations: true
+    comment_embeddings: true
+    explanation_embeddings: true
+feature_meta:
+  comment_embeddings:
+    type: sentence_transformer
+    model_name: PATH/TO/MODEL/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+  explanation_embeddings:
+    columns:
+    - model_column: apertus_it_8B
+      meta:
+        type: sentence_transformer
+        model_name: PATH/TO/MODEL/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+    - model_column: gemma_4_31B_it
+      meta:
+        type: sentence_transformer
+        model_name: PATH/TO/MODEL/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+    - model_column: minimax_m2.5
+      meta:
+        type: sentence_transformer
+        model_name: PATH/TO/MODEL/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+model_columns:
+- apertus_it_8B
+- gemma_4_31B_it
+- minimax_m2.5

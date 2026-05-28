@@ -1,0 +1,47 @@
+prompt_path: "PATH/TO/PROMPT/prompt.md"
+
+models:
+  minimax_m2.5: "PATH/TO/MODELS/MiniMaxAI/MiniMax-M2.5"
+  gpt_oss_120b: "PATH/TO/MODELS/openai/gpt-oss-120b"
+  gemma_4_31B_it: "PATH/TO/MODELS/google/gemma-4-31B-it"
+  phi_4: "PATH/TO/MODELS/microsoft/phi-4"
+  apertus_it_8B: "PATH/TO/MODELS/swiss-ai/Apertus-8B-Instruct-2509"
+  mistral_7b_instruct_v0.3: "PATH/TO/MODELS/mistralai/Mistral-7B-Instruct-v0.3"
+
+# --- Model loading ---
+model_params:
+  max_model_len: 8192
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.9
+  dtype: bfloat16               
+  seed: 42
+  enforce_eager: true
+# --- Inference ---
+sampling_params:
+  max_tokens: 1024
+  temperature: 0.15
+  top_p: 0.90
+  seed: 42
+
+# Model overrides for optimal performance, e.g.:
+model_params_overrides:
+  minimax_m2.5:
+    tensor_parallel_size: 4
+    batch_size: 4096
+  gpt_oss_120b:
+    tensor_parallel_size: 4
+    batch_size: 4096
+  gemma_4_31B_it:
+    batch_size: 2048
+  phi_4:
+    batch_size: 2048
+  apertus_it_8B:
+    batch_size: 4096
+  mistral_7b_instruct_v0.3:
+    batch_size: 4096
+
+sampling_params_overrides:
+  gpt_oss_120b:
+    max_tokens: 2048
+  apertus_it_8B:
+    max_tokens: 2048

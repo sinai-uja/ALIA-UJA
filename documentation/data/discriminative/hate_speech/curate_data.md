@@ -1,9 +1,9 @@
-# Curated Datasets — Filtering, Deduplication, and Anonymization
+# Curation Data Process - ALIA Spanish Discriminative Hate Speech Corpus Documentation
 
-This directory contains the documentation by steps for the **curation** process (filtering, deduplication, and anonymization) derived from the raw data collected from YouTube and TikTok. The pipeline is based on [datatrove](https://github.com/huggingface/datatrove), the toolchain used by Hugging Face to prepare [HuggingFaceFW/fineweb](https://huggingface.co/datasets/HuggingFaceFW/fineweb).
+This file contains the documentation by steps for the **curation** process (filtering, deduplication, and anonymization) derived from the raw data collected from YouTube and TikTok. The pipeline is based on [datatrove](https://github.com/huggingface/datatrove), the toolchain used by Hugging Face to prepare [HuggingFaceFW/fineweb](https://huggingface.co/datasets/HuggingFaceFW/fineweb).
 
 
-## Filtering and Deduplication Process
+## Filtering, Deduplication, and Anonymization
 
 ### Stage 1: Filtering and anonymization
 **Input:** Raw JSONL without processing (YouTube with `cid`, TikTok with `id`)
@@ -82,13 +82,13 @@ After MinHash deduplication the dataset is deduplicated and written out:
 
 ## Process Summary
 
-| Dataset | Raw | Intermediate | Final | Removed in Stage 1 | Removed in Stage 2-4 |
-|---------|-----:|-------------:|------:|-------------------:|---------------------:|
-| TikTok/by_hashtag | 42,818 | 27,387 | 27,096 | 15,431 | 291 |
-| YouTube/Hortaleza | 10,731 | 8,507 | 8,426 | 2,224 | 81 |
-| YouTube/Jumilla | 24,195 | 19,502 | 19,207 | 4,693 | 295 |
-| YouTube/Torre Pacheco | 223,811 | 177,197 | 173,979 | 46,614 | 3,218 |
-| **TOTAL** | **301,555** | **232,593** | **228,708** | **68,962** | **3,885** |
+| Dataset | Raw | Removed in Stage 1 | Intermediate | Removed in Stage 2-4 | Final |
+|---------|-----:|-------------------:|-------------:|---------------------:|------:|
+| TikTok/by_hashtag | 42,818 | 15,431 | 27,387 | 291 | 27,096 |
+| YouTube/Hortaleza | 10,731 | 2,224 | 8,507 | 81 | 8,426 |
+| YouTube/Jumilla | 24,195 | 4,693 | 19,502 | 295 | 19,207 |
+| YouTube/Torre Pacheco | 223,811 | 46,614 | 177,197 | 3,218 | 173,979 |
+| **TOTAL** | **301,555** | **68,962** | **232,593** | **3,885** | **228,708** |
 
 
 
