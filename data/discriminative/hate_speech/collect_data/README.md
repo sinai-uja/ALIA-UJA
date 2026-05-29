@@ -105,7 +105,7 @@ python collect_youtube.py --config /path/to/config.yaml
 
 ---
 
-### `config.yaml`
+### `config.yaml.example`
 Unified configuration file in YAML format for both platforms.
 
 ---

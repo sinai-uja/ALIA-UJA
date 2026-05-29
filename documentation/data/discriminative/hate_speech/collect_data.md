@@ -1,4 +1,4 @@
-# Raw Discriminatory Hate Speech Data Collection Documentation
+# Raw Data Collection Process - ALIA Spanish Discriminative Hate Speech Corpus Documentation
 
 ## Data Selection Criteria and Research Context
 
