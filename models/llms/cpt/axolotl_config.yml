@@ -1,0 +1,124 @@
+# =============================================================================
+# CONFIGURACIÓN AXOLOTL - SALAMANDRA BIOMEDICAL CPT (CALENDULA)
+# =============================================================================
+# Config generado para el cluster CALENDULA.
+# Adaptado para Continual Pretraining (CPT) / Domain Adaptation.
+# =============================================================================
+# -----------------------------------------------------------------------------
+# MODELO BASE
+# -----------------------------------------------------------------------------
+base_model: ./salamandra-7b
+load_in_8bit: false
+load_in_4bit: false
+flash_attention: true
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+trust_remote_code: false
+# -----------------------------------------------------------------------------
+# TIPO DE DATOS
+# -----------------------------------------------------------------------------
+torch_dtype: bfloat16
+bf16: true
+fp16: false
+device_map: auto
+# -----------------------------------------------------------------------------
+# TOKENS ESPECIALES
+# -----------------------------------------------------------------------------
+special_tokens:
+  eos_token: "<|im_end|>"
+  pad_token: "<pad>"
+# -----------------------------------------------------------------------------
+# SECUENCIAS Y PACKING
+# -----------------------------------------------------------------------------
+sequence_len: 8192
+sample_packing: true
+pad_to_sequence_len: true
+eval_sample_packing: false
+# -----------------------------------------------------------------------------
+# BATCH SIZE Y ACUMULACIÓN
+# -----------------------------------------------------------------------------
+micro_batch_size: 8
+gradient_accumulation_steps: 2
+eval_batch_size: 1
+# -----------------------------------------------------------------------------
+# OPTIMIZACIÓN
+# -----------------------------------------------------------------------------
+optimizer: adamw_torch_fused
+learning_rate: 2.0e-5
+adam_beta1: 0.9
+adam_beta2: 0.94
+adam_epsilon: 1e-8
+max_grad_norm: 0.28
+weight_decay: 0.003
+# -----------------------------------------------------------------------------
+# LEARNING RATE SCHEDULER
+# -----------------------------------------------------------------------------
+lr_scheduler: cosine
+warmup_steps: 500
+cosine_min_lr_ratio: 0.10
+# -----------------------------------------------------------------------------
+# MEMORIA Y ATENCIÓN
+# -----------------------------------------------------------------------------
+gradient_checkpointing: true
+# -----------------------------------------------------------------------------
+# ENTRENAMIENTO DISTRIBUIDO
+# -----------------------------------------------------------------------------
+distributed_backend: "nccl"
+# -----------------------------------------------------------------------------
+# DEEPSPEED
+# -----------------------------------------------------------------------------
+deepspeed: ./ds_config.json
+# -----------------------------------------------------------------------------
+# ÉPOCAS
+# -----------------------------------------------------------------------------
+num_epochs: 4
+# -----------------------------------------------------------------------------
+# CHECKPOINTING Y GUARDADO
+# -----------------------------------------------------------------------------
+output_dir: ./output_training_cpt/
+save_steps: 100
+save_total_limit: 100
+save_safetensors: true
+resume_from_checkpoint: null
+# -----------------------------------------------------------------------------
+# EVALUACIÓN
+# -----------------------------------------------------------------------------
+val_set_size: 1000
+eval_steps: 50
+eval_table_size: 5
+eval_max_new_tokens: 100
+# -----------------------------------------------------------------------------
+# LOGGING Y MONITOREO
+# -----------------------------------------------------------------------------
+logging_steps: 5
+use_tensorboard: false
+wandb_project: domain_cpt_training
+wandb_mode: offline
+wandb_entity: null
+wandb_name: salamandra-domain-cpt
+wandb_log_model: "false"
+wandb_watch: "false"
+# -----------------------------------------------------------------------------
+# REPRODUCIBILIDAD
+# -----------------------------------------------------------------------------
+seed: 42
+strict: false
+early_stopping_patience: null
+# -----------------------------------------------------------------------------
+# PLUGINS - Liger Kernel
+# -----------------------------------------------------------------------------
+plugins:
+  - axolotl.integrations.liger.LigerPlugin
+liger_rope: true
+liger_rms_norm: true
+liger_glu_activation: true
+liger_layer_norm: true
+liger_fused_linear_cross_entropy: true
+# -----------------------------------------------------------------------------
+# DATASET
+# Para entrenamiento continuo (CPT) usamos 'completion' con campo 'text'
+# -----------------------------------------------------------------------------
+datasets:
+  - path: ./pretraining_data.jsonl
+    type: completion
+    field: text

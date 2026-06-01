@@ -1,0 +1,170 @@
+# =============================================================================
+# CONFIGURACIÓN AXOLOTL - SALAMANDRA BIOMEDICAL SFT (CALENDULA)
+# =============================================================================
+# Config generado para el cluster CALENDULA.
+# Incorpora las correcciones validadas en ADA para que <|im_end|>
+# quede correctamente dentro del span entrenable del asistente.
+# Cambios clave respecto al config original de CALENDULA:
+#   - eos_token: "<|im_end|>"  (antes: "</s>")
+#   - train_on_eos: turn       (antes: last)
+#   - Sin \n al final del turno del asistente en el Jinja template
+# =============================================================================
+# -----------------------------------------------------------------------------
+# MODELO BASE
+# -----------------------------------------------------------------------------
+base_model: ../cpt/output_training_cpt
+load_in_8bit: false
+load_in_4bit: false
+flash_attention: true
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+trust_remote_code: false
+# -----------------------------------------------------------------------------
+# TIPO DE DATOS
+# -----------------------------------------------------------------------------
+torch_dtype: bfloat16
+bf16: true
+fp16: false
+device_map: auto
+# -----------------------------------------------------------------------------
+# TOKENS ESPECIALES
+# CORRECCIÓN: eos_token debe ser <|im_end|> para que Axolotl lo reconozca
+# como token de fin de turno al aplicar las máscaras de entrenamiento.
+# -----------------------------------------------------------------------------
+special_tokens:
+  eos_token: "<|im_end|>"
+  pad_token: "<pad>"
+# -----------------------------------------------------------------------------
+# SECUENCIAS Y PACKING
+# -----------------------------------------------------------------------------
+sequence_len: 8192
+sample_packing: true
+pad_to_sequence_len: true
+eval_sample_packing: false
+# -----------------------------------------------------------------------------
+# BATCH SIZE Y ACUMULACIÓN
+# -----------------------------------------------------------------------------
+micro_batch_size: 8
+gradient_accumulation_steps: 2
+eval_batch_size: 1
+# -----------------------------------------------------------------------------
+# OPTIMIZACIÓN
+# -----------------------------------------------------------------------------
+optimizer: adamw_torch_fused
+learning_rate: 1.4e-5
+adam_beta1: 0.9
+adam_beta2: 0.94
+adam_epsilon: 1e-8
+max_grad_norm: 0.28
+weight_decay: 0.003
+neftune_noise_alpha: 5
+# -----------------------------------------------------------------------------
+# LEARNING RATE SCHEDULER
+# -----------------------------------------------------------------------------
+lr_scheduler: cosine
+warmup_steps: 500
+cosine_min_lr_ratio: 0.10
+# -----------------------------------------------------------------------------
+# MEMORIA Y ATENCIÓN
+# -----------------------------------------------------------------------------
+gradient_checkpointing: true
+# -----------------------------------------------------------------------------
+# ENTRENAMIENTO DISTRIBUIDO
+# -----------------------------------------------------------------------------
+distributed_backend: "nccl"
+# -----------------------------------------------------------------------------
+# DEEPSPEED
+# -----------------------------------------------------------------------------
+deepspeed: ./ds_config.json
+# -----------------------------------------------------------------------------
+# ÉPOCAS
+# -----------------------------------------------------------------------------
+num_epochs: 4
+# -----------------------------------------------------------------------------
+# CHECKPOINTING Y GUARDADO
+# -----------------------------------------------------------------------------
+output_dir: ./output_training_sft/
+save_steps: 100
+save_total_limit: 100
+save_safetensors: true
+resume_from_checkpoint: null
+# -----------------------------------------------------------------------------
+# EVALUACIÓN
+# -----------------------------------------------------------------------------
+val_set_size: 1000
+eval_steps: 50
+eval_table_size: 5
+eval_max_new_tokens: 100
+# -----------------------------------------------------------------------------
+# LOGGING Y MONITOREO
+# -----------------------------------------------------------------------------
+logging_steps: 5
+use_tensorboard: false
+wandb_project: domain_it_training
+wandb_mode: offline
+wandb_entity: null
+wandb_name: salamandra-domain-it
+wandb_log_model: "false"
+wandb_watch: "false"
+# -----------------------------------------------------------------------------
+# REPRODUCIBILIDAD
+# -----------------------------------------------------------------------------
+seed: 42
+strict: false
+early_stopping_patience: null
+# -----------------------------------------------------------------------------
+# PLUGINS - Liger Kernel
+# -----------------------------------------------------------------------------
+plugins:
+  - axolotl.integrations.liger.LigerPlugin
+liger_rope: true
+liger_rms_norm: true
+liger_glu_activation: true
+liger_layer_norm: true
+liger_fused_linear_cross_entropy: true
+# -----------------------------------------------------------------------------
+# ROLE BOUNDARIES
+# Garantiza que <|im_end|> del asistente quede dentro del span entrenable.
+# -----------------------------------------------------------------------------
+role_boundaries:
+  - role: assistant
+    start: "<|im_start|>assistant\n"
+    end: "<|im_end|>"
+    include_start: false
+    include_end: true
+# -----------------------------------------------------------------------------
+# DATASET
+# -----------------------------------------------------------------------------
+datasets:
+  - path: ./ALIA-cultural-domain-SFT-100per-training-new_train.jsonl
+    type: chat_template
+    chat_template: jinja
+    chat_template_jinja: |
+      {%- if not date_string is defined %}
+      {%- set date_string = "2025-09-30" %}
+      {%- endif %}
+      {%- set system_message = messages[0].content if messages[0].role == "system" else "I am ALIA Biomedical, an AI language model specialized in biomedical and clinical domains, based on Salamandra-7b-instruct and developed by SINAI Research Group at Universidad de Jaén. I am part of Spain's ALIA family of foundational models, fine-tuned on a curated corpus of biomedical and clinical documents to understand medical terminology, clinical guidelines, and healthcare procedures. My training data includes scientific biomedical literature, clinical records, pharmacological texts, and healthcare regulatory frameworks specific to the Spanish and European health systems. My knowledge base was last updated on September 2025. Soy ALIA Biomédico, un modelo lingüístico de IA especializado en el ámbito biomédico y clínico, basado en Salamandra-7b-instruct y desarrollado por el grupo de investigación SINAI de la Universidad de Jaén. Formo parte de la familia de modelos fundacionales ALIA de España, ajustado con un corpus curado de documentos biomédicos y clínicos para comprender la terminología médica española, las guías clínicas y los procedimientos sanitarios. Mis datos de entrenamiento incluyen literatura científica biomédica, registros clínicos, textos farmacológicos y marcos regulatorios sanitarios específicos del sistema de salud español y europeo. Mi base de conocimientos se actualizó por última vez en septiembre de 2025." %}
+      {%- if messages[0].role == "system" %}
+      {%- set messages = messages[1:] %}
+      {%- endif %}
+      {{ "<|im_start|>system\n" + system_message + "<|im_end|>\n" }}
+      {%- for message in messages %}
+      {%- if message["role"] == "assistant" %}
+      {{ "<|im_start|>assistant\n" + message["content"] + "<|im_end|>" }}
+      {%- else %}
+      {{ "<|im_start|>" + message["role"] + "\n" + message["content"] + "<|im_end|>\n" }}
+      {%- endif %}
+      {%- endfor %}
+      {%- if add_generation_prompt %}
+      {{ "<|im_start|>assistant\n" }}
+      {%- endif %}
+    field_messages: conversations
+    message_property_mappings:
+      role: from
+      content: value
+    roles:
+      user: ["human", "user", "question"]
+      assistant: ["gpt", "assistant", "response"]
+      system: ["system", "system_prompt"]
+    roles_to_train: ["gpt", "assistant"]
+    train_on_eos: turn
