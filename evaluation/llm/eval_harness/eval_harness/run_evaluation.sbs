@@ -1,0 +1,169 @@
+#!/bin/bash
+# ============================================================================
+# Generic LM Evaluation Harness Launcher (SLURM)
+# ============================================================================
+# Usage:
+#   export MODEL_PATH="YOUR_MODEL_PATH"
+#   export TASKS="task1,task2,task3"
+#   export YAMLS_PATH="YOUR_YAMLS_PATH"      # optional
+#   export OUTPUT_PATH="YOUR_OUTPUT_PATH"    # optional
+#   sbatch run_evaluation.sbs
+# ============================================================================
+
+# --- SLURM directives (tune to your cluster) ---
+#SBATCH --job-name=lm-eval
+#SBATCH --partition=normal
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=80G
+#SBATCH --gres=gpu:2
+
+# ============================================================================
+# 1. CONFIGURATION — fill or override via environment variables
+# ============================================================================
+
+# Path to the model directory or HuggingFace hub name
+MODEL_PATH="${MODEL_PATH:-YOUR_MODEL_PATH}"
+
+# Name/tag for this run (used in logging)
+MODEL_NAME="${MODEL_NAME:-model}"
+
+# Comma-separated list of lm-eval tasks
+TASKS="${TASKS:-YOUR_TASKS}"
+
+# Path to custom YAML task definitions (leave empty if not needed)
+YAMLS_PATH="${YAMLS_PATH:-}"
+
+# Directory where results will be written
+OUTPUT_PATH="${OUTPUT_PATH:-./eval_results}"
+
+# HuggingFace / data caches (customize or leave empty to use defaults)
+HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-}"
+HF_HOME="${HF_HOME:-}"
+
+# lm-evaluation-harness installation directory
+HARNESS_DIR="${HARNESS_DIR:-./lm-evaluation-harness}"
+
+# Conda / virtual environment name
+CONDA_ENV="${CONDA_ENV:-vllm}"
+
+# Number of GPUs for tensor parallelism
+NUM_GPUS="${NUM_GPUS:-2}"
+
+# Maximum sequence length
+MAX_MODEL_LEN="${MAX_MODEL_LEN:-4096}"
+
+# Batch size: "auto" or an integer
+BATCH_SIZE="${BATCH_SIZE:-auto}"
+
+# Generation kwargs (JSON string)
+GEN_KWARGS="${GEN_KWARGS:-'{"max_gen_toks":512,"do_sample":false,"top_k":1,"temperature":0}'}"
+
+# Additional model arguments for vLLM (comma-separated key=value)
+EXTRA_MODEL_ARGS="${EXTRA_MODEL_ARGS:-}"
+
+# ============================================================================
+# 2. ENVIRONMENT SETUP
+# ============================================================================
+
+module purge
+
+# --- Load your cluster modules (adjust as needed) ---
+# Examples:
+#   module load cuda/12.1
+#   spack load miniconda3
+#   spack load cuda@12.1
+#
+# <<< ADD YOUR MODULE COMMANDS BELOW >>>
+
+# --- Activate Python environment ---
+# Example: source activate "${CONDA_ENV}"
+#          or: source /path/to/venv/bin/activate
+#
+# <<< ADD YOUR ENVIRONMENT ACTIVATION BELOW >>>
+
+# --- Optional: fix LD_LIBRARY_PATH for torch/vLLM ---
+# export LD_LIBRARY_PATH=/path/to/torch/lib:$LD_LIBRARY_PATH
+
+# --- HuggingFace / PyTorch settings ---
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-1}"
+export TOKENIZERS_PARALLELISM="${TOKENIZERS_PARALLELISM:-true}"
+export PYTORCH_ALLOC_CONF="${PYTORCH_ALLOC_CONF:-expandable_segments:True,max_split_size_mb:128}"
+export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-16}"
+export VLLM_WORKER_MULTIPROC_METHOD="${VLLM_WORKER_MULTIPROC_METHOD:-spawn}"
+
+if [ -n "$HF_DATASETS_CACHE" ]; then
+    export HF_DATASETS_CACHE
+fi
+if [ -n "$HF_HOME" ]; then
+    export HF_HOME
+fi
+
+# ============================================================================
+# 3. BUILD MODEL ARGS
+# ============================================================================
+
+MODEL_ARGS="pretrained=${MODEL_PATH},trust_remote_code=True,tensor_parallel_size=${NUM_GPUS},gpu_memory_utilization=0.8,max_model_len=${MAX_MODEL_LEN},disable_custom_all_reduce=True"
+
+if [ -n "$EXTRA_MODEL_ARGS" ]; then
+    MODEL_ARGS="${MODEL_ARGS},${EXTRA_MODEL_ARGS}"
+fi
+
+# ============================================================================
+# 4. BUILD LM-EVAL COMMAND
+# ============================================================================
+
+LM_EVAL_CMD="python -m lm_eval \
+  --model vllm \
+  --device cuda \
+  --model_args ${MODEL_ARGS} \
+  --tasks ${TASKS} \
+  --batch_size ${BATCH_SIZE} \
+  --gen_kwargs ${GEN_KWARGS} \
+  --output_path ${OUTPUT_PATH} \
+  --log_samples \
+  --apply_chat_template"
+
+if [ -n "$YAMLS_PATH" ]; then
+    LM_EVAL_CMD="${LM_EVAL_CMD} --include_path ${YAMLS_PATH}"
+fi
+
+# ============================================================================
+# 5. RUN
+# ============================================================================
+
+echo "======================================================"
+echo "  LM Evaluation Harness — Generic Launcher"
+echo "======================================================"
+echo "Job ID:     $SLURM_JOB_ID"
+echo "Node:       $SLURM_NODELIST"
+echo "Model:      $MODEL_PATH"
+echo "Tasks:      $TASKS"
+echo "Output:     $OUTPUT_PATH"
+echo "======================================================"
+
+if command -v nvidia-smi &> /dev/null; then
+    nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
+fi
+
+START=$(date +%s)
+
+# Enter harness directory if it exists
+if [ -d "$HARNESS_DIR" ]; then
+    cd "$HARNESS_DIR" || exit 1
+fi
+
+echo "Running: $LM_EVAL_CMD"
+eval "$LM_EVAL_CMD"
+
+EXIT_CODE=$?
+
+END=$(date +%s)
+echo "======================================================"
+echo "Job finished: $SLURM_JOB_ID"
+echo "Total time:   $((END - START)) seconds"
+echo "Exit code:    $EXIT_CODE"
+echo "======================================================"
+
+exit $EXIT_CODE
