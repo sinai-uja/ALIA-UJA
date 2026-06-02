@@ -16,7 +16,6 @@ MODEL_PATH = "/path/to/base/model"
 DATASETS_DIR_DOMAIN = "/path/to/domain/hard_negatives/"
 DATASETS_DIR_GENERALS = "/path/to/general/hard_negatives/"
 
-
 # ─────────────────────────────────────────────
 # OUTPUT CONFIGURATION
 # ─────────────────────────────────────────────

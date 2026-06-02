@@ -1,0 +1,4 @@
+metric,score_minimo,score_maximo,score_mean,score_median,score_std
+hit@1,0.0,1.0,0.492,0.0,0.49993599590347565
+hit@k,0.0,1.0,0.716,1.0,0.45093680266751346
+context_relevance,0.0,1.0,0.7765,1.0,0.3871985924561194
