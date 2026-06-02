@@ -19,7 +19,7 @@ In summary, the conducted runs in this stage followed this sequence:
 
 This distinction between the ranked candidate and the retrained persisted model is important for interpreting the numbers in this document: the ranking files tell us which configuration was selected, while the persisted run log tells us the final validation and test performance of the model that was actually kept.
 
-## 3. Best-ranked configuration and results
+## 2. Best-ranked configuration and results
 
 The top-ranked candidate combines three few-shot prompted experts (`apertus_it_8B`, `gemma_4_31B_it`, and `minimax_m2.5`), `sentence_transformer` embeddings, and the `sentiment_mlp` fusion head. That candidate was selected because it obtained the best pooled validation `f1_macro` in the ranking table, with `kappa` used as a secondary tie-breaker. Its configuration can be summarized as follows:
 
@@ -44,7 +44,7 @@ The top-ranked candidate combines three few-shot prompted experts (`apertus_it_8
 The metrics that made this configuration the best-ranked candidate were: `f1_macro = 0.8180`, `kappa = 0.6360`, `accuracy = 0.8241`, with `n_test = 7122`.
 
 
-## 4. Final model and its performance
+## 3. Final model and its performance
 
 After the best-ranked configuration was selected, the model was retrained from scratch on the pooled training data and persisted as `fusion_model.pkl`.
 
@@ -55,7 +55,7 @@ The final aggregated validation and test metrics for the persisted model are:
 | Pooled Validation | 0.8230 | 0.8194 | 0.6389 |
 | Pooled Test | 0.8179 | 0.8112 | 0.6225 |
 
-## 5. Annotation process and stats
+## 4. Annotation process and stats
 
 The curated corpus was annotated automatically by the set of few-shot prompted LLM experts used in this project. Annotations were produced as per-model JSONL files (one record per comment and model) using the pipeline described in [foe_experiments.md](foe_experiments.md).
 
@@ -84,7 +84,7 @@ Majority-vote distribution by source (on the common IDs):
 | youtube | 201,612 | 56,812 | 28.18% | 144,800 | 71.82% |
 | tiktok | 27,096 | 2,581 | 9.53% | 24,515 | 90.47% |
 
-## 6. FoE classification
+## 5. FoE classification
 
 The following aggregates are computed over the final corpus in [SINAI/ALIA-es-discriminative-hate-speech](https://huggingface.co/datasets/SINAI/ALIA-es-discriminative-hate-speech).
 
@@ -94,7 +94,7 @@ The following aggregates are computed over the final corpus in [SINAI/ALIA-es-di
 | `foe_class = 0` (no-hate) | 167,774 (73.36%) |
 | `foe_class = 1` (hate) | 60,934 (26.64%) |
 
-The distribution of `foe_score` (continuous confidence in the hate prediction) is available as a histogram image: [docs/final/foe_score_hist.png](foe_score_hist.png).
+The distribution of `foe_score` (continuous confidence in the hate prediction) is available as a histogram image: [docs/final/foe_score_hist.png](docs/final/foe_score_hist.png).
 
 ## **Example Record (random sample)**
 
