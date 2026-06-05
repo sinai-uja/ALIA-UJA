@@ -49,6 +49,7 @@ Este directorio reúne la documentación técnica, metodológica y operativa del
   - [Directorio de Datos para LLMs](/data/llms)
   - [Directorio de Datos para Modelos Encoders](/data/encoders)
   - [Directorio de Datos Paralelos](/data/parallel)
+  - [Directorio de Datos Discriminativos](/data/discriminative)
 - [Directorio de Modelos](/models)
   - [Directorio de Datos para LLMs](/models/llms)
   - [Directorio de Datos para Modelos Encoders](/models/encoders)
