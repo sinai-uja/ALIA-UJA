@@ -18,6 +18,9 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 ## Índice de ficheros en el directorio
 - Ficheros de código
   - [Recolección de datos en crudo (YouTube + TikTok) para Discurso de Odio](hate_speech/collect_data/)
+  - [Curación y filtrado de datos para Discurso de Odio](hate_speech/curate_data/)
+  - [Anotación y modelo de fusión para Discurso de Odio](hate_speech/annotate_data/)
+  - [Scripts del pipeline de Detección de Postura](stance_detection/scripts/)
 
 ---
 

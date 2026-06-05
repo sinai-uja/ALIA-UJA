@@ -1,6 +1,6 @@
 # Curation Data Process - ALIA Spanish Discriminative Hate Speech Corpus Documentation
 
-This file contains the documentation by steps for the **curation** process (filtering, deduplication, and anonymization) derived from the raw data collected from YouTube and TikTok. The pipeline is based on [datatrove](https://github.com/huggingface/datatrove), the toolchain used by Hugging Face to prepare [HuggingFaceFW/fineweb](https://huggingface.co/datasets/HuggingFaceFW/fineweb).
+This file contains the step-by-step documentation for the **curation** process (filtering, deduplication, and anonymization) derived from the raw data collected from YouTube and TikTok. The pipeline is based on [datatrove](https://github.com/huggingface/datatrove), the toolchain used by Hugging Face to prepare [HuggingFaceFW/fineweb](https://huggingface.co/datasets/HuggingFaceFW/fineweb).
 
 
 ## Filtering, Deduplication, and Anonymization
@@ -36,7 +36,7 @@ This file contains the documentation by steps for the **curation** process (filt
    - Applied to **all comments that pass the previous filters**
 
 ### Intermediate State (after Stage 1)
-After Stage 1 filtering the dataset is reduced and anonymized:
+After Stage 1 filtering, the dataset is reduced and anonymized:
 - **Removed:** Comments with no text, emoji-only content, non-Spanish content, heuristic spam
 - **Anonymized:** All `@...` mentions replaced with the generic `@usuario`
 - **Only fields kept:** `id` and `text` (metadata discarded)
@@ -69,7 +69,7 @@ MinHash is a similar-document deduplication algorithm used by FineWeb. It consis
 - Writes only documents that do not appear in `removed_duplicates/`
 
 ### Final State (after Stages 2–4)
-After MinHash deduplication the dataset is deduplicated and written out:
+After MinHash deduplication, the dataset is deduplicated and written out:
 - **Deduplicated:** Exact duplicates and similar near-duplicates removed (MinHash clustering)
 - **Only fields kept:** `id` and `text` (uncompressed, flat JSONL format)
 - **Actual final size:**

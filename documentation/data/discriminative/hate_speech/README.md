@@ -10,7 +10,7 @@ Fomentamos la apertura y reproducibilidad en nuestras investigaciones; por ello 
 ---
 
 ## Índice de Documentación
-- [Documentación de Datos Discriminativos de Discurso de Odio](../discriminative/hate_speech)
+- [Documentación de Datos Discriminativos](../README.md)
 
 ## Índice de ficheros en el directorio
 - Ficheros y recursos principales
