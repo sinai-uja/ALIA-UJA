@@ -21,7 +21,6 @@ Reproducible pipeline to build a **Direct Preference Optimization (DPO)** datase
       - [5.1 — Quality Auditing](#51--quality-auditing)
       - [5.2 — Prompt Clustering](#52--prompt-clustering)
   - [📁 Repository Structure](#-repository-structure)
-  - [📦 Deliverables](#-deliverables)
   - [🔧 Operational Notes](#-operational-notes)
 
 ---
