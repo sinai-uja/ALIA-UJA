@@ -1,0 +1,25 @@
+# Configuración para auditoría semántica con un servidor compatible con OpenAI.
+
+openai:
+  # URL del servidor externo compatible con OpenAI
+  # Ejemplo de endpoint local/servidor privado:
+  # base_url: "http://your-server:port/v1"
+  # Ejemplo de endpoint público (OpenAI):
+  # base_url: "https://api.openai.com/v1"
+  base_url: "https://your-openai-compatible-endpoint/v1"
+
+  # API Key para autenticación
+  # En producción, usa variables de entorno (os.environ["OPENAI_API_KEY"])
+  api_key: "your-api-key"
+
+embeddings:
+  model: "your-embedding-model-name"
+  batch_size: 16
+  max_concurrency: 1
+  timeout: 300
+  request_timeout: 90
+  max_retries: 2
+  request_retries: 5
+  retry_base_seconds: 2
+  min_batch_size: 1
+  skip_failed_embeddings: true
