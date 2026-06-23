@@ -365,35 +365,6 @@ dpo_data/prompt_cluster_analysis/
 └── cluster_prompts.py              # Step 5.2 — prompt clustering
 ```
 
-**Generated outputs** (not committed):
-
-```
-data/
-├── prompts/
-│   ├── magpie_prompts_<model>_<max_tokens>.jsonl
-│   └── red_teaming_prompts_<model>_<max_tokens>.jsonl
-└── responses/
-    └── responses_<model_a>-<model_b>_<max_tokens>.jsonl
-
-dpo_data/
-├── dpo_dataset_<model>_kimi.jsonl
-├── dpo_dataset_clean_merged.jsonl
-├── dpo_dataset_clean_merged.csv
-├── dpo_dataset_clean_merged_no_reasoning.jsonl
-├── dpo_dataset_removed.jsonl
-├── dpo_clean_summary.csv
-├── dpo_clean_metrics.csv
-├── audit_report.json
-├── audit_metrics.csv
-├── prompt_clusters.csv
-└── prompt_cluster_analysis/
-```
-
----
-
-## 📦 Deliverables
-
-See [`ENTREGABLES.md`](./ENTREGABLES.md) for the complete list of artifacts produced by the pipeline (final dataset, audit reports, cluster analysis, etc.).
 
 ---
 
