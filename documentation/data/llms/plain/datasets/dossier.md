@@ -1,5 +1,5 @@
 # VANDELVIRA-DATA dossier
-*Última actualización: 24-06-2026*
+*Última actualización: 25-06-2026*
 
 ## Tabla de contenidos
 - [Biomédico](#biomédico)
@@ -9,8 +9,8 @@
 ---
 
 La información sobre el número de tokens se los datasets y dominios se encuentra en estos ficheros:
-- [Tokens por dataset](resources.csv)
-- [Tokens por dominio](resources_per_domain.csv)
+- [Tokens por dataset](data/llms/documentation/datasets/resources.csv)
+- [Tokens por dominio](data/llms/documentation/datasets/resources_per_domain.csv)
 
 ---
 
@@ -1016,9 +1016,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 1194083306
-- Millons of tokens: 1194.0833
-- Billons of tokens: 1.1941
+- Number of tokens: 65801579
+- Millons of tokens: 65.8016
+- Billons of tokens: 0.0658
 
 ### Boletin_Oficial_Provincial_Almeria
 
