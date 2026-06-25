@@ -985,9 +985,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 573215708
-- Millons of tokens: 573.2157
-- Billons of tokens: 0.5732
+- Number of tokens: 248902474
+- Millons of tokens: 248.9025
+- Billons of tokens: 0.2489
 
 ### Licitaciones
 
