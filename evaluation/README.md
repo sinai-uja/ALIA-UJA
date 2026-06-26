@@ -16,7 +16,7 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
 
 - [Documentación de evaluación](/documentation/evaluation)
 - [Evaluación de encoders con MTEB](/documentation/evaluation/encoders/process_evaluation_mteb.md)
-- [Evaluación LLM-as-judge con RAGAS (estado preliminar)](/documentation/evaluation/encoders/process_evaluation_ragas.md)
+- [Evaluación de modelos de embeddings LLM-as-judge con RAGAS (estado preliminar)](/documentation/evaluation/encoders/process_evaluation_ragas.md)
 
 
 ---
@@ -58,6 +58,7 @@ Actualmente incluye:
   - [Directorio de Datos para LLMs](/data/llms)
   - [Directorio de Datos para Modelos Encoders](/data/encoders)
   - [Directorio de Datos Paralelos](/data/parallel)
+  - [Directorio de Datos Discriminativos](/data/discriminative)
 - [Directorio de Modelos](/models)
   - [Directorio de Datos para LLMs](/models/llms)
   - [Directorio de Datos para Modelos Encoders](/models/encoders)

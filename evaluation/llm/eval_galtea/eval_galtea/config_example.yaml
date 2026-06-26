@@ -1,0 +1,30 @@
+# ============================================================
+#  Generic Galtea evaluation config template
+# ============================================================
+
+# ---------- Galtea ----------
+galtea:
+  api_key: "${GALTEA_API_KEY}"   # Set via env var or replace inline (never commit real keys)
+
+# ---------- Test / Version ----------
+test:
+  test_id: "YOUR_TEST_ID_HERE"       # ID of the test case dataset in Galtea
+  version_id: "YOUR_VERSION_ID_HERE" # ID of the model version registered in Galtea
+  limit: 0                           # 0 = evaluate all; N = evaluate first N rows
+
+# ---------- Metrics (LLM Judges) ----------
+# Add the EXACT names of your Galtea LLM Judge metrics.
+# One evaluation per metric per question will be created.
+galtea_metrics:
+  - name: "LLM Judge Metric Example - Domain"
+  # - name: "LLM Judge Metric Another Judge - Domain"
+
+# ---------- Evaluation behaviour ----------
+evaluation:
+  export_only_success: true
+  wait_timeout_s: 7200    # max seconds to wait for all evaluations
+  wait_poll_s: 5.0        # polling interval in seconds
+
+# ---------- Files ----------
+predictions_file: "path/to/predictions.csv"   # CSV with columns: input, expected_output, actual_output
+output_file: "path/to/evaluations.csv"          # Base name; script appends _galtea_ev.csv

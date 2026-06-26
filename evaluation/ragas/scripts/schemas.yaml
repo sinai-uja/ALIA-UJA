@@ -1,0 +1,61 @@
+
+"ALIA-<domain>-triplets-contexts.jsonl":
+- source_id
+- id_document
+- id_passage
+- passage # pasaje de texto
+- tokens
+- valid
+
+"ALIA-<domain>-triplets-sampled.jsonl":
+- source_id
+- id_document
+- id_passage
+- id_passage_query
+- passage
+- character
+- type
+- difficulty
+- query
+- answer
+
+"queries.jsonl": # de ALIA-<domain>-triplets-sampled.jsonl
+- user_input # <- query
+- id_query   # <- id_passage_query
+- id_passage
+- id_document
+- source_id
+
+"references.jsonl": # de ALIA-<domain>-triplets-sampled.jsonl
+- reference # <- answer
+- id_query  # <- id_passage_query
+- id_passage
+- id_document
+- source_id
+
+"reference_contexts.jsonl": # de ALIA-<domain>-triplets-sampled.jsonl
+- reference_contexts # <- [passage]
+- id_query           # <- id_passage_query
+- id_passage
+- id_document
+- source_id
+
+"ALIA-{domain}-embeddings-results.jsonl":
+- confidences           # <- [confidence1, confidence2, ...]
+- retrieved_contexts    # <- [passage1, passage2, ...]
+- id_retrieved_contexts # <- [id_passage1, id_passage2, ...]
+- user_input            # <- query
+- id_query              # <- id_passage_query
+- id_passage
+- id_document
+- source_id
+
+"ALIA-{domain}-embeddings-results-format.jsonl":
+- id_reference_context  # <- id_passage (de reference_contexts.jsonl)
+- id_retrieved_context  # <- id_retrieved_contexts[0]
+- reference_contexts    # <- [reference_passage1, reference_passage2, ...]
+- retrieved_contexts    # <- [passage1, passage2, ...]
+- reference             # <- respuesta de referencia (answer)
+- response              # <- respuesta del modelo LLM a evaluar
+- user_input            # <- query
+- id                    # <- id_query

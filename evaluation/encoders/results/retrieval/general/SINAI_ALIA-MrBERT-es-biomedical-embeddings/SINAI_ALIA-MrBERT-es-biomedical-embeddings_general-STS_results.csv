@@ -1,0 +1,9 @@
+metric,value
+cosine_spearman,0.4932
+cosine_pearson,0.6272
+euclidean_spearman,0.5086
+euclidean_pearson,0.6408
+manhattan_spearman,0.5068
+manhattan_pearson,0.6409
+spearman,0.4932
+pearson,0.6272

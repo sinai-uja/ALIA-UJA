@@ -1,0 +1,13 @@
+name: collect_data
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - google-api-python-client
+      - isodate
+      - python-dateutil
+      - pyyaml
+      - tiktok_research_api

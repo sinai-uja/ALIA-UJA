@@ -31,6 +31,7 @@ En este repositorio no solo encontrarás cómo *entrenar* y *explotar* **modelos
   - [Directorio de Datos para LLMs](/data/llms)
   - [Directorio de Datos para Modelos Encoders](/data/encoders)
   - [Directorio de Datos Paralelos](/data/parallel)
+  - [Directorio de Datos Discriminativos](/data/discriminative)
 - [Directorio de Modelos](/models)
   - [Directorio de Datos para LLMs](/models/llms)
   - [Directorio de Datos para Modelos Encoders](/models/encoders)

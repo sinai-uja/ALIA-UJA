@@ -1,5 +1,5 @@
 # VANDELVIRA-DATA dossier
-*Última actualización: 10-10-2025*
+*Última actualización: 25-06-2026*
 
 ## Tabla de contenidos
 - [Biomédico](#biomédico)
@@ -9,8 +9,8 @@
 ---
 
 La información sobre el número de tokens se los datasets y dominios se encuentra en estos ficheros:
-- [Tokens por dataset](resources.csv)
-- [Tokens por dominio](resources_per_domain.csv)
+- [Tokens por dataset](data/llms/documentation/datasets/resources.csv)
+- [Tokens por dominio](data/llms/documentation/datasets/resources_per_domain.csv)
 
 ---
 
@@ -47,74 +47,6 @@ Document
 - Millons of tokens: 13.871
 - Billons of tokens: 0.0139
 
-### COpenMed
-
-**Dataset Name**
-COpenMed:Estructuración del conocimiento médico
-
-**Description**
-COpenMed is a non-profit association behind an open-content website for structuring medical knowledge. This structuring has two objectives:
-
-• To facilitate access to medical information for the general public, using language that is accessible to the average person, but without compromising the technical and scientific rigour of a discipline such as medicine.
-
-• To facilitate machine access to this information so that in the future, automatic medical ‘reasoners’ can be built that can find the most likely causes of symptoms based on those symptoms.
-
-The results of this work can be seen at http://copenmed.org."
-
-**Original Author**
-Presidente: D. Carlos Óscar Sorzano Sánchez  Vicepresidente: Dª. Celia Sánchez Linde  Vocal: D. Yunior Fonseca Reyna
-
-**Original Link**
-https://sites.google.com/view/copenmed/descargas
-
-**Original Publication Date**
-1/05/2024
-
-**License**
-Creative Commons Attribution 4.0 International (cc-by-4.0)
-
-**Language**
-Spanish, English
-
-**Granularity**
-Paragraph
-
-**Token Information**
-- Number of tokens: 3130778
-- Millons of tokens: 3.1308
-- Billons of tokens: 0.0031
-
-### AEG
-
-**Dataset Name**
-Guías de Práctica Clínica de la Asociación Española de Gastroenterología
-
-**Description**
-Set of clinical practice guidelines published by the Spanish Association of Gastroenterology (AEG), compiled from its official website. They include clinical recommendations on digestive diseases, in PDF format.
-
-**Original Author**
-Las guías de práctica clínica fueron elaboradas por grupos de expertos clínicos y comités científicos en nombre de la Asociación Española de Gastroenterología (AEG).
-
-**Original Link**
-https://www.aegastro.es/p/guias-practica-clinica/
-
-**Original Publication Date**
-1/01/2025
-
-**License**
-No license identifier found
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 554590
-- Millons of tokens: 0.5546
-- Billons of tokens: 0.0006
-
 ### AEPCP
 
 **Dataset Name**
@@ -142,9 +74,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 1899060
-- Millons of tokens: 1.8991
-- Billons of tokens: 0.0019
+- Number of tokens: 1730060
+- Millons of tokens: 1.7301
+- Billons of tokens: 0.0017
 
 ### Miscelanea_Roberta
 
@@ -241,37 +173,6 @@ Document
 - Millons of tokens: 3774.3928
 - Billons of tokens: 3.7744
 
-### Salud_Mental_ES
-
-**Dataset Name**
-SaludMental_ES: "Guías de Práctica Clínica en Salud Mental"
-
-**Description**
-Set of data compiling the Clinical Practice Guidelines on Mental Health available on the website of the Spanish Mental Health Confederation. It includes information on the disorder addressed, area of care, title, link to the document, date and summary of each guideline. The resource facilitates access to and analysis of evidence-based clinical recommendations for treatment, prevention and promotion of mental health in Spain.
-
-**Original Author**
-Equipo de Guías de Práctica Clínica del Ministerio de Sanidad, Consumo y Bienestar Social de España
-
-**Original Link**
-https://consaludmental.org/centro-de-documentacion/prevencion-y-promocion-de-la-salud-mental/guias-de-practica-clinica/
-
-**Original Publication Date**
-1/01/2019
-
-**License**
-Public Domain - Creative Commons Zero v1.0 Universal (CC0)
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 7204196
-- Millons of tokens: 7.2042
-- Billons of tokens: 0.0072
-
 ### SANGVA
 
 **Dataset Name**
@@ -299,8 +200,8 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 497687
-- Millons of tokens: 0.4977
+- Number of tokens: 511797
+- Millons of tokens: 0.5118
 - Billons of tokens: 0.0005
 
 ### Prod_Cient_AETSA
@@ -330,9 +231,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 15840951
-- Millons of tokens: 15.841
-- Billons of tokens: 0.0158
+- Number of tokens: 18052827
+- Millons of tokens: 18.0528
+- Billons of tokens: 0.0181
 
 ### SECOMCYC
 
@@ -361,9 +262,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 460671
-- Millons of tokens: 0.4607
-- Billons of tokens: 0.0005
+- Number of tokens: 445187
+- Millons of tokens: 0.4452
+- Billons of tokens: 0.0004
 
 ### CIMA_AEMPS
 
@@ -392,9 +293,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 694284809
-- Millons of tokens: 694.2848
-- Billons of tokens: 0.6943
+- Number of tokens: 407621044
+- Millons of tokens: 407.621
+- Billons of tokens: 0.4076
 
 ### Multi_Clin_Sum
 
@@ -485,40 +386,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 1560281
-- Millons of tokens: 1.5603
-- Billons of tokens: 0.0016
-
-### SEOR
-
-**Dataset Name**
-SEOR: "Guías Clínicas de la Sociedad Española de Oncología Radioterápica publicadas en SEOR"
-
-**Description**
-Clinical guidelines developed by the Spanish Society of Medical Oncology (SEOM), in collaboration with cooperative groups and other scientific societies, published in the journal Clinical & Translational Oncology. The resource includes titles, years of publication, collaborations, and updates to the guidelines from 2003 to the present.
-
-**Original Author**
-Los datos originales fueron creados por la Sociedad Española de Oncología Radioterápica (SEOR), a través de sus grupos de trabajo, secciones clínicas y en colaboración con otras sociedades científicas nacionales.
-
-**Original Link**
-https://seor.es/guias-clinicas/
-
-**Original Publication Date**
-1/01/2025
-
-**License**
-Public Domain - Creative Commons Zero v1.0 Universal (CC0)
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 2145947
-- Millons of tokens: 2.1459
-- Billons of tokens: 0.0021
+- Number of tokens: 1812064
+- Millons of tokens: 1.8121
+- Billons of tokens: 0.0018
 
 ### RECCMI
 
@@ -547,40 +417,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 1879589
-- Millons of tokens: 1.8796
-- Billons of tokens: 0.0019
-
-### GESIDA
-
-**Dataset Name**
-Guías Clínicas de GeSIDA sobre el VIH en España
-
-**Description**
-Set of clinical guidelines published by GeSIDA on the management, prevention, and treatment of HIV in Spain. Includes current documents, drafts, and historical versions between 2021 and 2025.
-
-**Original Author**
-Los datos originales fueron creados por el Grupo de Estudio del SIDA (GeSIDA), en el marco de la Sociedad Española de Enfermedades Infecciosas y Microbiología Clínica (SEIMC)
-
-**Original Link**
-https://gesida-seimc.org/guias-clinicas/
-
-**Original Publication Date**
-1/01/2025
-
-**License**
-Commercial use permitted
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 3427932
-- Millons of tokens: 3.4279
-- Billons of tokens: 0.0034
+- Number of tokens: 1836166
+- Millons of tokens: 1.8362
+- Billons of tokens: 0.0018
 
 ### Guia_Salud
 
@@ -609,9 +448,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 3769395
-- Millons of tokens: 3.7694
-- Billons of tokens: 0.0038
+- Number of tokens: 4099910
+- Millons of tokens: 4.0999
+- Billons of tokens: 0.0041
 
 ### SER
 
@@ -640,40 +479,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 1135076
-- Millons of tokens: 1.1351
-- Billons of tokens: 0.0011
-
-### COP
-
-**Dataset Name**
-COP: "Libros y guías publicados por el Consejo General de la Psicología de España"
-
-**Description**
-Publications in book and guide format compiled from the website of the General Council of Psychology of Spain (COP).
-
-**Original Author**
-Los datos originales proceden del Consejo General de la Psicología de España (COP), entidad que publica en su portal web oficial la sección de “Libros y Guías”. No se indica en la página un equipo, grupo de investigación o proyecto concreto responsable de la recopilación o mantenimiento de esa sección.
-
-**Original Link**
-https://www.cop.es/index.php?page=Libros
-
-**Original Publication Date**
-1/01/2025
-
-**License**
-No license identifier found
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 941793
-- Millons of tokens: 0.9418
-- Billons of tokens: 0.0009
+- Number of tokens: 1286099
+- Millons of tokens: 1.2861
+- Billons of tokens: 0.0013
 
 ### BARR_2
 
@@ -706,68 +514,6 @@ Document
 - Millons of tokens: 2.1128
 - Billons of tokens: 0.0021
 
-### Casos_Clinicos_Articulo
-
-**Dataset Name**
-Casos clínicos pertenecientes a diversos datasets
-
-**Description**
-Documents in .txt format on clinical cases extracted from various corpora. These corpora have been taken into account based on an article.
-
-**Original Author**
-Como tal no hay un solo autor de los datos ya que se trata de un conjunto de datasets. Los datasets son los siguientes: cantemist, CARES, cwlc, E3C-Corpus, livingner, meddoplace, meddoprof, multicardioner y SPACC.
-
-**Original Link**
-El enlace al artículo es: https://arxiv.org/pdf/2503.18594
-
-**Original Publication Date**
-1/01/2025
-
-**License**
-Creative Commons Attribution 4.0 International (cc-by-4.0)
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 20384534
-- Millons of tokens: 20.3845
-- Billons of tokens: 0.0204
-
-### SEOM
-
-**Dataset Name**
-SEOM: "Guías Clínicas de la Sociedad Española de Oncología Radioterápica publicadas en SEOR"
-
-**Description**
-Clinical guidelines developed by the Spanish Society of Medical Oncology (SEOM), in collaboration with cooperative groups and other scientific societies, published in the journal Clinical & Translational Oncology. The resource includes titles, years of publication, collaborations, and updates to the guidelines from 2003 to the present.
-
-**Original Author**
-Los datos originales fueron creados por la Sociedad Española de Oncología Médica (SEOM), a través de sus grupos cooperativos, secciones específicas y en colaboración con otras sociedades científicas nacionales.
-
-**Original Link**
-https://seom.org/publicaciones/guias-clinicas/105418-guias-clinicas-seom
-
-**Original Publication Date**
-1/01/2025
-
-**License**
-Public Domain - Creative Commons Zero v1.0 Universal (CC0)
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 825614
-- Millons of tokens: 0.8256
-- Billons of tokens: 0.0008
-
 ### Ministerio_Sanidad_Medic_Trans
 
 **Dataset Name**
@@ -795,9 +541,9 @@ Spanish, English
 Document
 
 **Token Information**
-- Number of tokens: 905800
-- Millons of tokens: 0.9058
-- Billons of tokens: 0.0009
+- Number of tokens: 1101769
+- Millons of tokens: 1.1018
+- Billons of tokens: 0.0011
 
 ### Tox_Habits
 
@@ -927,104 +673,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 8559700
-- Millons of tokens: 8.5597
-- Billons of tokens: 0.0086
-
-### Ministerio_Sanidad_Info_Terapeutica
-
-**Dataset Name**
-Ministerio_Sanidad_Info_Terapeutica: National Health System Therapeutic Information (IT‑SNS) Journal: Volumes, Issues, Articles, and PDF Links
-
-**Description**
-A structured index of the Spanish Ministry of Health’s journal “Información Terapéutica del SNS (IT‑SNS),” covering volumes/issues, article titles, and links to full‑text PDFs available on the official portal. It summarizes pharmacotherapy reviews, drug utilization and safety notes, and thematic clinical updates from the ministry’s online archive, enabling quick retrieval and longitudinal analysis of therapeutic topics.
-
-**Original Author**
-Editorial team of the Therapeutic Information journal (Información Terapéutica del SNS) within the Directorate-General for Common Portfolio of Services of the SNS and Pharmacy of the Spanish Ministry of Health
-
-**Original Link**
-https://www.sanidad.gob.es/biblioPublic/publicaciones/recursos_propios/infMedic/home.htm
-
-**Original Publication Date**
-1/01/2011
-
-**License**
-Public Domain - Creative Commons Zero v1.0 Universal (CC0)
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 2759863
-- Millons of tokens: 2.7599
-- Billons of tokens: 0.0028
-
-
-### Dis_TEMIST_Corpus
-
-**Dataset Name**
-DisTEMIST corpus: detection and normalization of disease mentions in spanish clinical cases
-
-**Description**
-detection and normalization of disease mentions in spanish clinical cases
-
-**Original Author**
-"Miranda-Escalada, Antonio"
-
-**Original Link**
-https://zenodo.org/records/7614764
-
-**Original Publication Date**
-9/05/2022
-
-**License**
-Creative Commons Attribution 4.0 International (cc-by-4.0)
-
-**Language**
-Spanish and other languages
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 3285277
-- Millons of tokens: 3.2853
-- Billons of tokens: 0.0033
-
-
-### Ministerio_Sanidad_Revista_Espanola_Salud_Publica
-
-**Dataset Name**
-Revista Española de Salud Pública (RESP) - Ministerio de Sanidad
-
-**Description**
-Revista Española de Salud Pública (RESP) - Ministerio de Sanidad
-
-**Original Author**
-The original data was created by the Revista Española de Salud Pública on behalf of the Ministerio de Sanidad. This data was collected as part of the Plan de Impulso de las Tecnologías del Lenguaje initiative, with technical collaboration from the NLP4BIA unit at BSC
-
-**Original Link**
-https://ojs.sanidad.gob.es/index.php/resp/issue/archive
-
-**Original Publication Date**
-17/01/2025
-
-**License**
-No license identifier found
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 9678832
-- Millons of tokens: 9.6788
-- Billons of tokens: 0.0097
+- Number of tokens: 9033087
+- Millons of tokens: 9.0331
+- Billons of tokens: 0.009
 
 ## Legal y Administrativo
 
@@ -1334,9 +985,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 573215708
-- Millons of tokens: 573.2157
-- Billons of tokens: 0.5732
+- Number of tokens: 248902474
+- Millons of tokens: 248.9025
+- Billons of tokens: 0.2489
 
 ### Licitaciones
 
@@ -1365,9 +1016,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 1194083306
-- Millons of tokens: 1194.0833
-- Billons of tokens: 1.1941
+- Number of tokens: 65801579
+- Millons of tokens: 65.8016
+- Billons of tokens: 0.0658
 
 ### Boletin_Oficial_Provincial_Almeria
 
@@ -1399,37 +1050,6 @@ Document
 - Number of tokens: 741428963
 - Millons of tokens: 741.429
 - Billons of tokens: 0.7414
-
-### Ministerio_Economia_BOICAC
-
-**Dataset Name**
-Boletines Oficiales del Instituto de Contabilidad y Auditoría de Cuentas - Ministerio de Economía
-
-**Description**
-This dataset contains PDF files with legal and administrative information from the BOICAC / Ministry of Economy website.
-
-**Original Author**
-The original data was created and published by the BOICAC (Boletín Oficial del Instituto de Contabilidad y Auditoría de Cuentas) / Ministry of Economy. The data is part of their official publications.
-
-**Original Link**
-https://www.icac.gob.es/contabilidad/consultas-boicac
-
-**Original Publication Date**
-24/01/2025
-
-**License**
-No license identifier found
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 792984
-- Millons of tokens: 0.793
-- Billons of tokens: 0.0008
 
 ### Ministerio_Transicion_Ecologica_Ministerio
 
@@ -1492,37 +1112,6 @@ Document
 - Number of tokens: 408781210
 - Millons of tokens: 408.7812
 - Billons of tokens: 0.4088
-
-### Departamento_Seguridad_Nacional
-
-**Dataset Name**
-Departamento de Seguridad Nacional
-
-**Description**
-The dataset contains official publications from the Department of National Security (DSN) of Spain and is divided into several categories such as: National Security Strategy, Sector Strategies, Annual Reports and other relevant strategic topics.
-
-**Original Author**
-The Department of Homeland Security itself
-
-**Original Link**
-https://www.dsn.gob.es/es/publicaciones
-
-**Original Publication Date**
-1/01/2021
-
-**License**
-Reproduction is authorized as long as the source is cited.
-
-**Language**
-Spanish, English, Algunas publicaciones están tambien en Euskera y Gallego
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 4830335
-- Millons of tokens: 4.8303
-- Billons of tokens: 0.0048
 
 ### Boletin_Oficial_Cantabria
 
@@ -1709,37 +1298,6 @@ Document
 - Number of tokens: 687036486
 - Millons of tokens: 687.0365
 - Billons of tokens: 0.687
-
-### Codigo_Tecnico_Edificacion
-
-**Dataset Name**
-Spanish Technical Building Code
-
-**Description**
-The Technical Building Code (CTE) in Spain provides direct access to Basic Documents (DB) such as structural, fire, accessibility, energy efficiency, noise, health, and safety, in addition to the Royal Decree and Part I, together with support guides, a catalog of construction elements, acoustic calculation programs, and complementary resources, forming a complete framework for the regulatory and technical verification of buildings, including programs, interpretive manuals, and data sheets.
-
-**Original Author**
-Ministerio de Vivienda y Agenda Urbana - Gobierno de España
-
-**Original Link**
-https://www.codigotecnico.org/
-
-**Original Publication Date**
-1/01/2025
-
-**License**
-Permission must be requested from the organization
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 15903128
-- Millons of tokens: 15.9031
-- Billons of tokens: 0.0159
 
 ### Boletin_Oficial_Estado
 
@@ -1991,7 +1549,7 @@ Document
 - Millons of tokens: 46.9772
 - Billons of tokens: 0.047
 
-### Boletines_Oficiales_Defensa
+### Boletin_Oficial_Defensa
 
 **Dataset Name**
 Anuncios oficiales de defensa y seguridad del Boletín Oficial de Defensa España
@@ -2083,9 +1641,9 @@ Spanish, English, Catalan (Catalán)
 Document
 
 **Token Information**
-- Number of tokens: 10320285
-- Millons of tokens: 10.3203
-- Billons of tokens: 0.0103
+- Number of tokens: 10494307
+- Millons of tokens: 10.4943
+- Billons of tokens: 0.0105
 
 ### Revista_Saitabi
 
@@ -2114,9 +1672,9 @@ Spanish, Valenciano
 Document
 
 **Token Information**
-- Number of tokens: 4571804
-- Millons of tokens: 4.5718
-- Billons of tokens: 0.0046
+- Number of tokens: 3434445
+- Millons of tokens: 3.4344
+- Billons of tokens: 0.0034
 
 ### Obras_Singulares_Museos_Andalucia
 
@@ -2176,9 +1734,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 6288749
-- Millons of tokens: 6.2887
-- Billons of tokens: 0.0063
+- Number of tokens: 3166971
+- Millons of tokens: 3.167
+- Billons of tokens: 0.0032
 
 ### Revista_Riparia
 
@@ -2207,9 +1765,9 @@ Spanish, English
 Document
 
 **Token Information**
-- Number of tokens: 1362142
-- Millons of tokens: 1.3621
-- Billons of tokens: 0.0014
+- Number of tokens: 946984
+- Millons of tokens: 0.947
+- Billons of tokens: 0.0009
 
 ### Tabula
 
@@ -2238,9 +1796,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 24309832
-- Millons of tokens: 24.3098
-- Billons of tokens: 0.0243
+- Number of tokens: 24696680
+- Millons of tokens: 24.6967
+- Billons of tokens: 0.0247
 
 ### Somos_Patrimonio
 
@@ -2300,9 +1858,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 3407463
-- Millons of tokens: 3.4075
-- Billons of tokens: 0.0034
+- Number of tokens: 2809119
+- Millons of tokens: 2.8091
+- Billons of tokens: 0.0028
 
 ### Publicaciones_Patrimonio_Cultural_Madrid
 
@@ -2362,9 +1920,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 8273310
-- Millons of tokens: 8.2733
-- Billons of tokens: 0.0083
+- Number of tokens: 7340848
+- Millons of tokens: 7.3408
+- Billons of tokens: 0.0073
 
 ### Tesis_Palacios
 
@@ -2393,9 +1951,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 5942256
-- Millons of tokens: 5.9423
-- Billons of tokens: 0.0059
+- Number of tokens: 5144537
+- Millons of tokens: 5.1445
+- Billons of tokens: 0.0051
 
 ### Revista_Estudis
 
@@ -2424,9 +1982,9 @@ Spanish, Valenciano
 Document
 
 **Token Information**
-- Number of tokens: 1790981
-- Millons of tokens: 1.791
-- Billons of tokens: 0.0018
+- Number of tokens: 1263376
+- Millons of tokens: 1.2634
+- Billons of tokens: 0.0013
 
 ### Revista_Crater
 
@@ -2455,8 +2013,8 @@ Spanish, English
 Document
 
 **Token Information**
-- Number of tokens: 326732
-- Millons of tokens: 0.3267
+- Number of tokens: 252915
+- Millons of tokens: 0.2529
 - Billons of tokens: 0.0003
 
 ### Revistas_CSIC
@@ -2486,9 +2044,9 @@ Spanish, English
 Document
 
 **Token Information**
-- Number of tokens: 122088301
-- Millons of tokens: 122.0883
-- Billons of tokens: 0.1221
+- Number of tokens: 95010995
+- Millons of tokens: 95.011
+- Billons of tokens: 0.095
 
 ### Patrimonio_Cuadernos_De_Arte_Prehistorico
 
@@ -2517,9 +2075,9 @@ Spanish, English
 Document
 
 **Token Information**
-- Number of tokens: 2919550
-- Millons of tokens: 2.9196
-- Billons of tokens: 0.0029
+- Number of tokens: 2090405
+- Millons of tokens: 2.0904
+- Billons of tokens: 0.0021
 
 ### Repositorio_Activos_Digitales_Andalucia
 
@@ -2548,9 +2106,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 37304439
-- Millons of tokens: 37.3044
-- Billons of tokens: 0.0373
+- Number of tokens: 35547608
+- Millons of tokens: 35.5476
+- Billons of tokens: 0.0355
 
 ### Patrimonio_Boletin_De_Literatura_Oral
 
@@ -2579,9 +2137,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 8624647
-- Millons of tokens: 8.6246
-- Billons of tokens: 0.0086
+- Number of tokens: 7974125
+- Millons of tokens: 7.9741
+- Billons of tokens: 0.008
 
 ### Patrimonio_Anales_De_Historia_Del_Arte
 
@@ -2610,9 +2168,9 @@ Spanish, English
 Document
 
 **Token Information**
-- Number of tokens: 14612381
-- Millons of tokens: 14.6124
-- Billons of tokens: 0.0146
+- Number of tokens: 7614203
+- Millons of tokens: 7.6142
+- Billons of tokens: 0.0076
 
 ### Wikipedia_Cultura_España
 
@@ -2672,9 +2230,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 20716852
-- Millons of tokens: 20.7169
-- Billons of tokens: 0.0207
+- Number of tokens: 14719145
+- Millons of tokens: 14.7191
+- Billons of tokens: 0.0147
 
 ### Revista_AusArt
 
@@ -2703,9 +2261,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 2323055
-- Millons of tokens: 2.3231
-- Billons of tokens: 0.0023
+- Number of tokens: 1122929
+- Millons of tokens: 1.1229
+- Billons of tokens: 0.0011
 
 ### Revista_ASRI
 
@@ -2734,9 +2292,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 1310790
-- Millons of tokens: 1.3108
-- Billons of tokens: 0.0013
+- Number of tokens: 1150373
+- Millons of tokens: 1.1504
+- Billons of tokens: 0.0012
 
 ### Revista_UcoArte
 
@@ -2765,9 +2323,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 2141601
-- Millons of tokens: 2.1416
-- Billons of tokens: 0.0021
+- Number of tokens: 1753382
+- Millons of tokens: 1.7534
+- Billons of tokens: 0.0018
 
 ### Revista_De_Medio_Aevo
 
@@ -2796,9 +2354,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 6828235
-- Millons of tokens: 6.8282
-- Billons of tokens: 0.0068
+- Number of tokens: 2786020
+- Millons of tokens: 2.786
+- Billons of tokens: 0.0028
 
 ### Revista_Complutum
 
@@ -2827,9 +2385,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 20230870
-- Millons of tokens: 20.2309
-- Billons of tokens: 0.0202
+- Number of tokens: 15400397
+- Millons of tokens: 15.4004
+- Billons of tokens: 0.0154
 
 ### Revista_Potestas
 
@@ -2858,9 +2416,9 @@ Spanish, English, Italian (Italiano), German (Alemán)
 Document
 
 **Token Information**
-- Number of tokens: 3418552
-- Millons of tokens: 3.4186
-- Billons of tokens: 0.0034
+- Number of tokens: 2203359
+- Millons of tokens: 2.2034
+- Billons of tokens: 0.0022
 
 ### Revista_Escritura_Imagen
 
@@ -2889,9 +2447,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 5106970
-- Millons of tokens: 5.107
-- Billons of tokens: 0.0051
+- Number of tokens: 2247889
+- Millons of tokens: 2.2479
+- Billons of tokens: 0.0022
 
 ### Actas_De_Arquitectura_Religiosa_Contemporanea
 
@@ -2920,9 +2478,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 2173906
-- Millons of tokens: 2.1739
-- Billons of tokens: 0.0022
+- Number of tokens: 1885846
+- Millons of tokens: 1.8858
+- Billons of tokens: 0.0019
 
 ### Revista_Cuadernos_De_Historia_Contemporanea
 
@@ -2951,9 +2509,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 13695168
-- Millons of tokens: 13.6952
-- Billons of tokens: 0.0137
+- Number of tokens: 8331685
+- Millons of tokens: 8.3317
+- Billons of tokens: 0.0083
 
 ### Revista_ReVisiones
 
@@ -2982,9 +2540,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 2445906
-- Millons of tokens: 2.4459
-- Billons of tokens: 0.0024
+- Number of tokens: 2040966
+- Millons of tokens: 2.041
+- Billons of tokens: 0.002
 
 ### Revista_Studia_Aurea
 
@@ -3013,9 +2571,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 6886447
-- Millons of tokens: 6.8864
-- Billons of tokens: 0.0069
+- Number of tokens: 5487504
+- Millons of tokens: 5.4875
+- Billons of tokens: 0.0055
 
 ### Revista_Pygmalion
 
@@ -3044,9 +2602,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 1806586
-- Millons of tokens: 1.8066
-- Billons of tokens: 0.0018
+- Number of tokens: 1533968
+- Millons of tokens: 1.534
+- Billons of tokens: 0.0015
 
 ### Revista_Cuadernos_De_Prehistoria_Y_Arqueologia
 
@@ -3075,9 +2633,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 9447987
-- Millons of tokens: 9.448
-- Billons of tokens: 0.0094
+- Number of tokens: 8808621
+- Millons of tokens: 8.8086
+- Billons of tokens: 0.0088
 
 ### Revista_MuseosEs
 
@@ -3106,9 +2664,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 1953954
-- Millons of tokens: 1.954
-- Billons of tokens: 0.002
+- Number of tokens: 1740704
+- Millons of tokens: 1.7407
+- Billons of tokens: 0.0017
 
 ### Revista_Molinum
 
@@ -3137,9 +2695,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 2503356
-- Millons of tokens: 2.5034
-- Billons of tokens: 0.0025
+- Number of tokens: 2212965
+- Millons of tokens: 2.213
+- Billons of tokens: 0.0022
 
 ### Adquisiciones_Archivo_Historico
 
@@ -3203,37 +2761,6 @@ Document
 - Millons of tokens: 0.0116
 - Billons of tokens: 0.0
 
-### Revista_Ge-conservacion
-
-**Dataset Name**
-Articles and documents from the "Ge-Conservación" Journal
-
-**Description**
-this dataset contains the following information: Name of the article, url to the website and text of the article
-
-**Original Author**
-International institute for conservation of historic and artistic works
-
-**Original Link**
-https://ge-iic.com/
-
-**Original Publication Date**
-1/01/2025
-
-**License**
-Permission granted from the original entity
-
-**Language**
-Spanish
-
-**Granularity**
-Document
-
-**Token Information**
-- Number of tokens: 604479
-- Millons of tokens: 0.6045
-- Billons of tokens: 0.0006
-
 ### Revista_Quiroga
 
 **Dataset Name**
@@ -3261,9 +2788,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 3941132
-- Millons of tokens: 3.9411
-- Billons of tokens: 0.0039
+- Number of tokens: 3379244
+- Millons of tokens: 3.3792
+- Billons of tokens: 0.0034
 
 ### Revista_El_Futuro_Del_Pasado
 
@@ -3292,9 +2819,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 8303923
-- Millons of tokens: 8.3039
-- Billons of tokens: 0.0083
+- Number of tokens: 6501060
+- Millons of tokens: 6.5011
+- Billons of tokens: 0.0065
 
 ### Revista_Edad_Media
 
@@ -3323,9 +2850,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 5053075
-- Millons of tokens: 5.0531
-- Billons of tokens: 0.0051
+- Number of tokens: 3654094
+- Millons of tokens: 3.6541
+- Billons of tokens: 0.0037
 
 ### Revista_Hidalguia
 
@@ -3354,9 +2881,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 43052047
-- Millons of tokens: 43.052
-- Billons of tokens: 0.0431
+- Number of tokens: 35498526
+- Millons of tokens: 35.4985
+- Billons of tokens: 0.0355
 
 ### Revista_Historia_Social_Y_De_La_Educacion
 
@@ -3385,8 +2912,8 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 2883398
-- Millons of tokens: 2.8834
+- Number of tokens: 2918535
+- Millons of tokens: 2.9185
 - Billons of tokens: 0.0029
 
 ### Revista_Investigaciones_De_Historia_Economica
@@ -3416,9 +2943,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 10964248
-- Millons of tokens: 10.9642
-- Billons of tokens: 0.011
+- Number of tokens: 8733599
+- Millons of tokens: 8.7336
+- Billons of tokens: 0.0087
 
 ### Revista_Investigaciones_Historicas_Epoca_Moderna_Y_Contemporanea
 
@@ -3447,9 +2974,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 8504389
-- Millons of tokens: 8.5044
-- Billons of tokens: 0.0085
+- Number of tokens: 5884535
+- Millons of tokens: 5.8845
+- Billons of tokens: 0.0059
 
 ### Revista_Paleohispanica
 
@@ -3478,9 +3005,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 7982069
-- Millons of tokens: 7.9821
-- Billons of tokens: 0.008
+- Number of tokens: 6076699
+- Millons of tokens: 6.0767
+- Billons of tokens: 0.0061
 
 ### Revista_Panta_Rei
 
@@ -3509,9 +3036,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 4320952
-- Millons of tokens: 4.321
-- Billons of tokens: 0.0043
+- Number of tokens: 3927101
+- Millons of tokens: 3.9271
+- Billons of tokens: 0.0039
 
 ### Revista_Rubrica_Contemporanea
 
@@ -3540,9 +3067,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 5475965
-- Millons of tokens: 5.476
-- Billons of tokens: 0.0055
+- Number of tokens: 3764255
+- Millons of tokens: 3.7643
+- Billons of tokens: 0.0038
 
 ### UNESCO
 
@@ -3602,9 +3129,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 6391597
-- Millons of tokens: 6.3916
-- Billons of tokens: 0.0064
+- Number of tokens: 4819708
+- Millons of tokens: 4.8197
+- Billons of tokens: 0.0048
 
 ### Revista_Ilu
 
@@ -3633,9 +3160,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 14312968
-- Millons of tokens: 14.313
-- Billons of tokens: 0.0143
+- Number of tokens: 10224139
+- Millons of tokens: 10.2241
+- Billons of tokens: 0.0102
 
 ### Revista_Arte_Individuo_Y_Sociedad
 
@@ -3664,9 +3191,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 14774369
-- Millons of tokens: 14.7744
-- Billons of tokens: 0.0148
+- Number of tokens: 13072181
+- Millons of tokens: 13.0722
+- Billons of tokens: 0.0131
 
 ### Revista_Eikon
 
@@ -3695,9 +3222,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 6785944
-- Millons of tokens: 6.7859
-- Billons of tokens: 0.0068
+- Number of tokens: 2992540
+- Millons of tokens: 2.9925
+- Billons of tokens: 0.003
 
 ### Revista_Ad_Limina
 
@@ -3726,9 +3253,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 3548674
-- Millons of tokens: 3.5487
-- Billons of tokens: 0.0035
+- Number of tokens: 2245814
+- Millons of tokens: 2.2458
+- Billons of tokens: 0.0022
 
 ### Revistas_Culturales_Biblioteca_Virtual_Prensa_Historica
 
@@ -3757,9 +3284,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 469013544
-- Millons of tokens: 469.0135
-- Billons of tokens: 0.469
+- Number of tokens: 396953109
+- Millons of tokens: 396.9531
+- Billons of tokens: 0.397
 
 ### Revista_Otarq
 
@@ -3788,8 +3315,8 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 843006
-- Millons of tokens: 0.843
+- Number of tokens: 798712
+- Millons of tokens: 0.7987
 - Billons of tokens: 0.0008
 
 ### Revista_Folklore
@@ -3819,9 +3346,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 27170532
-- Millons of tokens: 27.1705
-- Billons of tokens: 0.0272
+- Number of tokens: 25609794
+- Millons of tokens: 25.6098
+- Billons of tokens: 0.0256
 
 ### Revista_Electronica_Complutense_De_Investigacion_En_Educacion_Musical
 
@@ -3850,9 +3377,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 2311643
-- Millons of tokens: 2.3116
-- Billons of tokens: 0.0023
+- Number of tokens: 2215164
+- Millons of tokens: 2.2152
+- Billons of tokens: 0.0022
 
 ### Revista_Brumal
 
@@ -3881,9 +3408,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 7109672
-- Millons of tokens: 7.1097
-- Billons of tokens: 0.0071
+- Number of tokens: 3867597
+- Millons of tokens: 3.8676
+- Billons of tokens: 0.0039
 
 ### Revista_Amaltea
 
@@ -3912,9 +3439,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 2593455
-- Millons of tokens: 2.5935
-- Billons of tokens: 0.0026
+- Number of tokens: 2110610
+- Millons of tokens: 2.1106
+- Billons of tokens: 0.0021
 
 ### Revista_Acotaciones
 
@@ -3943,9 +3470,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 4937671
-- Millons of tokens: 4.9377
-- Billons of tokens: 0.0049
+- Number of tokens: 4491185
+- Millons of tokens: 4.4912
+- Billons of tokens: 0.0045
 
 ### Revista_Castilla
 
@@ -3974,9 +3501,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 9031632
-- Millons of tokens: 9.0316
-- Billons of tokens: 0.009
+- Number of tokens: 5060489
+- Millons of tokens: 5.0605
+- Billons of tokens: 0.0051
 
 ### Revista_Lucentum
 
@@ -4005,9 +3532,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 9465918
-- Millons of tokens: 9.4659
-- Billons of tokens: 0.0095
+- Number of tokens: 9335688
+- Millons of tokens: 9.3357
+- Billons of tokens: 0.0093
 
 ### Guia_Digital_Patrimonio_Andalucia_Paisaje_Cultural
 
@@ -4036,8 +3563,8 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 124231
-- Millons of tokens: 0.1242
+- Number of tokens: 110568
+- Millons of tokens: 0.1106
 - Billons of tokens: 0.0001
 
 ### Guia_Digital_Patrimonio_Andalucia_Patrimonio_Inmaterial
@@ -4067,9 +3594,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 4855639
-- Millons of tokens: 4.8556
-- Billons of tokens: 0.0049
+- Number of tokens: 4953015
+- Millons of tokens: 4.953
+- Billons of tokens: 0.005
 
 ### Guia_Digital_Patrimonio_Andalucia_Patrimonio_Inmueble
 
@@ -4098,9 +3625,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 18560034
-- Millons of tokens: 18.56
-- Billons of tokens: 0.0186
+- Number of tokens: 14159719
+- Millons of tokens: 14.1597
+- Billons of tokens: 0.0142
 
 ### Guia_Digital_Patrimonio_Andalucia_Patrimonio_Mueble
 
@@ -4129,9 +3656,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 44471660
-- Millons of tokens: 44.4717
-- Billons of tokens: 0.0445
+- Number of tokens: 16130758
+- Millons of tokens: 16.1308
+- Billons of tokens: 0.0161
 
 ### Revistas_Instituto_Andaluz_Patrimonio_Historico
 
@@ -4160,9 +3687,9 @@ Spanish, English
 Document
 
 **Token Information**
-- Number of tokens: 31396814
-- Millons of tokens: 31.3968
-- Billons of tokens: 0.0314
+- Number of tokens: 27454540
+- Millons of tokens: 27.4545
+- Billons of tokens: 0.0275
 
 ### Patrimonio_Cultural_Inmaterial_España
 
@@ -4284,9 +3811,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 16546722
-- Millons of tokens: 16.5467
-- Billons of tokens: 0.0165
+- Number of tokens: 13950051
+- Millons of tokens: 13.9501
+- Billons of tokens: 0.014
 
 ### Revista_Anuario_Calderoniano
 
@@ -4315,9 +3842,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 4819456
-- Millons of tokens: 4.8195
-- Billons of tokens: 0.0048
+- Number of tokens: 2569648
+- Millons of tokens: 2.5696
+- Billons of tokens: 0.0026
 
 ### Revista_Anuario_Lope_De_Vega
 
@@ -4346,9 +3873,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 5280735
-- Millons of tokens: 5.2807
-- Billons of tokens: 0.0053
+- Number of tokens: 4411526
+- Millons of tokens: 4.4115
+- Billons of tokens: 0.0044
 
 ### Revista_Cuadernos_De_Historia_Moderna
 
@@ -4377,9 +3904,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 17875091
-- Millons of tokens: 17.8751
-- Billons of tokens: 0.0179
+- Number of tokens: 11004195
+- Millons of tokens: 11.0042
+- Billons of tokens: 0.011
 
 ### Mineralogia_Topologia_Iberica_Amalgama
 
@@ -4408,8 +3935,8 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 336075
-- Millons of tokens: 0.3361
+- Number of tokens: 328382
+- Millons of tokens: 0.3284
 - Billons of tokens: 0.0003
 
 ### Mineralogia_Topologia_Iberica_Acopios
@@ -4439,8 +3966,8 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 706414
-- Millons of tokens: 0.7064
+- Number of tokens: 686656
+- Millons of tokens: 0.6867
 - Billons of tokens: 0.0007
 
 ### Ministerio_De_Cultura_Patrimonio_Audiovisual_Cine_Español
@@ -4501,8 +4028,8 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 655727
-- Millons of tokens: 0.6557
+- Number of tokens: 655043
+- Millons of tokens: 0.655
 - Billons of tokens: 0.0007
 
 ### Ministerio_De_Cultura_Patrimonio_Filmoteca_Española
@@ -4563,10 +4090,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 676163
-- Millons of tokens: 0.6762
+- Number of tokens: 713570
+- Millons of tokens: 0.7136
 - Billons of tokens: 0.0007
-
 
 ### Revista_Edad_De_Oro
 
@@ -4595,10 +4121,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 11991833
-- Millons of tokens: 11.9918
-- Billons of tokens: 0.012
-
+- Number of tokens: 2333670
+- Millons of tokens: 2.3337
+- Billons of tokens: 0.0023
 
 ### Revista_Sarmental
 
@@ -4627,10 +4152,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 693539
-- Millons of tokens: 0.6935
-- Billons of tokens: 0.0007
-
+- Number of tokens: 538945
+- Millons of tokens: 0.5389
+- Billons of tokens: 0.0005
 
 ### Revista_Estudios_Romanicos
 
@@ -4659,10 +4183,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 9755548
-- Millons of tokens: 9.7555
-- Billons of tokens: 0.0098
-
+- Number of tokens: 7612346
+- Millons of tokens: 7.6123
+- Billons of tokens: 0.0076
 
 ### Revista_Pasavento
 
@@ -4691,10 +4214,9 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 5609704
-- Millons of tokens: 5.6097
-- Billons of tokens: 0.0056
-
+- Number of tokens: 4616942
+- Millons of tokens: 4.6169
+- Billons of tokens: 0.0046
 
 ### Revista_Imago
 
@@ -4723,6 +4245,485 @@ Spanish
 Document
 
 **Token Information**
-- Number of tokens: 2271513
-- Millons of tokens: 2.2715
-- Billons of tokens: 0.0023
+- Number of tokens: 1734769
+- Millons of tokens: 1.7348
+- Billons of tokens: 0.0017
+
+### Libros_Instituto_Geografico_Nacional
+
+**Dataset Name**
+Digital books from the National Geographic Institute of Spain
+
+**Description**
+This dataset originates from IGN's official publication portal and includes historic and heritage books on geography, cartography and geodesy.
+
+**Original Author**
+Instituto Geográfico Nacional
+
+**Original Link**
+https://www.ign.es/web/ign/portal/publicaciones-boletines-y-libros-digitales/
+
+**Original Publication Date**
+1/01/2026
+
+**License**
+Reproduction is authorized as long as the source is cited.
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 14506146
+- Millons of tokens: 14.5061
+- Billons of tokens: 0.0145
+
+
+### Revistas_Cultura_Jaume_I
+
+**Dataset Name**
+Cultural heritage journals of Universitat Jaume I
+
+**Description**
+Dataset contains articles from academic journals published by Universitat Jaume I that are most related with cultural heritage, museums, history and arts
+
+**Original Author**
+Universitat Jaume I
+
+**Original Link**
+https://www.uji.es/serveis/scp/base/publ/proser/revistes/
+
+**Original Publication Date**
+1/01/2009
+
+**License**
+CC BY-SA 4.0
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 14706373
+- Millons of tokens: 14.7064
+- Billons of tokens: 0.0147
+
+
+### Revista_Cuadernos_De_Ilustracion_Y_Romanticismo
+
+**Dataset Name**
+Articles from the "Cuadernos de ilustración y romanticismo" Journal
+
+**Description**
+The dataset contains the following data about each number of the magazine: title, author, description, publisher, language,  date, type, identifier, source, format, subjects, and text
+
+**Original Author**
+Universidad de Cádiz
+
+**Original Link**
+https://revistas.uca.es/index.php/cir
+
+**Original Publication Date**
+10/09/2025
+
+**License**
+Permission granted from the original entity
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 11230628
+- Millons of tokens: 11.2306
+- Billons of tokens: 0.0112
+
+
+### Revista_El_Pajaro_De_Benin
+
+**Dataset Name**
+Articles from the "El pájaro de Benín" Journal
+
+**Description**
+The dataset contains the following data about each number of the magazine: title, author, description, publisher, language,  date, type, identifier, source, format, subjects, and text
+
+**Original Author**
+Universidad de Sevilla
+
+**Original Link**
+https://revistascientificas.us.es/index.php/pajaro_benin
+
+**Original Publication Date**
+31/12/2024
+
+**License**
+Permission granted from the original entity
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 931089
+- Millons of tokens: 0.9311
+- Billons of tokens: 0.0009
+
+
+### Revista_Hipogrifo
+
+**Dataset Name**
+Articles from the "Hipogrifo" Journal
+
+**Description**
+The dataset contains the following data about each number of the magazine: title, author, description, publisher, language,  date, type, identifier, source, format, subjects, and text
+
+**Original Author**
+Instituto de estudios auriseculares
+
+**Original Link**
+https://www.revistahipogrifo.com/index.php/hipogrifo
+
+**Original Publication Date**
+3/12/2025
+
+**License**
+Permission granted from the original entity
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 11527113
+- Millons of tokens: 11.5271
+- Billons of tokens: 0.0115
+
+
+### Revista_Andelma
+
+**Dataset Name**
+Articles from the "Andelma" Journal
+
+**Description**
+The dataset contains the following data about each number of the magazine: title, author, description, publisher, language,  date, type, identifier, source, format, subjects, and text
+
+**Original Author**
+Centro de estudios históricos  Fray Pasqual Salmerón de Cieza
+
+**Original Link**
+https://www.revistaandelma.es/index.php/andelma/
+
+**Original Publication Date**
+6/05/2025
+
+**License**
+Creative Commons Attribution 4.0 International (cc-by-4.0)
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 879421
+- Millons of tokens: 0.8794
+- Billons of tokens: 0.0009
+
+
+### Revista_Buñueliana
+
+**Dataset Name**
+Articles from the "Buñueliana" Journal
+
+**Description**
+The dataset contains the following data about each number of the magazine: title, author, description, publisher, language,  date, type, identifier, source, subjects and text
+
+**Original Author**
+Fundación Centro Buñuel Calanda
+
+**Original Link**
+https://papiro.unizar.es/ojs/index.php/bunuel/es/index
+
+**Original Publication Date**
+27/07/2025
+
+**License**
+Permission granted from the original entity
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 301280
+- Millons of tokens: 0.3013
+- Billons of tokens: 0.0003
+
+
+### Patrimonio_Cataluña
+
+**Dataset Name**
+Items from the "Patrimonio cultural de Cataluña"
+
+**Description**
+The dataset contains the following data about each number of the magazine: id, url and text
+
+**Original Author**
+Generalitat de Cataluña
+
+**Original Link**
+https://patrimoni.gencat.cat/es/descubre/busca
+
+**Original Publication Date**
+23/01/2026
+
+**License**
+Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+
+**Language**
+Spanish
+
+**Granularity**
+Paragraph
+
+**Token Information**
+- Number of tokens: 141696
+- Millons of tokens: 0.1417
+- Billons of tokens: 0.0001
+
+
+### Revista_Santander_Estudios_Patrimonio
+
+**Dataset Name**
+Santander - Journal of Heritage Studies published by the University of Cantabria
+
+**Description**
+Santander - Journal of Heritage Studies is an annual scientific journal published by the University of Cantabria. It  contains articles on the various aspects of the artistic, historical, and territorial heritage of Europe and America.
+
+**Original Author**
+University of Cantabria
+
+**Original Link**
+https://santanderestudiospatrimonio.unican.es/index.php/sanespat/index
+
+**Original Publication Date**
+1/01/2018
+
+**License**
+Permission granted from the original entity
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 2217909
+- Millons of tokens: 2.2179
+- Billons of tokens: 0.0022
+
+
+### Revista_Memoria_Ecclesiae
+
+**Dataset Name**
+Articles from the "Memoria Ecclesiae" Journal
+
+**Description**
+The dataset contains the following data about each number of the magazine: title, url and text
+
+**Original Author**
+Asociación de archiveros de la iglesia en España
+
+**Original Link**
+https://scrinia.org/publicaciones/memoria/
+
+**Original Publication Date**
+1/01/2025
+
+**License**
+Permission granted from the original entity
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 16365183
+- Millons of tokens: 16.3652
+- Billons of tokens: 0.0164
+
+
+### Revista_Signa
+
+**Dataset Name**
+Articles from the "Signa" Journal
+
+**Description**
+The dataset contains the following data about each number of the magazine: title, author, description, publisher, language,  date, type, identifier, source, format, subjects, and text
+
+**Original Author**
+Asociación española de semiótica
+
+**Original Link**
+https://revistas.uned.es/index.php/signa
+
+**Original Publication Date**
+8/01/2025
+
+**License**
+Permission granted from the original entity
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 13223541
+- Millons of tokens: 13.2235
+- Billons of tokens: 0.0132
+
+
+### Publicaciones_Patrimonio_Subdireccion_Defensa
+
+**Dataset Name**
+Cultural and history resources from Deputy Directorate General for Publications and Cultural Heritage of the Ministry of Defense, Government of Spain
+
+**Description**
+This dataset comprises free digital publications on History and Culture from the official publication portal of the Deputy Directorate General for Publications and Cultural Heritage in Spanish Ministry of Defense. The collection includes free books, ebooks, and PDF documents classified under the History and Culture category in Spanish language.
+
+**Original Author**
+Deputy Directorate General for Publications and Cultural Heritage of the Ministry of Defense, Government of Spain
+
+**Original Link**
+https://publicaciones.defensa.gob.es/
+
+**Original Publication Date**
+1/01/2026
+
+**License**
+Commercial use permitted
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 10625373
+- Millons of tokens: 10.6254
+- Billons of tokens: 0.0106
+
+
+### Bienes_Culturales_Castilla_LaMancha
+
+**Dataset Name**
+Catalogue of Cultural Heritage from Castilla-La Mancha
+
+**Description**
+This dataset contains information on Assets of Cultural Interest from Cultural Catalogue of Castilla-La Mancha, as well as its architectural heritage, monuments, historic sites and places of heritage value.
+
+**Original Author**
+Consejería de Educación, Cultura y Deportes de Castilla-LaMancha
+
+**Original Link**
+https://cultura.castillalamancha.es/patrimonio/catalogo-patrimonio-cultural
+
+**Original Publication Date**
+1/01/2026
+
+**License**
+Reproduction is authorized as long as the source is cited.
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 491422
+- Millons of tokens: 0.4914
+- Billons of tokens: 0.0005
+
+
+### Patrimonio_Castilla_Y_Leon
+
+**Dataset Name**
+Documents from the Catalog of cultural goods of Castilla Y León
+
+**Description**
+The dataset contains the following data about each item: id, description, category, ubication, text, url
+
+**Original Author**
+Junta de Castilla y León
+
+**Original Link**
+https://patrimoniocultural.jcyl.es/web/es/patrimonio-bienes-culturales/catalogo-bienes-culturales.html
+
+**Original Publication Date**
+26/01/2026
+
+**License**
+Public Domain - Creative Commons Zero v1.0 Universal (CC0)
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 1344780
+- Millons of tokens: 1.3448
+- Billons of tokens: 0.0013
+
+
+### Revista_Janus
+
+**Dataset Name**
+Articles from the journal "Janus"
+
+**Description**
+JANUS. Studies on the Golden Age is a digital scientific journal, open access and free of charge. It aims to promote the exchange of global knowledge. No fees are charged for submitting papers or for publishing articles. Its objective is to accommodate: Research results related to Spanish Literature of the 16th and 17th centuries from multidisciplinary perspectives, Collaborations on different aspects of Spanish, European, and Latin American Literature and culture of the Early Modern period, especially those related to the fields of study of SIELAE: Emblematics, News Reports, Renaissance Encyclopedias (Polianteas), Inventories and Libraries of the Golden Age, as well as studies on creations in which word and image are associated. Works in the field commonly referred to as Digital Humanities (also designated under the labels: Humanities Computing, Humanities and Computing)
+
+**Original Author**
+Universidad de La Coruña
+
+**Original Link**
+https://revistas.udc.es/index.php/janusdigital/about
+
+**Original Publication Date**
+1/01/2026
+
+**License**
+Permission granted from the original entity
+
+**Language**
+Spanish
+
+**Granularity**
+Document
+
+**Token Information**
+- Number of tokens: 4073359
+- Millons of tokens: 4.0734
+- Billons of tokens: 0.0041

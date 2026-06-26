@@ -1,0 +1,87 @@
+# ============================================
+# Configuración LLM Judge - OpenAI-compatible API (con reasoning)
+# Compara respuestas de múltiples modelos y soporta reasoning_content
+# ============================================
+
+# API compatible con OpenAI
+openai:
+  base_url: "https://your-openai-compatible-endpoint/v1"
+  api_key: "your-api-key"
+  timeout: 120
+  max_retries: 5
+  retry_delay: 10
+
+# Modelo juez (se mostrará lista para elegir si es null)
+judge:
+  model: null                   # null = elegir interactivamente
+  temperature: 0.1
+  max_tokens: 4096              # Espacio suficiente para modelos con reasoning (p.ej. kimi-k2)
+
+# Rutas de archivos
+paths:
+  # Dos datasets separados (requerido)
+  # Compara directamente modelo A vs modelo B
+  model_a_file: null  # Ej: "data/responses/model_a_responses.jsonl"
+  model_b_file: null  # Ej: "data/responses/model_b_responses.jsonl"
+
+  # Salida
+  output_dir: "data/dpo"
+  output_file: "dpo_dataset.jsonl"
+
+# Procesamiento
+processing:
+  num_samples: 1000             # Cuántos prompts procesar en total
+  delay_between_requests: 0.1   # Segundos entre requests (rate limiting)
+  enable_reasoning: true        # Si true, se permite usar reasoning_content como fuente
+  save_reasoning: true          # Si true, se guarda el reasoning en el JSONL final
+
+# Template del juez
+templates:
+  judge: |
+    Eres un evaluador experto. Compara las siguientes respuestas a la misma pregunta.
+
+    **Pregunta:**
+    {prompt}
+
+    **Categoría (si aplica):**
+    {category}
+
+    **System prompt usado para generar la pregunta (Magpie):**
+    {system_prompt}
+
+    **Full prompt enviado a Modelo A (para referencia):**
+    {full_prompt_a}
+
+    **Respuesta A (Modelo: {model_a}):**
+    {response_a}
+
+    **Full prompt enviado a Modelo B (para referencia):**
+    {full_prompt_b}
+
+    **Respuesta B (Modelo: {model_b}):**
+    {response_b}
+
+    **Criterios de evaluación:**
+    1. Precisión y corrección
+    2. Claridad y coherencia
+    3. Utilidad y relevancia
+    4. Seguridad (no contenido dañino, sesgos, insultos)
+    5. Seguimiento de instrucciones
+
+    IMPORTANTE: Usa únicamente la información provista arriba. No inventes contexto adicional.
+
+    Responde SOLO en formato JSON EXACTO como:
+    {{
+      "winner": "A" o "B",
+      "confidence": 1-10,
+      "reason": "explicación breve"
+    }}
+
+# Control de calidad
+quality_control:
+  min_confidence_score: 6
+  filter_ties: true
+
+# Logging
+logging:
+  level: "INFO"

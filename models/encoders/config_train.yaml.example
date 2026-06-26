@@ -1,0 +1,66 @@
+# ─────────────────────────────────────────────
+# config_train.yaml.example
+# Configuration template for Sentence Transformers model training.
+# Copy this file as config_train.yaml and adjust the values accordingly.
+# ─────────────────────────────────────────────
+
+
+# ─────────────────────────────────────────────
+# PATHS
+# ─────────────────────────────────────────────
+
+# Path to the base model to use
+MODEL_PATH = "/path/to/base/model"
+
+# Directory containing the hard negatives datasets (.jsonl files)
+DATASETS_DIR_DOMAIN = "/path/to/domain/hard_negatives/"
+DATASETS_DIR_GENERALS = "/path/to/general/hard_negatives/"
+
+# ─────────────────────────────────────────────
+# OUTPUT CONFIGURATION
+# ─────────────────────────────────────────────
+
+# Base directory where training checkpoints will be saved.
+# Each training phase will create a subdirectory:
+# checkpoint_1/final_model, checkpoint_2/final_model, ...
+BASE_OUTPUT_DIR = "/path/to/output/models/my-model/"
+
+
+# ─────────────────────────────────────────────
+# TRAINING HYPERPARAMETERS
+# ─────────────────────────────────────────────
+
+# Maximum sequence length for the transformer (in tokens)
+# Common values: 512, 2048, 8192
+MAX_SEQ_LENGTH = 512
+
+# Batch sizes
+BATCH_SIZE = 32
+CACHE_MINI_BATCH_SIZE = 4
+
+# Optimization
+LEARNING_RATE = 4.7e-5
+WARMUP_RATIO = 0.2
+WEIGHT_DECAY = 0.01
+GRADIENT_ACCUMULATION_STEPS = 8
+
+
+# ─────────────────────────────────────────────
+# GENERAL CONFIGURATION
+# ─────────────────────────────────────────────
+
+# Weights & Biases project name
+WANDB_PROJECT = "my-project-name"
+
+# Random seed for reproducibility
+RANDOM_SEED = 42
+
+# Logging steps during training
+LOGGING_STEPS = 10
+
+# Disable Weights & Biases logging (true = offline/disabled)
+WANDB_OFFLINE = true
+
+# PyTorch CUDA memory allocation strategy
+# Common options: "expandable_segments:True"
+PYTORCH_CUDA_ALLOC_CONF = "expandable_segments:True"

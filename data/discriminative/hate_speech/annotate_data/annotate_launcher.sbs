@@ -1,0 +1,218 @@
+#!/bin/bash
+#SBATCH --job-name=annotate_data
+#SBATCH --output=logs/annotate_data_%j.out
+#SBATCH --error=logs/annotate_data_%j.err
+#SBATCH --nodelist=NODENAME
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=32
+#SBATCH --ntasks=1
+#SBATCH --time=18:00:00
+#SBATCH --mem=256G
+
+set -euo pipefail
+
+echo "Started at $(date) on $(hostname)"
+
+module purge
+
+eval "$(conda shell.bash hook)"
+conda activate CONDA_ENV_NAME
+
+PYTHON=python3
+BASE_DIR="PATH/TO/PROJECT"
+SCRIPT_PATH="$BASE_DIR/PATH/TO/SCRIPT/annotate_process.py"
+CONFIG_PATH="$BASE_DIR/PATH/TO/CONFIG/annotate_config.yaml"
+INPUT_JSONL="$BASE_DIR/PATH/TO/INPUT/curated.jsonl"
+JSONL_DIR="$BASE_DIR/PATH/TO/OUTPUT/ANNOTATED/DATA"
+RETRY_ROUNDS="${RETRY_ROUNDS:-5}"
+TORCH_COMPILE_DISABLE="${TORCH_COMPILE_DISABLE:-1}"
+TORCHDYNAMO_DISABLE="${TORCHDYNAMO_DISABLE:-1}"
+
+MODEL_ALIAS="${1:-}"
+if [[ -z "$MODEL_ALIAS" ]]; then
+    echo "ERROR: you must provide the model alias as the first parameter." >&2
+    echo "Usage: bash annotate_launcher.sbs <model_alias>" >&2
+    exit 1
+fi
+
+if [[ -z "${SLURM_JOB_ID:-}" ]]; then
+    if [[ ! -f "$CONFIG_PATH" ]]; then
+        echo "ERROR: the config YAML does not exist: $CONFIG_PATH" >&2
+        exit 1
+    fi
+
+    MODEL_TP=$($PYTHON - "${CONFIG_PATH}" "${MODEL_ALIAS}" <<'PY'
+import sys, yaml
+from pathlib import Path
+
+cfg  = yaml.safe_load(Path(sys.argv[1]).read_text(encoding="utf-8")) or {}
+models = cfg.get("models", {}) or {}
+alias  = sys.argv[2]
+
+if alias not in models:
+    raise SystemExit(3)
+
+base_tp     = int((cfg.get("model_params") or {}).get("tensor_parallel_size", 1))
+overrides   = cfg.get("model_params_overrides", {}) or {}
+tp          = int((overrides.get(alias) or {}).get("tensor_parallel_size", base_tp))
+print(max(tp, 1))
+PY
+)
+
+    if [[ -z "$MODEL_TP" ]]; then
+        echo "ERROR: the model '$MODEL_ALIAS' does not exist in $CONFIG_PATH" >&2
+        exit 1
+    fi
+
+    echo "[submit] Model=$MODEL_ALIAS -> GPUs=$MODEL_TP"
+    exec sbatch --gres="gpu:${MODEL_TP}" "$0" "$MODEL_ALIAS"
+fi
+
+echo "=============================================="
+echo "Job ID:   $SLURM_JOB_ID"
+echo "Node:     $(hostname)"
+echo "GPUs:     $CUDA_VISIBLE_DEVICES"
+echo "Script:   $SCRIPT_PATH"
+echo "Config:   $CONFIG_PATH"
+echo "Model:   $MODEL_ALIAS"
+echo "INPUT_JSONL: $INPUT_JSONL"
+echo "JSONL_DIR: $JSONL_DIR"
+echo "TORCH_COMPILE_DISABLE: $TORCH_COMPILE_DISABLE"
+echo "TORCHDYNAMO_DISABLE:   $TORCHDYNAMO_DISABLE"
+echo "=============================================="
+
+mkdir -p "$JSONL_DIR"
+
+if [[ ! -f "$CONFIG_PATH" ]]; then
+    echo "ERROR: the config YAML does not exist: $CONFIG_PATH" >&2
+    exit 1
+fi
+
+if [[ ! -f "$SCRIPT_PATH" ]]; then
+    echo "ERROR: the annotation script does not exist: $SCRIPT_PATH" >&2
+    exit 1
+fi
+
+echo "--- Runtime diagnostics ---"
+if command -v nvidia-smi >/dev/null 2>&1; then
+    nvidia-smi -L || true
+else
+    echo "nvidia-smi is not available in PATH"
+fi
+
+python3 - <<'PY'
+import os, sys
+
+print(f"CUDA_VISIBLE_DEVICES={os.getenv('CUDA_VISIBLE_DEVICES', '')}")
+print(f"SLURM_GPUS_ON_NODE={os.getenv('SLURM_GPUS_ON_NODE', '')}")
+
+try:
+    import torch
+    print(f"torch={torch.__version__}")
+    print(f"torch.version.cuda={getattr(torch.version, 'cuda', None)}")
+    print(f"torch.cuda.is_available={torch.cuda.is_available()}")
+    print(f"torch.cuda.device_count={torch.cuda.device_count()}")
+except Exception as e:
+    print(f"torch import ERROR: {type(e).__name__}: {e}")
+
+try:
+    import transformers
+    print(f"transformers={transformers.__version__}")
+except Exception as e:
+    print(f"transformers import ERROR: {type(e).__name__}: {e}")
+
+try:
+    import tokenizers
+    print(f"tokenizers={tokenizers.__version__}")
+except Exception as e:
+    print(f"tokenizers import ERROR: {type(e).__name__}: {e}")
+
+try:
+    import vllm
+    print(f"vllm={vllm.__version__}")
+except Exception as e:
+    print(f"vllm import ERROR: {type(e).__name__}: {e}")
+PY
+echo "---------------------------"
+
+if ! python3 -c "import torch, sys; sys.exit(0 if torch.cuda.is_available() else 1)"; then
+    echo "ERROR: torch.cuda.is_available()=False dentro del job." >&2
+    echo "Check the CUDA/PyTorch setup of the configured conda environment." >&2
+    exit 1
+fi
+
+if [[ -n "${SLURM_GPUS_ON_NODE:-}" ]]; then
+    AVAILABLE_GPUS="$SLURM_GPUS_ON_NODE"
+elif [[ -n "${CUDA_VISIBLE_DEVICES:-}" ]]; then
+    AVAILABLE_GPUS=$(echo "$CUDA_VISIBLE_DEVICES" | tr ',' '\n' | grep -c . || true)
+elif command -v nvidia-smi >/dev/null 2>&1; then
+    AVAILABLE_GPUS=$(nvidia-smi -L | wc -l)
+else
+    AVAILABLE_GPUS=1
+fi
+[[ "$AVAILABLE_GPUS" -lt 1 ]] && AVAILABLE_GPUS=1
+
+MODEL_TP=$($PYTHON - "${CONFIG_PATH}" "${MODEL_ALIAS}" <<'PY'
+import sys, yaml
+from pathlib import Path
+
+cfg  = yaml.safe_load(Path(sys.argv[1]).read_text(encoding="utf-8")) or {}
+models = cfg.get("models", {}) or {}
+alias  = sys.argv[2]
+
+if alias not in models:
+    raise SystemExit(3)
+
+base_tp     = int((cfg.get("model_params") or {}).get("tensor_parallel_size", 1))
+overrides   = cfg.get("model_params_overrides", {}) or {}
+tp          = int((overrides.get(alias) or {}).get("tensor_parallel_size", base_tp))
+print(max(tp, 1))
+PY
+)
+
+if [[ -z "$MODEL_TP" ]]; then
+    echo "ERROR: the model '$MODEL_ALIAS' does not exist in $CONFIG_PATH" >&2
+    exit 1
+fi
+
+if (( MODEL_TP > AVAILABLE_GPUS )); then
+    LAUNCHER_HINT="${SLURM_SUBMIT_DIR:-$PWD}/annotate_launcher.sbs"
+    if [[ -z "${AUTO_RESUBMITTED:-}" ]]; then
+        echo "WARN: '$MODEL_ALIAS' requires tp=$MODEL_TP GPUs but the job has $AVAILABLE_GPUS." >&2
+        echo "WARN: resubmitting automatically with --gres=gpu:$MODEL_TP" >&2
+        sbatch --export=ALL,AUTO_RESUBMITTED=1 --gres="gpu:${MODEL_TP}" "$LAUNCHER_HINT" "$MODEL_ALIAS"
+        exit 0
+    fi
+    echo "ERROR: '$MODEL_ALIAS' requires tp=$MODEL_TP GPUs but the job has $AVAILABLE_GPUS." >&2
+    exit 1
+fi
+
+if [[ -n "${CUDA_VISIBLE_DEVICES:-}" ]]; then
+    IFS=',' read -r -a _GPU_IDS <<< "$CUDA_VISIBLE_DEVICES"
+    if (( MODEL_TP > ${#_GPU_IDS[@]} )); then
+        echo "ERROR: tp=$MODEL_TP but CUDA_VISIBLE_DEVICES exposes only ${#_GPU_IDS[@]} GPU(s): $CUDA_VISIBLE_DEVICES" >&2
+        exit 1
+    fi
+    GPU_LIST=$(IFS=,; echo "${_GPU_IDS[*]:0:MODEL_TP}")
+else
+    GPU_LIST=$(seq -s, 0 $((MODEL_TP - 1)))
+fi
+
+LOG="logs/annotate_data_${SLURM_JOB_ID}_${MODEL_ALIAS}.log"
+echo "Available GPUs in allocation: $AVAILABLE_GPUS"
+echo "Model TP requirement:         $MODEL_TP"
+echo "Starting model=$MODEL_ALIAS tp=$MODEL_TP CUDA_VISIBLE_DEVICES(run)=$GPU_LIST log=$LOG"
+
+PYTHONUNBUFFERED=1 \
+    CUDA_VISIBLE_DEVICES="$GPU_LIST" \
+    TORCH_COMPILE_DISABLE="$TORCH_COMPILE_DISABLE" \
+    TORCHDYNAMO_DISABLE="$TORCHDYNAMO_DISABLE" \
+    $PYTHON "$SCRIPT_PATH" \
+        --config "$CONFIG_PATH" \
+        --input-jsonl "$INPUT_JSONL" \
+        --jsonl-dir "$JSONL_DIR" \
+        --only-models "$MODEL_ALIAS" \
+        --retry-failed-rounds "$RETRY_ROUNDS" \
+        --log-file "$LOG"
+
+echo "Annotation worker finished."
